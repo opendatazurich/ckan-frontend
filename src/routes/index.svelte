@@ -1,12 +1,16 @@
 <script context="module" lang="ts">
-	import { url } from '$lib/api';
+	import { get } from '$lib/api';
 
-	export async function load({ fetch, page }) {
-		const res = await fetch(url(`group_list?all_fields=true&limit=6&sort=package_count`));
-		const data = await res.json();
+	export async function load() {
+		const groups = await get('group_list?all_fields=true&limit=6&sort=package_count');
+		const { facets } = await get('package_search?facet.field=["tags"]&facet.limit=3&rows=0');
+		const tags = Object.entries(facets.tags as Map<string, number>)
+			.sort((a, b) => b[1] - a[1])
+			.map(([key]) => key);
 		return {
 			props: {
-				groups: data.result
+				groups,
+				tags
 			}
 		};
 	}
@@ -14,8 +18,11 @@
 
 <script lang="ts">
 	import GroupList from '$lib/GroupList.svelte';
+	import SearchField from '$lib/SearchField.svelte';
+	import TagList from '$lib/TagList.svelte';
 
 	export let groups = [];
+	export let tags = [];
 </script>
 
 <div class="homepage layout-1">
@@ -39,30 +46,10 @@
 						<div class="row">
 							<div class="span6 col1">
 								<form class="module-content search-form" method="get" action="/dataset">
-									<div class="search-input control-group search-giant">
-										<input
-											id="ogdzh_search"
-											type="text"
-											class="search"
-											name="q"
-											value=""
-											autocomplete="off"
-											placeholder="Datensätze suchen..."
-											data-module="autocomplete-ogdzh-facet-search"
-										/>
-										<button type="submit">
-											<i class="fa fa-search" />
-											<span>Suche</span>
-										</button>
-									</div>
+									<SearchField placeholder="Datensätze suchen..." />
 								</form>
 								<h3>Beliebte Schlagwörter</h3>
-
-								<a class="tag" href="/dataset?tags=geodaten">geodaten</a>
-
-								<a class="tag" href="/dataset?tags=geoportal">geoportal</a>
-
-								<a class="tag" href="/dataset?tags=vektordaten">vektordaten</a>
+								<TagList {tags} />
 							</div>
 							<div class="span5 col2">
 								<div class="teaser">
