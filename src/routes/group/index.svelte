@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	const url = (path: string) => `https://data.stadt-zuerich.ch/api/3/action/${path}`;
+	import { url } from '$lib/api';
 
 	export async function load({ fetch, page }) {
 		const res = await fetch(url(`group_list?all_fields=true&${page.query}`));
@@ -13,15 +13,12 @@
 </script>
 
 <script lang="ts">
+	import GroupList from '$lib/GroupList.svelte';
+	import type { Group } from '$lib/GroupList.svelte';
+
 	import SearchField from '$lib/SearchField.svelte';
 	import SortControl from '$lib/SortControl.svelte';
 
-	type Group = {
-		display_name: string;
-		package_count: number;
-		name: string;
-		image_url: string;
-	};
 	export let groups: Group[] = [];
 </script>
 
@@ -54,26 +51,7 @@
 							<SortControl />
 							<h2>{groups.length} Kategorien gefunden</h2>
 						</form>
-
-						<ul class="media-grid media-grid-zh">
-							{#each groups as group}
-								<li class="media-item media-item-zh">
-									<img src={group.image_url} alt={group.name} class="media-image" />
-
-									<h3 class="media-heading">{group.display_name}</h3>
-
-									<strong class="count">{group.package_count} Datensätze</strong>
-
-									<a
-										href="/group/{group.name}"
-										title="{group.display_name} ansehen"
-										class="media-view"
-									>
-										<span>{group.display_name} ansehen</span>
-									</a>
-								</li>
-							{/each}
-						</ul>
+						<GroupList {groups} />
 					</div>
 				</article>
 			</div>
