@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { truncate } from '$lib/string';
 
 	export let title = 'Filter';
 	export let key;
@@ -46,23 +47,26 @@
 		<i class="fa fa-filter" />
 		{title}
 	</h2>
-
-	<nav>
-		<ul class="unstyled nav nav-simple nav-facet">
-			{#each filteredItems as item}
-				<li class="nav-item" class:active={isActive(item.name)}>
-					<a href={url(item.name)}>
-						<span>{item.display_name} ({item.count})</span>
-					</a>
-				</li>
-			{/each}
-		</ul>
-	</nav>
-	<p class="module-footer">
-		{#if limit !== -1}
-			<a href={moreItemsUrl()} class="read-more">Mehr {title} anzeigen</a>
-		{:else}
-			<a href={lessItemsUrl()} class="read-more">Nur häufig nachgefragte {title} anzeigen</a>
-		{/if}
-	</p>
+	{#if filteredItems.length}
+		<nav>
+			<ul class="unstyled nav nav-simple nav-facet">
+				{#each filteredItems as item}
+					<li class="nav-item" class:active={isActive(item.name)}>
+						<a href={url(item.name)}>
+							<span>{truncate(item.display_name, 19, '...', false)} ({item.count})</span>
+						</a>
+					</li>
+				{/each}
+			</ul>
+		</nav>
+		<p class="module-footer">
+			{#if limit !== -1}
+				<a href={moreItemsUrl()} class="read-more">Mehr {title} anzeigen</a>
+			{:else}
+				<a href={lessItemsUrl()} class="read-more">Nur häufig nachgefragte {title} anzeigen</a>
+			{/if}
+		</p>
+	{:else}
+		<p class="module-content empty">Für diese Suche wurden keine {title} gefunden</p>
+	{/if}
 </section>
