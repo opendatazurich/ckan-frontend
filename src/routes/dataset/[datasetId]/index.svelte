@@ -1,16 +1,5 @@
 <script context="module" lang="ts">
-	import type { Load } from '@sveltejs/kit';
-	import { get } from '$lib/api';
-
-	export const load: Load = async ({ page }) => {
-		const { datasetId } = page.params;
-		const dataset = await get(`package_show?id=${datasetId}`);
-		return {
-			props: {
-				dataset
-			}
-		};
-	};
+	export { loadDataset as load } from '$lib/api';
 </script>
 
 <script lang="ts">
@@ -39,9 +28,9 @@
 							{dataset.title}
 						</h1>
 						<DatasetNotes notes={dataset.notes} />
-						<DatasetResources />
-						<DatasetTags />
-						<DatasetInfo />
+						<DatasetResources {dataset} />
+						<DatasetTags {dataset} />
+						<DatasetInfo {dataset} />
 					</div>
 				</article>
 			</div>

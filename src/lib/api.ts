@@ -1,3 +1,4 @@
+import type { Load } from '@sveltejs/kit';
 export const url = (path: string) => `https://data.stadt-zuerich.ch/api/3/action/${path}`;
 export const get = async (path: string) => {
 	const res = await fetch(url(path));
@@ -30,5 +31,15 @@ export const makeFilterUrl = (path: string, query: URLSearchParams) => {
 		newQuery.delete('page');
 		groups.forEach((group) => newQuery.append(key, group));
 		return `${path}?${newQuery}`;
+	};
+};
+
+export const loadDataset: Load = async ({ page }) => {
+	const { datasetId } = page.params;
+	const dataset = await get(`package_show?id=${datasetId}`);
+	return {
+		props: {
+			dataset
+		}
 	};
 };

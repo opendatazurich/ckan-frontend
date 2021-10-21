@@ -1,3 +1,7 @@
+<script lang="ts">
+	export const dataset = {} as any;
+</script>
+
 <section class="tags">
 	<ul class="tag-list well">
 		<li>

@@ -1,3 +1,7 @@
+<script lang="ts">
+	export const dataset = {} as any;
+</script>
+
 <section class="additional-info module-content">
 	<table class="table package-metadata">
 		<tbody
