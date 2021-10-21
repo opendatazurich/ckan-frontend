@@ -6,10 +6,11 @@
 
 	export const load: Load = async ({ page }) => {
 		const pageIndex = +(page.query.get('page') || '1');
+		const sort = page.query.get('sort') || '';
 		const q = page.query.get('q') || '';
 		const start = (pageIndex - 1) * pageSize;
 		const { count, results: datasets } = await get(
-			`package_search?rows=${pageSize}&start=${start}&q=${q}`
+			`package_search?rows=${pageSize}&start=${start}&q=${q}&sort=${sort}`
 		);
 		return {
 			props: {
@@ -26,10 +27,17 @@
 	import DatasetList from '$lib/DatasetList.svelte';
 	import Pagination from '$lib/Pagination.svelte';
 	import SearchField from '$lib/SearchField.svelte';
+	import SortControl from '$lib/SortControl.svelte';
 
 	export let datasets = [];
 	export let count = 0;
 	export let q = '';
+	const options = [
+		{ id: 'score desc, date_last_modified desc', title: 'Relevanz' },
+		{ id: 'title_string asc', title: 'Name aufsteigend' },
+		{ id: 'title_string desc', title: 'Name absteigend' },
+		{ id: 'date_last_modified desc', title: 'Zuletzt geändert' }
+	];
 </script>
 
 <div role="main">
@@ -55,19 +63,7 @@
 							data-module="select-switch"
 						>
 							<SearchField placeholder="Datensätze suchen..." />
-
-							<div class="form-select control-group control-order-by">
-								<label for="field-order-by">Sortieren nach</label>
-								<select id="field-order-by" name="sort">
-									<option value="score desc, date_last_modified desc" selected>Relevanz</option>
-
-									<option value="title_string asc">Name aufsteigend</option>
-
-									<option value="title_string desc">Name absteigend</option>
-
-									<option value="date_last_modified desc">Zuletzt geändert</option>
-								</select>
-							</div>
+							<SortControl {options} />
 
 							<h2>
 								{count === 0 ? 'Keine' : count} Datensätze {q != '' ? `gefunden für “${q}”` : ''}

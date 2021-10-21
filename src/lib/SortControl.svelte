@@ -2,14 +2,17 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 
-	const options = [
+	export let options = [
 		{ id: 'title asc', title: 'Name aufsteigend' },
 		{ id: 'title desc', title: 'Name absteigend' }
 	];
-	const value = $page.query.get('sort') || options[0].id;
+	$: query = new URLSearchParams($page.query);
+	$: path = $page.path;
+	$: value = query.get('sort') || options[0].id;
 
 	function onChange(e) {
-		goto(`/group?q=${$page.query.get('q') || ''}&sort=${e.target.value}`);
+		query.set('sort', e.target.value);
+		goto(`${path}?${query}`);
 	}
 </script>
 
