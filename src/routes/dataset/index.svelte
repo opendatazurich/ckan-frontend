@@ -6,15 +6,17 @@
 
 	export const load: Load = async ({ page }) => {
 		const pageIndex = +(page.query.get('page') || '1');
+		const q = page.query.get('q') || '';
 		const start = (pageIndex - 1) * pageSize;
 		const { count, results: datasets } = await get(
-			`package_search?rows=${pageSize}&start=${start}`
+			`package_search?rows=${pageSize}&start=${start}&q=${q}`
 		);
 		return {
 			props: {
 				datasets,
 				count,
-				page: pageIndex
+				page: pageIndex,
+				q
 			}
 		};
 	};
@@ -27,6 +29,7 @@
 
 	export let datasets = [];
 	export let count = 0;
+	export let q = '';
 </script>
 
 <div role="main">
@@ -66,7 +69,9 @@
 								</select>
 							</div>
 
-							<h2>{count} Datensätze</h2>
+							<h2>
+								{count === 0 ? 'Keine' : count} Datensätze {q != '' ? `gefunden für “${q}”` : ''}
+							</h2>
 
 							<p class="filter-list" />
 							<a class="show-filters btn">Ergebnisse filtern</a>

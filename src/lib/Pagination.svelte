@@ -6,6 +6,7 @@
 	export let count: number;
 	const lastPage = Math.floor(count / pageSize) + 1;
 	const firstPage = 1;
+	const hasPagination = firstPage != lastPage;
 
 	$: query = new URLSearchParams($page.query.toString());
 	$: path = $page.path;
@@ -20,37 +21,41 @@
 	$: rightBound = Math.min(pageIndex + boubleSize, lastPage - 1);
 	$: hasLeftSpacer = leftBound > firstPage + 1;
 	$: hasRightSpacer = rightBound < lastPage - 1;
-	$: pages = new Array(rightBound - leftBound + 1).fill(0).map((_, index) => leftBound + index);
+	$: pages = hasPagination
+		? new Array(rightBound - leftBound + 1).fill(0).map((_, index) => leftBound + index)
+		: [];
 	$: isActive = (p: number) => p === pageIndex;
 </script>
 
-<div class="pagination pagination-centered">
-	<ul>
-		{#if hasPrevious}
-			<li><a href={url(pageIndex - 1)}>«</a></li>
-		{/if}
+{#if hasPagination}
+	<div class="pagination pagination-centered">
+		<ul>
+			{#if hasPrevious}
+				<li><a href={url(pageIndex - 1)}>«</a></li>
+			{/if}
 
-		<li class:active={isActive(firstPage)}><a href={url(firstPage)}>{firstPage}</a></li>
+			<li class:active={isActive(firstPage)}><a href={url(firstPage)}>{firstPage}</a></li>
 
-		{#if hasLeftSpacer}
-			<li class="disabled"><span>...</span></li>
-		{/if}
+			{#if hasLeftSpacer}
+				<li class="disabled"><span>...</span></li>
+			{/if}
 
-		{#each pages as page}
-			<li class:active={isActive(page)}><a href={url(page)}>{page}</a></li>
-		{/each}
+			{#each pages as page}
+				<li class:active={isActive(page)}><a href={url(page)}>{page}</a></li>
+			{/each}
 
-		{#if hasRightSpacer}
-			<li class="disabled"><span>...</span></li>
-		{/if}
+			{#if hasRightSpacer}
+				<li class="disabled"><span>...</span></li>
+			{/if}
 
-		<li class:active={isActive(lastPage)}><a href={url(lastPage)}>{lastPage}</a></li>
+			<li class:active={isActive(lastPage)}><a href={url(lastPage)}>{lastPage}</a></li>
 
-		{#if hasNext}
-			<li><a href={url(pageIndex + 1)}>»</a></li>
-		{/if}
-	</ul>
-</div>
+			{#if hasNext}
+				<li><a href={url(pageIndex + 1)}>»</a></li>
+			{/if}
+		</ul>
+	</div>
+{/if}
 
 <style>
 	.disabled > span {

@@ -1,38 +1,27 @@
 <script lang="ts">
 	import FileFormats from './FileFormats.svelte';
+	import { removeMarkdown, truncate } from '$lib/string';
 
 	export let datasets = [];
-	function shorten(str: string, length = 178, ellipsis = '...') {
-		if (str.length <= length) {
-			return str;
-		}
-		let trimmedString = str.substr(0, length);
-
-		trimmedString = trimmedString.substr(
-			0,
-			Math.min(trimmedString.length, trimmedString.lastIndexOf(' '))
-		);
-
-		return trimmedString + ellipsis;
-	}
-	function removeMarkdown(str: string) {
-		return str.replaceAll('**', '').replaceAll('&quot;', '"');
-	}
 </script>
 
-<ul class="dataset-list unstyled">
-	{#each datasets as dataset (dataset.id)}
-		<li class="dataset-item">
-			<div class="dataset-content">
-				<h3 class="dataset-heading">
-					<a href="/dataset/{dataset.name}">{dataset.title}</a>
-				</h3>
-				<div>
-					{shorten(removeMarkdown(dataset.notes))}
+{#if datasets.length}
+	<ul class="dataset-list unstyled">
+		{#each datasets as dataset (dataset.id)}
+			<li class="dataset-item">
+				<div class="dataset-content">
+					<h3 class="dataset-heading">
+						<a href="/dataset/{dataset.name}">{truncate(dataset.title, 80)}</a>
+					</h3>
+					<div>
+						{truncate(removeMarkdown(dataset.notes), 180)}
+					</div>
 				</div>
-			</div>
 
-			<FileFormats href="/dataset/{dataset.name}" resources={dataset.resources} />
-		</li>
-	{/each}
-</ul>
+				<FileFormats href="/dataset/{dataset.name}" resources={dataset.resources} />
+			</li>
+		{/each}
+	</ul>
+{:else}
+	<p class="extra">Bitte versuch es mit einer anderen Suche.</p>
+{/if}
