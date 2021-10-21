@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { truncate } from '$lib/string';
+	import { makeFilterUrl } from '$lib/api';
 
 	export let title = 'Filter';
 	export let key;
@@ -9,18 +10,7 @@
 	$: query = new URLSearchParams($page.query);
 	$: query.delete('page');
 	$: path = $page.path;
-	$: url = (name: string) => {
-		const newQuery = new URLSearchParams(query);
-		let groups = newQuery.getAll(key);
-		if (groups.includes(name)) {
-			groups = groups.filter((g) => g !== name);
-		} else {
-			groups.push(name);
-		}
-		newQuery.delete(key);
-		groups.forEach((group) => newQuery.append(key, group));
-		return `${path}?${newQuery}`;
-	};
+	$: url = makeFilterUrl(path, query);
 	$: limit = query.has(limitKey) ? -1 : 10;
 	$: filteredItems = items
 		.sort((a, b) => a.name.localeCompare(b.name))
@@ -52,7 +42,7 @@
 			<ul class="unstyled nav nav-simple nav-facet">
 				{#each filteredItems as item}
 					<li class="nav-item" class:active={isActive(item.name)}>
-						<a href={url(item.name)}>
+						<a href={url(key, item.name)}>
 							<span>{truncate(item.display_name, 19, '...', false)} ({item.count})</span>
 						</a>
 					</li>

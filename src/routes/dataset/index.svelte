@@ -1,9 +1,6 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
-	import { get } from '$lib/api';
-
-	const pageSize = 20;
-	const facets = ['groups', 'tags', 'res_format', 'license_id'];
+	import { get, pageSize, facetIds, facets } from '$lib/api';
 
 	export const load: Load = async ({ page }) => {
 		const pageIndex = +(page.query.get('page') || '1');
@@ -16,11 +13,11 @@
 		newQuery.set('sort', page.query.get('sort') || '');
 		newQuery.set('rows', `${pageSize}`);
 		newQuery.set('start', `${start}`);
-		newQuery.set('facet.field', `${JSON.stringify(facets)}`);
+		newQuery.set('facet.field', `${JSON.stringify(facetIds)}`);
 		newQuery.set('facet', 'true');
 
 		const facetQuery = facets
-			.map((facet) => ({ id: facet, items: page.query.getAll(facet) }))
+			.map((facet) => ({ ...facet, items: page.query.getAll(facet.id) }))
 			.filter((facet) => facet.items.length)
 			.map((facet) => `${facet.id}:(${facet.items.join(' AND ')})`)
 			.join(' AND ');
@@ -42,6 +39,7 @@
 
 <script lang="ts">
 	import DatasetList from '$lib/DatasetList.svelte';
+	import FilterList from '$lib/FilterList.svelte';
 	import Filters from '$lib/Filters.svelte';
 	import Pagination from '$lib/Pagination.svelte';
 	import SearchField from '$lib/SearchField.svelte';
@@ -89,7 +87,7 @@
 								{count === 0 ? 'Keine' : count} Datensätze {q != '' ? `gefunden für “${q}”` : ''}
 							</h2>
 
-							<p class="filter-list" />
+							<FilterList {search_facets} />
 							<a class="show-filters btn">Ergebnisse filtern</a>
 						</form>
 
