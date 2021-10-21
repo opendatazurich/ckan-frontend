@@ -27,6 +27,7 @@ export const makeFilterUrl = (path: string, query: URLSearchParams) => {
 			groups.push(name);
 		}
 		newQuery.delete(key);
+		newQuery.delete('page');
 		groups.forEach((group) => newQuery.append(key, group));
 		return `${path}?${newQuery}`;
 	};
