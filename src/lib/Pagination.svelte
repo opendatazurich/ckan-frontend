@@ -4,10 +4,10 @@
 	export let pageSize = 20;
 	export let boubleSize = 2;
 	export let count: number;
-	const lastPage = Math.floor(count / pageSize) + 1;
 	const firstPage = 1;
-	const hasPagination = firstPage != lastPage;
 
+	$: lastPage = Math.floor(count / pageSize) + 1;
+	$: hasPagination = firstPage != lastPage;
 	$: query = new URLSearchParams($page.query.toString());
 	$: path = $page.path;
 	$: pageIndex = +(query.get('page') || '1');
