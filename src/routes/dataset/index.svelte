@@ -1,20 +1,29 @@
 <script context="module" lang="ts">
+	import type { Load } from '@sveltejs/kit';
 	import { get } from '$lib/api';
-	export async function load() {
-		const { count, results: datasets } = await get('package_search');
+
+	const pageSize = 20;
+
+	export const load: Load = async ({ page }) => {
+		const pageIndex = +(page.query.get('page') || '1');
+		const start = (pageIndex - 1) * pageSize;
+		const { count, results: datasets } = await get(
+			`package_search?rows=${pageSize}&start=${start}`
+		);
 		return {
 			props: {
 				datasets,
-				count
+				count,
+				page: pageIndex
 			}
 		};
-	}
+	};
 </script>
 
 <script lang="ts">
 	import DatasetList from '$lib/DatasetList.svelte';
+	import Pagination from '$lib/Pagination.svelte';
 	import SearchField from '$lib/SearchField.svelte';
-	import SortControl from '$lib/SortControl.svelte';
 
 	export let datasets = [];
 	export let count = 0;
@@ -66,16 +75,7 @@
 						<DatasetList {datasets} />
 					</div>
 
-					<div class="pagination pagination-centered">
-						<ul>
-							<li class="active"><a href="/dataset?page=1">1</a></li>
-							<li><a href="/dataset?page=2">2</a></li>
-							<li><a href="/dataset?page=3">3</a></li>
-							<li class="disabled"><a href="#">...</a></li>
-							<li><a href="/dataset?page=34">34</a></li>
-							<li><a href="/dataset?page=2">»</a></li>
-						</ul>
-					</div>
+					<Pagination {count} {pageSize} />
 				</section>
 
 				<section class="module">
