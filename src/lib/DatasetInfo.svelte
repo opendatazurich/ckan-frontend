@@ -24,7 +24,7 @@
 					<p class="heading">Kontakt</p>
 
 					<p class="metadata">
-						<a href="mailto:{dataset.maintainer_email}">{dataset.maintainer_email}</a>
+						<a href="mailto:{dataset.maintainer_email}">{dataset.maintainer}</a>
 					</p>
 				</td>
 				<td>

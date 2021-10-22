@@ -6,7 +6,7 @@
 	<ul class="tag-list well">
 		{#each dataset.tags as tag}
 			<li>
-				<a class="tag" href="/dataset?tags={tag.name}">{tag.display_name}</a>
+				<a class="tag" href="/dataset?tags={tag.name}">{tag.display_name}</a>&nbsp;
 			</li>
 		{/each}
 	</ul>
