@@ -15,6 +15,7 @@
 	export let search_facets = {};
 	export let count = 0;
 	export let q = '';
+	export let filters = [];
 
 	const options = [
 		{ id: 'score desc, date_last_modified desc', title: 'Relevanz' },
@@ -53,7 +54,7 @@
 								{count === 0 ? 'Keine' : count} Datensätze {q != '' ? `gefunden für “${q}”` : ''}
 							</h2>
 
-							<FilterList {search_facets} />
+							<FilterList {filters} />
 							<a class="show-filters btn">Ergebnisse filtern</a>
 						</form>
 

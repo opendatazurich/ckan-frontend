@@ -36,7 +36,7 @@
 	}
 </script>
 
-<div>
+<div class="autocomplete">
 	<SearchField bind:inputElement {placeholder} on:keydown={keydown} on:input={onChange} />
 	<div class:show class="autocomplete-suggestions" style="position: relative;">
 		{#each searchResults as searchResult}
