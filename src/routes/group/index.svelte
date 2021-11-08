@@ -13,11 +13,12 @@
 </script>
 
 <script lang="ts">
+	import { page } from '$app/stores';
 	import GroupList from '$lib/GroupList.svelte';
 	import type { Group } from '$lib/GroupList.svelte';
-
 	import SearchField from '$lib/SearchField.svelte';
 	import SortControl from '$lib/SortControl.svelte';
+	$: q = $page.query.get('q');
 
 	export let groups: Group[] = [];
 </script>
@@ -29,7 +30,6 @@
 		<div class="toolbar">
 			<ol class="breadcrumb">
 				<li class="home"><a href="/"><i class="fa fa-home" /><span> Start</span></a></li>
-
 				<li class="active"><a class=" active" href="/group">Kategorien</a></li>
 			</ol>
 		</div>
@@ -42,16 +42,24 @@
 
 						<form
 							id="group-search-form"
-							class="search-form no-bottom-border"
+							class="search-form"
+							class:no-bottom-border={groups.length}
 							method="get"
-							data-module="select-switch"
 						>
 							<SearchField placeholder="Gruppe suchen..." />
 
 							<SortControl />
-							<h2>{groups.length} Kategorien gefunden</h2>
+							<h2>
+								{groups.length !== 0 ? groups.length : 'Keine'}
+								{groups.length !== 1 ? 'Kategorien' : 'Kategorie'} gefunden{q ? ` für "${q}"` : ''}
+							</h2>
 						</form>
-						<GroupList {groups} />
+
+						{#if groups.length}
+							<GroupList {groups} />
+						{:else}
+							<p class="extra">Bitte versuch es mit einer anderen Suche.</p>
+						{/if}
 					</div>
 				</article>
 			</div>

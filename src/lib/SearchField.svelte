@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	export let value = $page.query.get('q');
+	let value = $page.query.get('q');
 	export let placeholder = 'Suchen...';
-	export let inputElement;
+	export let inputElement = null;
 </script>
 
 <div class="search-input control-group search-giant">
