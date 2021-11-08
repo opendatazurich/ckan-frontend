@@ -1,7 +1,13 @@
+<script context="module" lang="ts">
+	export { loadGroup as load } from '$lib/api';
+</script>
+
+<script lang="ts">
+	export let group;
+</script>
+
 <div role="main">
 	<div id="content" class="container">
-		<div class="flash-messages" />
-
 		<div class="toolbar">
 			<ol class="breadcrumb">
 				<li class="home"><a href="/"><i class="fa fa-home" /><span> Start</span></a></li>
@@ -16,7 +22,9 @@
 				<article class="module">
 					<header class="module-content page-header">
 						<ul class="nav nav-tabs">
-							<li><a href="/group/arbeit-und-erwerb"><i class="fa fa-sitemap" /> Datensätze</a></li>
+							<li class="active">
+								<a href="/group/arbeit-und-erwerb"><i class="fa fa-sitemap" /> Datensätze</a>
+							</li>
 							<li>
 								<a href="/group/about/arbeit-und-erwerb"><i class="fa fa-info-circle" /> Über</a>
 							</li>

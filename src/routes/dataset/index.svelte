@@ -1,40 +1,6 @@
 <script context="module" lang="ts">
-	import type { Load } from '@sveltejs/kit';
-	import { get, pageSize, facetIds, facets } from '$lib/api';
-
-	export const load: Load = async ({ page }) => {
-		const pageIndex = +(page.query.get('page') || '1');
-		//const sort = page.query.get('sort') || '';
-		const q = page.query.get('q') || '';
-		const start = (pageIndex - 1) * pageSize;
-
-		const newQuery = new URLSearchParams();
-		newQuery.set('q', q);
-		newQuery.set('sort', page.query.get('sort') || '');
-		newQuery.set('rows', `${pageSize}`);
-		newQuery.set('start', `${start}`);
-		newQuery.set('facet.field', `${JSON.stringify(facetIds)}`);
-		newQuery.set('facet', 'true');
-
-		const facetQuery = facets
-			.map((facet) => ({ ...facet, items: page.query.getAll(facet.id) }))
-			.filter((facet) => facet.items.length)
-			.map((facet) => `${facet.id}:(${facet.items.join(' AND ')})`)
-			.join(' AND ');
-
-		newQuery.set('fq', facetQuery);
-
-		const { count, results: datasets, search_facets } = await get(`package_search?${newQuery}`);
-		return {
-			props: {
-				datasets,
-				search_facets,
-				count,
-				page: pageIndex,
-				q
-			}
-		};
-	};
+	import { loadDatasets, pageSize } from '../../lib/api';
+	export { loadDatasets as load };
 </script>
 
 <script lang="ts">

@@ -5,7 +5,7 @@
 	$: filters = facets
 		.map((facet) => ({ ...facet, items: $page.query.getAll(facet.id) }))
 		.map((facet) => {
-			const facetItems = search_facets[facet.id].items;
+			const facetItems = search_facets[facet.id]?.items;
 			const items = facet.items.map((item) => facetItems.find((i) => i.name === item));
 			return { ...facet, items };
 		})
@@ -18,7 +18,7 @@
 <p class="filter-list">
 	{#each filters as filter}
 		<span class="facet">{filter.title}:</span>
-		{#each filter.items as item}
+		{#each filter?.items as item}
 			<span class="filtered pill"
 				>{item.display_name}
 				<a href={url(filter.id, item.name)} class="remove" title="Entfernen"
