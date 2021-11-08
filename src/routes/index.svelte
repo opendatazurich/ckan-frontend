@@ -18,7 +18,7 @@
 
 <script lang="ts">
 	import GroupList from '$lib/GroupList.svelte';
-	import SearchField from '$lib/SearchField.svelte';
+	import AutoSuggestionField from '$lib/AutoSuggestionField.svelte';
 	import TagList from '$lib/TagList.svelte';
 
 	export let groups = [];
@@ -46,7 +46,7 @@
 						<div class="row">
 							<div class="span6 col1">
 								<form class="module-content search-form" method="get" action="/dataset">
-									<SearchField placeholder="Datensätze suchen..." />
+									<AutoSuggestionField placeholder="Datensätze suchen..." />
 								</form>
 								<h3>Beliebte Schlagwörter</h3>
 								<TagList {tags} />

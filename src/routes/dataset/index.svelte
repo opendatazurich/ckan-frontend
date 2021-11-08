@@ -42,7 +42,7 @@
 	import FilterList from '$lib/FilterList.svelte';
 	import Filters from '$lib/Filters.svelte';
 	import Pagination from '$lib/Pagination.svelte';
-	import SearchField from '$lib/SearchField.svelte';
+	import AutoSuggestionField from '$lib/AutoSuggestionField.svelte';
 	import SortControl from '$lib/SortControl.svelte';
 
 	export let datasets = [];
@@ -80,7 +80,7 @@
 							method="get"
 							data-module="select-switch"
 						>
-							<SearchField placeholder="Datensätze suchen..." />
+							<AutoSuggestionField placeholder="Datensätze suchen..." />
 							<SortControl {options} />
 
 							<h2>
