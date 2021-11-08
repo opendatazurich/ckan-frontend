@@ -20,8 +20,8 @@
 		}
 	}
 	function selectResult(searchResult) {
-		console.log(searchResult);
 		inputElement.value = searchResult;
+		inputElement.focus();
 		close();
 	}
 	function close() {
