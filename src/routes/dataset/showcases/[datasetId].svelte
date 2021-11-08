@@ -1,17 +1,19 @@
+<script context="module" lang="ts">
+	export { loadDataset as load } from '$lib/api';
+</script>
+
+<script lang="ts">
+	import DatasetLicense from '$lib/DatasetLicense.svelte';
+	import DatasetToolbar from '$lib/DatasetToolbar.svelte';
+
+	export let dataset;
+</script>
+
 <div role="main">
 	<div id="content" class="container">
 		<div class="flash-messages" />
 
-		<div class="toolbar">
-			<ol class="breadcrumb">
-				<li class="home"><a href="/"><i class="fa fa-home" /><span> Start</span></a></li>
-
-				<li><a href="/dataset">Datensätze</a></li>
-				<li class="active">
-					<a href="/dataset/sid_dav_verkehrszaehlung_miv_od2031">Daten der Verkehrszählung ...</a>
-				</li>
-			</ol>
-		</div>
+		<DatasetToolbar {dataset} />
 
 		<div class="row wrapper">
 			<div class="primary span9">
@@ -76,27 +78,7 @@
 			</div>
 
 			<aside class="secondary span3">
-				<section class="module module-narrow module-shallow license">
-					<h2 class="module-heading"><i class="fa fa-lock" /> Lizenz</h2>
-
-					<p class="module-content">
-						<a href="http://www.opendefinition.org/licenses/cc-zero" rel="dc:rights" target="_blank"
-							>Creative Commons CCZero</a
-						>
-
-						<a
-							href="http://opendefinition.org/okd/"
-							title="Dieser Datensatz entspricht der Open Definition."
-							target="_blank"
-						>
-							<img
-								class="open-data"
-								src="//assets.okfn.org/images/ok_buttons/od_80x15_blue.png"
-								alt="[Open Data]"
-							/>
-						</a>
-					</p>
-				</section>
+				<DatasetLicense {dataset} />
 			</aside>
 		</div>
 	</div>
