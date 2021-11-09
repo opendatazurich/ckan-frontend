@@ -16,7 +16,7 @@ export const get = async (path: string) => {
 		const data = await res.json();
 		return data.result;
 	}
-	throw new Error(res.statusText);
+	throw res;
 };
 
 export const makeFilterUrl = (path: string, query: URLSearchParams) => {

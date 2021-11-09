@@ -1,6 +1,7 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
-	export { loadDataset } from '$lib/api';
+	import { loadDataset, get } from '$lib/api';
+
 	export const load: Load = async (args) => {
 		const resourceId = args.page.params.resourceId;
 		const { props } = (await loadDataset(args)) as any;
@@ -12,10 +13,23 @@
 				error: `Resource "${resourceId}" wurde nicht gefunden.`
 			};
 		}
+
+		let datastore = null;
+
+		try {
+			datastore = await get(`datastore_search?resource_id=${resourceId}&limit=0`);
+		} catch (err) {
+			// 404 are expected if there is no datastore
+			if (err.status !== 404) {
+				throw err;
+			}
+		}
+
 		return {
 			props: {
 				...props,
-				resource
+				resource,
+				datastore
 			}
 		};
 	};
@@ -23,7 +37,6 @@
 
 <script lang="ts">
 	import marked from 'marked';
-	import { loadDataset } from '$lib/api';
 	import ResourceInfo from '$lib/ResourceInfo.svelte';
 	import ResourceList from '$lib/ResourceList.svelte';
 	import { truncate } from '$lib/string';
@@ -32,9 +45,13 @@
 
 	export let dataset = {} as { name: string; title: string; resources: any[] };
 	export let resource = {} as any;
+	export let datastore = {} as any;
 	$: type = getType(resource.format);
 </script>
 
+<pre>
+	{JSON.stringify(datastore, null, 2)}
+</pre>
 <div role="main">
 	<div id="content" class="container">
 		<div class="flash-messages" />
