@@ -1,5 +1,8 @@
 <script lang="ts">
+	import { getType } from './dataTypes';
+
 	import ResourceDropdown from './ResourceDropdown.svelte';
+	import { truncate } from './string';
 
 	export let dataset: { name: string; resources: any[] } = {} as any;
 </script>
@@ -23,7 +26,8 @@
 				</a>
 
 				<p class="description">
-					todo: {resource.format} info
+					{getType(resource.format).description}
+					{truncate(getType(resource.format).link, 50, '...', false)}
 				</p>
 
 				<ResourceDropdown {resource} {dataset} />
