@@ -82,27 +82,26 @@
 				<Accordion title="Beispiel: Javascript »">
 					<p>Eine einfache AJAX (JSONP) Abfrage des Data API mit jQuery.</p>
 					<pre>  
-                {`
-    var data = {
-        resource_id: '${resourceId}', // the resource id
-        limit: 5, // get 5 results
-        q: 'jones' // query for 'jones'
-    };
-    $.ajax({
-        url: 'https://data.stadt-zuerich.ch/api/3/action/datastore_search',
-        data: data,
-        dataType: 'jsonp',
-        success: function(data) {
-        alert('Total results found: ' + data.result.total)
-        }
-    });
+	{`
+  var data = {
+	resource_id: '${resourceId}', // the resource id
+	limit: 5, // get 5 results
+	q: 'jones' // query for 'jones'
+  };
+  $.ajax({
+	url: 'https://data.stadt-zuerich.ch/api/3/action/datastore_search',
+	data: data,
+	dataType: 'jsonp',
+	success: function(data) {
+	alert('Total results found: ' + data.result.total)
+	}
+  });
     `}
                     </pre>
 				</Accordion>
 				<Accordion title="Beispiel: Python »">
 					<pre>
-{`
-import urllib
+{`import urllib
 url = 'https://data.stadt-zuerich.ch/api/3/action/datastore_search?resource_id=${resourceId}&limit=5&q=title:jones'
 fileobj = urllib.urlopen(url)
 print fileobj.read()
@@ -113,3 +112,9 @@ print fileobj.read()
 		</div>
 	</div>
 {/if}
+
+<style>
+	th {
+		text-align: center;
+	}
+</style>
