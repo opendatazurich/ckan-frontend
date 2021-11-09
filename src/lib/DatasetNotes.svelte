@@ -1,8 +1,10 @@
 <script lang="ts">
-	import md from 'marked';
+	import marked from 'marked';
+	marked.setOptions({ pedantic: true });
+
 	export let notes = '';
 
-	const markup = md(notes.trim());
+	const markup = marked(notes.trim());
 </script>
 
 <div class="notes embedded-content">

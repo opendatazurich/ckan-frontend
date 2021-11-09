@@ -1,5 +1,7 @@
 <script lang="ts">
-	import md from 'marked';
+	import marked from 'marked';
+	marked.setOptions({ pedantic: false, smartLists: true });
+
 	export let dataset = {} as any;
 </script>
 
@@ -82,28 +84,31 @@
 			</tr>
 		</tbody>
 	</table>
-
-	<div class="package-dataquality">
-		<h5>Datenqualität</h5>
-		<p>{dataset.dataQuality}</p>
-	</div>
+	{#if dataset.dataQuality}
+		<div class="package-dataquality">
+			<h5>Datenqualität</h5>
+			<p>{dataset.dataQuality}</p>
+		</div>
+	{/if}
 
 	<h3>Bemerkungen</h3>
 	<div class="package-comments">
-		{@html md(dataset.sszBemerkungen)}
+		{@html marked.parse(dataset.sszBemerkungen)}
 	</div>
 
-	<h3>Attribute</h3>
-	<div class="package-attributes">
-		<table class="table table-striped table-bordered table-condensed">
-			<tbody>
-				{#each JSON.parse(dataset.sszFields) as [title, text]}
-					<tr>
-						<th>{title}</th>
-					</tr>
-					<tr><td>{text}</td> </tr>
-				{/each}
-			</tbody>
-		</table>
-	</div>
+	{#if dataset.sszFields}
+		<h3>Attribute</h3>
+		<div class="package-attributes">
+			<table class="table table-striped table-bordered table-condensed">
+				<tbody>
+					{#each JSON.parse(dataset.sszFields) as [title, text]}
+						<tr>
+							<th>{title}</th>
+						</tr>
+						<tr><td>{text}</td> </tr>
+					{/each}
+				</tbody>
+			</table>
+		</div>
+	{/if}
 </section>
