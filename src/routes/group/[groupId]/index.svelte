@@ -1,12 +1,18 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
-	import { loadGroupDatasets, pageSize } from '$lib/api';
-	export { loadGroupDatasets as load };
-	/*
+	import { loadGroupDatasets, pageSize, loadGroup } from '$lib/api';
+
 	export const load: Load = async (args) => {
-		const data = await loadGroupDatasets(args);
-		return data;
-	};*/
+		const groupId = args.page.params.groupId;
+		const data = (await loadGroupDatasets(groupId)(args)) as any;
+		const groupData = (await loadGroup(args)) as any;
+		return {
+			props: {
+				...data.props,
+				...groupData.props
+			}
+		};
+	};
 </script>
 
 <script lang="ts">
@@ -14,7 +20,7 @@
 	import FilterList from '$lib/FilterList.svelte';
 	import Filters from '$lib/Filters.svelte';
 	import Pagination from '$lib/Pagination.svelte';
-	import AutoSuggestionField from '$lib/AutoSuggestionField.svelte';
+	import SearchField from '$lib/SearchField.svelte';
 	import SortControl from '$lib/SortControl.svelte';
 
 	export let datasets = [];
@@ -22,6 +28,7 @@
 	export let count = 0;
 	export let q = '';
 	export let filters = [];
+	export let group = {} as any;
 
 	const options = [
 		{ id: 'score desc, date_last_modified desc', title: 'Relevanz' },
@@ -38,13 +45,23 @@
 				<li class="home"><a href="/"><i class="fa fa-home" /><span> Start</span></a></li>
 
 				<li><a href="/group">Kategorien</a></li>
-				<li class="active"><a href="/group/arbeit-und-erwerb">Arbeit und Erwerb</a></li>
+				<li class="active"><a href="/group/{group.name}">{group.title}</a></li>
 			</ol>
 		</div>
 
 		<div class="row wrapper">
 			<div class="primary span9">
 				<section class="module">
+					<header class="module-content page-header">
+						<ul class="nav nav-tabs">
+							<li class="active">
+								<a href="/group/{group.id}"><i class="fa fa-sitemap" /> Datensätze</a>
+							</li>
+							<li>
+								<a href="/group/about/{group.id}"><i class="fa fa-info-circle" /> Über</a>
+							</li>
+						</ul>
+					</header>
 					<div class="module-content">
 						<form
 							id="dataset-search-form"
@@ -52,7 +69,7 @@
 							method="get"
 							data-module="select-switch"
 						>
-							<AutoSuggestionField placeholder="Datensätze suchen..." />
+							<SearchField placeholder="Datensätze suchen..." />
 							<SortControl {options} />
 
 							<h2>
@@ -80,6 +97,29 @@
 			</div>
 
 			<aside class="secondary span3">
+				<div class="module context-info">
+					<section class="module-content">
+						<div class="image">
+							<a href="">
+								<img
+									src={group.image_display_url}
+									width="190"
+									height="118"
+									alt="arbeit-und-erwerb"
+								/>
+							</a>
+						</div>
+
+						<h1 class="heading">{group.title}</h1>
+
+						<div class="nums">
+							<dl>
+								<dt>Datensätze</dt>
+								<dd><span>{count}</span></dd>
+							</dl>
+						</div>
+					</section>
+				</div>
 				<Filters {search_facets} />
 			</aside>
 		</div>

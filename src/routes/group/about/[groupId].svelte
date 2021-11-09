@@ -1,3 +1,11 @@
+<script context="module" lang="ts">
+	export { loadGroup as load } from '$lib/api';
+</script>
+
+<script lang="ts">
+	export let group = {} as any;
+</script>
+
 <div role="main">
 	<div id="content" class="container">
 		<div class="flash-messages" />
@@ -7,7 +15,7 @@
 				<li class="home"><a href="/"><i class="fa fa-home" /><span> Start</span></a></li>
 
 				<li><a href="/group">Kategorien</a></li>
-				<li class="active"><a href="/group/kriminalitat">Kri­mi­na­li­tät</a></li>
+				<li class="active"><a href="/group/{group.id}">{group.title}</a></li>
 			</ol>
 		</div>
 
@@ -16,15 +24,15 @@
 				<article class="module">
 					<header class="module-content page-header">
 						<ul class="nav nav-tabs">
-							<li><a href="/group/kriminalitat"><i class="fa fa-sitemap" /> Datensätze</a></li>
+							<li><a href="/group/{group.id}"><i class="fa fa-sitemap" /> Datensätze</a></li>
 							<li class="active">
-								<a href="/group/about/kriminalitat"><i class="fa fa-info-circle" /> Über</a>
+								<a href="/group/about/{group.id}"><i class="fa fa-info-circle" /> Über</a>
 							</li>
 						</ul>
 					</header>
 
 					<div class="module-content">
-						<h1>Kri­mi­na­li­tät</h1>
+						<h1>{group.title}</h1>
 					</div>
 				</article>
 			</div>
@@ -34,21 +42,16 @@
 					<section class="module-content">
 						<div class="image">
 							<a href="">
-								<img
-									src="https://statistik.stadt-zuerich.ch/Modules/ogd_bspe/group_pics/kategorien-10.png"
-									width="190"
-									height="118"
-									alt="kriminalitat"
-								/>
+								<img src={group.image_url} width="190" height="118" alt={group.id} />
 							</a>
 						</div>
 
-						<h1 class="heading">Kri­mi­na­li­tät</h1>
+						<h1 class="heading">{group.title}</h1>
 
 						<div class="nums">
 							<dl>
 								<dt>Datensätze</dt>
-								<dd><span>3</span></dd>
+								<dd><span>{group.package_count}</span></dd>
 							</dl>
 						</div>
 					</section>

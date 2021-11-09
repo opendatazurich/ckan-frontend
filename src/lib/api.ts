@@ -110,4 +110,4 @@ const makeLoadDatasets = (facets, facetQueryExtension = '') => {
 };
 
 export const loadDatasets = makeLoadDatasets(defaultFacets);
-export const loadGroupDatasets = makeLoadDatasets(defaultFacets.slice(1), 'groups:bildung');
+export const loadGroupDatasets = (groupId) => makeLoadDatasets(defaultFacets, `groups:${groupId}`);
