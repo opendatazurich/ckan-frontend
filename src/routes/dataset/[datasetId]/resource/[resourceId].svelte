@@ -49,9 +49,6 @@
 	$: type = getType(resource.format);
 </script>
 
-<pre>
-	{JSON.stringify(datastore, null, 2)}
-</pre>
 <div role="main">
 	<div id="content" class="container">
 		<div class="flash-messages" />
@@ -225,7 +222,7 @@
 			</section>
 
 			<div class="primary span9">
-				<ResourceInfo {resource} />
+				<ResourceInfo {resource} {datastore} />
 			</div>
 
 			<aside class="secondary span3">
