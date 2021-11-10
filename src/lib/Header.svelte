@@ -86,6 +86,6 @@
 	}
 
 	.masthead {
-		background-color: var(--env-color);
+		background-color: var(--theme-color);
 	}
 </style>

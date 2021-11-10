@@ -2,11 +2,10 @@
 	import Footer from '$lib/Footer.svelte';
 	import Header from '$lib/Header.svelte';
 	import Theme from '$lib/Theme.svelte';
-
-	const envColor = import.meta.env.VITE_THEME_COLOR;
+	import { session } from '$app/stores';
 </script>
 
-<Theme --env-color={envColor}>
+<Theme --theme-color={$session.themeColor}>
 	<Header />
 	<slot />
 	<Footer />
