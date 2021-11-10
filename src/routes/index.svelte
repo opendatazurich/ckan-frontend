@@ -21,7 +21,6 @@
 	import AutoSuggestionField from '$lib/AutoSuggestionField.svelte';
 	import TagList from '$lib/TagList.svelte';
 	import { goto } from '$app/navigation';
-	import { page } from '$app/stores';
 
 	export let groups = [];
 	export let tags = [];

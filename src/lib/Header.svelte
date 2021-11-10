@@ -1,5 +1,4 @@
 <script>
-	import { slide } from 'svelte/transition';
 	import MainNav from './MainNav.svelte';
 	let open = false;
 	const toggle = () => (open = !open);

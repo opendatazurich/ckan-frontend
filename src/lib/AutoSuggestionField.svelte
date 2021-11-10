@@ -27,7 +27,7 @@
 		show = true;
 	}
 	function keydown(e) {
-		if (e.code === 'Escape') {
+		if (e.code === 'Escape' || e.code === 'Enter') {
 			close();
 		}
 		if (e.code === 'ArrowDown' && searchResults.length) {

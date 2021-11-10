@@ -18,9 +18,16 @@
 	import type { Group } from '$lib/GroupList.svelte';
 	import SearchField from '$lib/SearchField.svelte';
 	import SortControl from '$lib/SortControl.svelte';
+	import { goto } from '$app/navigation';
+
 	$: q = $page.query.get('q');
 
 	export let groups: Group[] = [];
+
+	function submit(e) {
+		const query = new URLSearchParams(new FormData(e.target) as any);
+		goto(`?${query}`, { keepfocus: true });
+	}
 </script>
 
 <div role="main">
@@ -41,6 +48,7 @@
 						<h1 class="hide-heading">Kategorien</h1>
 
 						<form
+							on:submit|preventDefault={submit}
 							id="group-search-form"
 							class="search-form"
 							class:no-bottom-border={groups.length}

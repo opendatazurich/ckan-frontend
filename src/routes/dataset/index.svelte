@@ -10,7 +10,6 @@
 	import Pagination from '$lib/Pagination.svelte';
 	import AutoSuggestionField from '$lib/AutoSuggestionField.svelte';
 	import SortControl from '$lib/SortControl.svelte';
-	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 
 	export let datasets = [];
@@ -27,7 +26,7 @@
 	];
 	function submit(e) {
 		const query = new URLSearchParams(new FormData(e.target) as any);
-		goto(`${$page.path}?${query}`, { keepfocus: true });
+		goto(`?${query}`, { keepfocus: true });
 	}
 </script>
 
