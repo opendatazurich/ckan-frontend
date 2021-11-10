@@ -15,7 +15,6 @@
 		}
 
 		let datastore = null;
-
 		try {
 			datastore = await get(`datastore_search?resource_id=${resourceId}&limit=0`);
 		} catch (err) {
