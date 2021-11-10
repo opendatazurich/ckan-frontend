@@ -35,8 +35,7 @@ export const makeFilterUrl = (path: string, query: URLSearchParams) => {
 	};
 };
 
-export const loadDataset: Load = async ({ page }) => {
-	const { datasetId } = page.params;
+export const loadDataset = async (datasetId: string) => {
 	const dataset = await get(`package_show?id=${datasetId}`);
 	return {
 		props: {

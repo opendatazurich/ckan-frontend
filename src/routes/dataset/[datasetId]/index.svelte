@@ -1,5 +1,9 @@
 <script context="module" lang="ts">
-	export { loadDataset as load } from '$lib/api';
+	import type { Load } from '@sveltejs/kit';
+	import { loadDataset } from '$lib/api';
+	export const load: Load = ({ page }) => {
+		return loadDataset(page.params.datasetId);
+	};
 </script>
 
 <script lang="ts">

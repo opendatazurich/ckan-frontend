@@ -4,7 +4,7 @@
 
 	export const load: Load = async (args) => {
 		const resourceId = args.page.params.resourceId;
-		const { props } = (await loadDataset(args)) as any;
+		const { props } = (await loadDataset(args.page.params.datasetId)) as any;
 
 		const resource = props.dataset.resources.find((resource) => resource.id === resourceId);
 		if (!resource) {
@@ -181,7 +181,7 @@
 									</div>
 
 									<iframe
-										src="https://data.stadt-zuerich.ch/dataset/sid_dav_verkehrszaehlung_miv_od2031/resource/44607195-a2ad-4f9b-b6f1-d26c003d85a2/view/cea9d84a-6567-45d3-9f6d-224bf54c565c"
+										src="/dataset/{dataset.name}/resource/{resource.id}/view/cea9d84a-6567-45d3-9f6d-224bf54c565c"
 										frameborder="0"
 										width="100%"
 										data-module="data-viewer"
