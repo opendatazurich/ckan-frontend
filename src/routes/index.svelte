@@ -20,9 +20,16 @@
 	import GroupList from '$lib/GroupList.svelte';
 	import AutoSuggestionField from '$lib/AutoSuggestionField.svelte';
 	import TagList from '$lib/TagList.svelte';
+	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
 
 	export let groups = [];
 	export let tags = [];
+
+	function submit(e) {
+		const query = new URLSearchParams(new FormData(e.target) as any);
+		goto(`/dataset?${query}`, { keepfocus: true });
+	}
 </script>
 
 <div class="homepage layout-1">
@@ -45,7 +52,12 @@
 						</header>
 						<div class="row">
 							<div class="span6 col1">
-								<form class="module-content search-form" method="get" action="/dataset">
+								<form
+									on:submit|preventDefault={submit}
+									class="module-content search-form"
+									method="get"
+									action="/dataset"
+								>
 									<AutoSuggestionField placeholder="Datensätze suchen..." />
 								</form>
 								<h3>Beliebte Schlagwörter</h3>

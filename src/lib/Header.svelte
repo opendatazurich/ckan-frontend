@@ -52,37 +52,37 @@
 				><img src="/opendatazurichlogo.png" alt="Open Data Zürich" title="Open Data Zürich" /></a
 			>
 		</hgroup>
-		{#key open}
-			<div
-				on:click={() => (open = false)}
-				transition:slide
-				class="nav-collapse collapse"
-				class:open
-			>
-				<MainNav />
-				<form class="section site-search simple-input" action="/dataset" method="get">
-					<div class="field">
-						<label for="field-sitewide-search">Datensatz-Suche</label>
-						<input
-							id="field-sitewide-search"
-							type="text"
-							class="search"
-							name="q"
-							value=""
-							autocomplete="off"
-							placeholder=""
-							data-module="autocomplete-ogdzh-header-search"
-						/>
-						<button class="btn-search" type="submit"><i class="fa fa-search" /></button>
-					</div>
-				</form>
-			</div>
-		{/key}
+
+		<div on:click={() => (open = false)} class="nav-collapse collapse" class:open>
+			<MainNav />
+			<form class="section site-search simple-input" action="/dataset" method="get">
+				<div class="field">
+					<label for="field-sitewide-search">Datensatz-Suche</label>
+					<input
+						id="field-sitewide-search"
+						type="text"
+						class="search"
+						name="q"
+						value=""
+						autocomplete="off"
+						placeholder=""
+						data-module="autocomplete-ogdzh-header-search"
+					/>
+					<button class="btn-search" type="submit"><i class="fa fa-search" /></button>
+				</div>
+			</form>
+		</div>
 	</div>
 </header>
 
 <style>
-	.open {
+	.nav-collapse {
 		height: auto;
+		max-height: 0;
+		transition: max-height 300ms ease-out;
+	}
+	.open {
+		max-height: 20rem;
+		transition: max-height 300ms ease-in;
 	}
 </style>
