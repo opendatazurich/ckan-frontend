@@ -36,3 +36,9 @@
 		>
 	</div>
 </footer>
+
+<style>
+	.site-footer {
+		background-color: var(--env-color);
+	}
+</style>

@@ -24,6 +24,7 @@
 		{ id: 'title_string desc', title: 'Name absteigend' },
 		{ id: 'date_last_modified desc', title: 'Zuletzt geändert' }
 	];
+
 	function submit(e) {
 		const query = new URLSearchParams(new FormData(e.target) as any);
 		goto(`?${query}`, { keepfocus: true });

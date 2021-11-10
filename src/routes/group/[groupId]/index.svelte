@@ -22,6 +22,7 @@
 	import Pagination from '$lib/Pagination.svelte';
 	import SearchField from '$lib/SearchField.svelte';
 	import SortControl from '$lib/SortControl.svelte';
+	import { goto } from '$app/navigation';
 
 	export let datasets = [];
 	export let search_facets = {};
@@ -36,6 +37,11 @@
 		{ id: 'title_string desc', title: 'Name absteigend' },
 		{ id: 'date_last_modified desc', title: 'Zuletzt geändert' }
 	];
+
+	function submit(e) {
+		const query = new URLSearchParams(new FormData(e.target) as any);
+		goto(`?${query}`, { keepfocus: true });
+	}
 </script>
 
 <div role="main">
@@ -64,6 +70,7 @@
 					</header>
 					<div class="module-content">
 						<form
+							on:submit|preventDefault={submit}
 							id="dataset-search-form"
 							class="search-form"
 							method="get"

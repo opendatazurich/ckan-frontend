@@ -84,4 +84,8 @@
 		max-height: 20rem;
 		transition: max-height 300ms ease-in;
 	}
+
+	.masthead {
+		background-color: var(--env-color);
+	}
 </style>
