@@ -90,7 +90,7 @@
 								<li>
 									<a
 										class="btn btn-primary resource-url-analytics resource-type-api"
-										href="https://www.stadt-zuerich.ch/geodaten/download/Schulanlagen?format=10008"
+										href={resource.url}
 									>
 										<i class="fa fa-key" /> API-Schnittstelle
 									</a>
