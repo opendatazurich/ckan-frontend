@@ -18,7 +18,7 @@
 	</a>
 	<ul class="dropdown-menu">
 		<li>
-			<a href="/dataset/{dataset.name}/resource/{resource.resource_id}">
+			<a href="/dataset/{dataset.name}/resource/{resource.id}">
 				<i class="fa fa-info-circle" />
 				Mehr Information
 			</a>
