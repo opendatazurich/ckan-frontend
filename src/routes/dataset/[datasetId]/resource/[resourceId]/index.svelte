@@ -16,7 +16,9 @@
 
 		let datastore = null;
 		try {
-			datastore = await get(`datastore_search?resource_id=${resourceId}&limit=0`);
+			datastore = await get(
+				`datastore_search?resource_id=${resourceId}&limit=0&include_total=False`
+			);
 		} catch (err) {
 			// 404 are expected if there is no datastore
 			if (err.status !== 404) {
