@@ -20,7 +20,7 @@
 	export let dataset = {} as any;
 </script>
 
-<Page>	
+<Page>
 	<Toolbar
 		links={[
 			['/dataset', 'Datensätze'],
@@ -31,7 +31,7 @@
 	<div class="row wrapper">
 		<div class="primary span9">
 			<article class="module">
-				<DatasetHeader {dataset} />
+				<DatasetHeader />
 
 				<div class="module-content">
 					<h1>

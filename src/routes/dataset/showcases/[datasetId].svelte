@@ -7,42 +7,27 @@
 </script>
 
 <script lang="ts">
-	import DatasetLicense from '$lib/DatasetLicense.svelte';	
+	import DatasetLicense from '$lib/DatasetLicense.svelte';
 	import Page from '$lib/Page.svelte';
-import Toolbar from '$lib/Toolbar.svelte';
-import { truncate } from '$lib/string';
+	import Toolbar from '$lib/Toolbar.svelte';
+	import { truncate } from '$lib/string';
+	import DatasetHeader from '$lib/DatasetHeader.svelte';
 
 	export let dataset;
 </script>
 
 <Page>
-	<Toolbar links={[
-		['/dataset', 'Datensätze'],
-		[`/dataset/${dataset.name}`, truncate(dataset.title, 28, ' ...')]
-	]} />
+	<Toolbar
+		links={[
+			['/dataset', 'Datensätze'],
+			[`/dataset/${dataset.name}`, truncate(dataset.title, 28, ' ...')]
+		]}
+	/>
 
 	<div class="row wrapper">
 		<div class="primary span9">
 			<article class="module">
-				<header class="module-content page-header">
-					<ul class="nav nav-tabs">
-						<li>
-							<a href="/dataset/sid_dav_verkehrszaehlung_miv_od2031"
-								><i class="fa fa-sitemap" /> Datensatz</a
-							>
-						</li>
-						<li>
-							<a href="/dataset/groups/sid_dav_verkehrszaehlung_miv_od2031"
-								><i class="fa fa-users" /> Kategorien</a
-							>
-						</li>
-						<li class="active">
-							<a href="/dataset/showcases/sid_dav_verkehrszaehlung_miv_od2031"
-								><i class="fa fa-picture" /> Showcases</a
-							>
-						</li>
-					</ul>
-				</header>
+				<DatasetHeader />
 
 				<div class="module-content">
 					<h2>

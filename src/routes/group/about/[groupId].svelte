@@ -3,6 +3,7 @@
 </script>
 
 <script lang="ts">
+	import GroupHeader from '$lib/GroupHeader.svelte';
 	import Page from '$lib/Page.svelte';
 	import Toolbar from '$lib/Toolbar.svelte';
 
@@ -20,14 +21,7 @@
 	<div class="row wrapper">
 		<div class="primary span9">
 			<article class="module">
-				<header class="module-content page-header">
-					<ul class="nav nav-tabs">
-						<li><a href="/group/{group.id}"><i class="fa fa-sitemap" /> Datensätze</a></li>
-						<li class="active">
-							<a href="/group/about/{group.id}"><i class="fa fa-info-circle" /> Über</a>
-						</li>
-					</ul>
-				</header>
+				<GroupHeader />
 
 				<div class="module-content">
 					<h1>{group.title}</h1>

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { getDatasetLinks } from './links';
+	import { getGroupLinks } from './links';
 	import Tabs from './Tabs.svelte';
 
-	$: links = getDatasetLinks($page.params.datasetId, $page.path);
+	$: links = getGroupLinks($page.params.groupId, $page.path);
 </script>
 
 <header class="module-content page-header">

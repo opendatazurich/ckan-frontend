@@ -26,6 +26,7 @@
 	import Page from '$lib/Page.svelte';
 	import Toolbar from '$lib/Toolbar.svelte';
 	import { tick } from 'svelte';
+	import GroupHeader from '$lib/GroupHeader.svelte';
 
 	export let datasets = [];
 	export let search_facets = {};
@@ -58,16 +59,7 @@
 	<div class="row wrapper">
 		<div class="primary span9">
 			<section class="module">
-				<header class="module-content page-header">
-					<ul class="nav nav-tabs">
-						<li class="active">
-							<a href="/group/{group.id}"><i class="fa fa-sitemap" /> Datensätze</a>
-						</li>
-						<li>
-							<a href="/group/about/{group.id}"><i class="fa fa-info-circle" /> Über</a>
-						</li>
-					</ul>
-				</header>
+				<GroupHeader />
 				<div class="module-content">
 					<form
 						on:submit|preventDefault={submit}
