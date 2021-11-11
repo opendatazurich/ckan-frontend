@@ -12,6 +12,7 @@
 	import SortControl from '$lib/SortControl.svelte';
 	import { goto } from '$app/navigation';
 	import Page from '$lib/Page.svelte';
+	import Toolbar from '$lib/Toolbar.svelte';
 
 	export let datasets = [];
 	export let search_facets = {};
@@ -33,13 +34,7 @@
 </script>
 
 <Page>
-	<div class="toolbar">
-		<ol class="breadcrumb">
-			<li class="home"><a href="/"><i class="fa fa-home" /><span> Start</span></a></li>
-
-			<li class="active"><a href="/dataset">Datensätze</a></li>
-		</ol>
-	</div>
+	<Toolbar links={[['/dataset', 'Datensätze']]} />
 
 	<div class="row wrapper">
 		<div class="primary span9">

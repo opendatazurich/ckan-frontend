@@ -20,6 +20,7 @@
 	import SortControl from '$lib/SortControl.svelte';
 	import { goto } from '$app/navigation';
 	import Page from '$lib/Page.svelte';
+	import Toolbar from '$lib/Toolbar.svelte';
 
 	$: q = $page.query.get('q');
 
@@ -32,12 +33,7 @@
 </script>
 
 <Page>
-	<div class="toolbar">
-		<ol class="breadcrumb">
-			<li class="home"><a href="/"><i class="fa fa-home" /><span> Start</span></a></li>
-			<li class="active"><a class=" active" href="/group">Kategorien</a></li>
-		</ol>
-	</div>
+	<Toolbar links={[['/group', 'Kategorien']]} />
 
 	<div class="row wrapper no-nav">
 		<div class="primary span12 category-box">

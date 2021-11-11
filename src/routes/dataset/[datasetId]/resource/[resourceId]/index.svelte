@@ -42,6 +42,7 @@
 	import { getType } from '$lib/dataTypes';
 	import ApiButton from '$lib/ApiButton.svelte';
 	import Page from '$lib/Page.svelte';
+	import Toolbar from '$lib/Toolbar.svelte';
 
 	export let dataset = {} as { name: string; title: string; resources: any[] };
 	export let resource = {} as any;
@@ -52,20 +53,16 @@
 </script>
 
 <Page>
-	<div class="flash-messages" />
-
-	<div class="toolbar">
-		<ol class="breadcrumb">
-			<li class="home"><a href="/"><i class="fa fa-home" /><span> Start</span></a></li>
-
-			<li><a href="/dataset">Datensätze</a></li>
-			<li>
-				<a href="/dataset/{dataset.name}">{truncate(dataset.title, 24, ' ...')}</a>
-			</li>
-
-			<li class="active"><a href="">{truncate(resource.name, 27, ' ...', false)}</a></li>
-		</ol>
-	</div>
+	<Toolbar
+		links={[
+			['/dataset', 'Datensätze'],
+			[`/dataset/${dataset.name}`, truncate(dataset.title, 28, ' ...')],
+			[
+				`/dataset/${dataset.name}/resource/${resource.id}`,
+				truncate(resource.name, 28, ' ...', false)
+			]
+		]}
+	/>
 
 	<div class="row wrapper">
 		<section class="module module-resource">

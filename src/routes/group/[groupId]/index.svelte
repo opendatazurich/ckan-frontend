@@ -24,6 +24,8 @@
 	import SortControl from '$lib/SortControl.svelte';
 	import { goto } from '$app/navigation';
 	import Page from '$lib/Page.svelte';
+	import Toolbar from '$lib/Toolbar.svelte';
+	import { tick } from 'svelte';
 
 	export let datasets = [];
 	export let search_facets = {};
@@ -46,14 +48,12 @@
 </script>
 
 <Page>
-	<div class="toolbar">
-		<ol class="breadcrumb">
-			<li class="home"><a href="/"><i class="fa fa-home" /><span> Start</span></a></li>
-
-			<li><a href="/group">Kategorien</a></li>
-			<li class="active"><a href="/group/{group.name}">{group.title}</a></li>
-		</ol>
-	</div>
+	<Toolbar
+		links={[
+			['/group', 'Kategorien'],
+			[`/group/${group.name}`, group.title]
+		]}
+	/>
 
 	<div class="row wrapper">
 		<div class="primary span9">

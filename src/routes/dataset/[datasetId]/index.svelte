@@ -9,18 +9,24 @@
 <script lang="ts">
 	import DatasetHeader from '$lib/DatasetHeader.svelte';
 	import DatasetLicense from '$lib/DatasetLicense.svelte';
-	import DatasetToolbar from '$lib/DatasetToolbar.svelte';
 	import DatasetNotes from '$lib/DatasetNotes.svelte';
 	import DatasetResources from '$lib/DatasetResources.svelte';
 	import DatasetTags from '$lib/DatasetTags.svelte';
 	import DatasetInfo from '$lib/DatasetInfo.svelte';
 	import Page from '$lib/Page.svelte';
+	import Toolbar from '$lib/Toolbar.svelte';
+	import { truncate } from '$lib/string';
 
 	export let dataset = {} as any;
 </script>
 
-<Page>
-	<DatasetToolbar {dataset} />
+<Page>	
+	<Toolbar
+		links={[
+			['/dataset', 'Datensätze'],
+			[`/dataset/${dataset.name}`, truncate(dataset.title, 28, ' ...')]
+		]}
+	/>
 
 	<div class="row wrapper">
 		<div class="primary span9">
