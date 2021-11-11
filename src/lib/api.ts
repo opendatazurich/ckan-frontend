@@ -110,3 +110,12 @@ const makeLoadDatasets = (facets, facetQueryExtension = '') => {
 
 export const loadDatasets = makeLoadDatasets(defaultFacets);
 export const loadGroupDatasets = (groupId) => makeLoadDatasets(defaultFacets, `groups:${groupId}`);
+
+export const getHomepage = async () => {
+	const groups = await get('group_list?all_fields=true&limit=6&sort=package_count');
+	const { facets } = await get('package_search?facet.field=["tags"]&facet.limit=3&rows=0');
+	const tags = Object.entries(facets.tags as Map<string, number>)
+		.sort((a, b) => b[1] - a[1])
+		.map(([key]) => key);
+	return { groups, tags };
+};

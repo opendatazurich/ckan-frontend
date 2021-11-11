@@ -1,17 +1,11 @@
 <script context="module" lang="ts">
-	import { get } from '$lib/api';
+	import { getHomepage } from '$lib/api';
 
 	export async function load() {
-		const groups = await get('group_list?all_fields=true&limit=6&sort=package_count');
-		const { facets } = await get('package_search?facet.field=["tags"]&facet.limit=3&rows=0');
-		const tags = Object.entries(facets.tags as Map<string, number>)
-			.sort((a, b) => b[1] - a[1])
-			.map(([key]) => key);
+		const props = await getHomepage();
+
 		return {
-			props: {
-				groups,
-				tags
-			}
+			props
 		};
 	}
 </script>
