@@ -1,6 +1,10 @@
 <script context="module" lang="ts">
 	import { loadDatasets, pageSize } from '../../lib/api';
-	export { loadDatasets as load };
+	import type { Load } from '@sveltejs/kit';
+
+	export const load: Load = async (args) => {
+		return loadDatasets(args);
+	};
 </script>
 
 <script lang="ts">
@@ -13,6 +17,7 @@
 	import { goto } from '$app/navigation';
 	import Page from '$lib/Page.svelte';
 	import Toolbar from '$lib/Toolbar.svelte';
+	import FilterShowButton from '$lib/FilterShowButton.svelte';
 
 	export let datasets = [];
 	export let search_facets = {};
@@ -55,7 +60,7 @@
 						</h2>
 
 						<FilterList {filters} />
-						<a class="show-filters btn">Ergebnisse filtern</a>
+						<FilterShowButton />
 					</form>
 
 					<DatasetList {datasets} />

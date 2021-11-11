@@ -25,8 +25,8 @@
 	import { goto } from '$app/navigation';
 	import Page from '$lib/Page.svelte';
 	import Toolbar from '$lib/Toolbar.svelte';
-	import { tick } from 'svelte';
 	import GroupHeader from '$lib/GroupHeader.svelte';
+	import FilterShowButton from '$lib/FilterShowButton.svelte';
 
 	export let datasets = [];
 	export let search_facets = {};
@@ -76,7 +76,7 @@
 						</h2>
 
 						<FilterList {filters} />
-						<a class="show-filters btn">Ergebnisse filtern</a>
+						<FilterShowButton />
 					</form>
 
 					<DatasetList {datasets} />

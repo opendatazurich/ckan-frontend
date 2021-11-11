@@ -42,7 +42,7 @@
 			<ul class="unstyled nav nav-simple nav-facet">
 				{#each filteredItems as item}
 					<li class="nav-item" class:active={isActive(item.name)}>
-						<a href={url(key, item.name)}>
+						<a on:click href={url(key, item.name)}>
 							<span>{truncate(item.display_name, 19, '...', false)} ({item.count})</span>
 						</a>
 					</li>

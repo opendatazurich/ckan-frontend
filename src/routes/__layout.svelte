@@ -7,6 +7,8 @@
 
 <Theme --theme-color={$session.themeColor}>
 	<Header />
+
 	<slot />
+
 	<Footer />
 </Theme>

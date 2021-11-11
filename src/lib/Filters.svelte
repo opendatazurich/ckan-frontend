@@ -18,15 +18,18 @@
 			};
 		})
 		.filter((facet) => facet.key);
+	function close() {
+		document.body.classList.remove('filters-modal');
+	}
 </script>
 
 <div class="filters">
 	<div>
 		{#each filters as filter}
-			<svelte:component this={Filter} {...filter} />
+			<svelte:component this={Filter} on:click={close} {...filter} />
 		{/each}
 	</div>
-	<a class="close no-text hide-filters"
-		><i class="fa fa-times-circle" /><span class="text">close</span></a
+	<button on:click={close} class="close no-text hide-filters"
+		><i class="fa fa-times-circle" /><span class="text">close</span></button
 	>
 </div>
