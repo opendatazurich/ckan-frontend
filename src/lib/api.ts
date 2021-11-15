@@ -1,6 +1,8 @@
 import type { Load } from '@sveltejs/kit';
 
 export const url = (path: string) => `https://data.stadt-zuerich.ch/api/3/action/${path}`;
+//export const url = (path: string) => `https://data.integ.stadt-zuerich.ch/api/3/action/${path}`;
+
 export const pageSize = 20;
 
 export const defaultFacets = [

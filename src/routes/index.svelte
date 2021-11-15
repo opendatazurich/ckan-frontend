@@ -26,18 +26,46 @@
 	}
 </script>
 
+<div class="layout_wrapper">
+	<div class="mod_stageimage ">
+		<a href="/">
+			<picture>
+				<source data-srcset="/zh.png" srcset="zh.png" />
+				<!--[if IE 9]></video><![endif]-->
+				<img
+					alt="open data"
+					src="/zh.png"
+					data-src="/zh.png"
+					data-lazy="fadein"
+					class="error"
+					data-was-processed="true"
+				/>
+			</picture>
+		</a>
+		<section class="stage_info">
+			<div class="stage_info_wrapper">
+				<h1 id="anchorContent" class="mod_stageimage__title">
+					Willkommen auf dem Open Data Katalog
+				</h1>
+
+				<p>
+					Der Datenkatalog ist Ihr zentraler Einstiegspunkt zur Suche und Nutzung von offenen Daten
+					der Stadt Zürich. Die hier veröffentlichten Daten stehen kostenlos und zur freien – auch
+					kommerziellen - Weiterverwendung zur Verfügung.
+				</p>
+			</div>
+		</section>
+	</div>
+</div>
+
 <div class="homepage layout-1">
 	<Page hero>
 		<div class="row row1">
 			<div class="span12 col1">
 				<div class="module-content box">
 					<header>
-						<h1 class="page-heading">Willkommen auf dem Open Data Katalog</h1>
-						<p>
-							Der Datenkatalog ist Ihr zentraler Einstiegspunkt zur Suche und Nutzung von offenen
-							Daten der Stadt Zürich. Die hier veröffentlichten Daten stehen kostenlos und zur
-							freien – auch kommerziellen - Weiterverwendung zur Verfügung.
-						</p>
+						<h1 class="page-heading" />
+						<p />
 					</header>
 					<div class="row">
 						<div class="span6 col1">

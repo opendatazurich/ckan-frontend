@@ -5,10 +5,17 @@
 	import { session } from '$app/stores';
 </script>
 
-<Theme --theme-color={$session.themeColor}>
+<svelte:head>
+	<link rel="stylesheet" href="/assets/css/critical.min.css" />
+	<link rel="preload" href="/assets/css/main.min.css" as="style" />
+	<link rel="stylesheet" href="/assets/css/main.min.css" media="all" />
+	<link rel="stylesheet" media="print" href="/assets/css/print.css" />
+</svelte:head>
+
+<main class="main">
 	<Header />
 
 	<slot />
 
 	<Footer />
-</Theme>
+</main>
