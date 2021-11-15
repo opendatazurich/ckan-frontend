@@ -1,5 +1,11 @@
 <script>
+	import BurgerIcon from './BurgerIcon.svelte';
 	import MainNav from './MainNav.svelte';
+	import { flyX } from '$lib/transitions';
+	let open = false;
+	function resize(e) {
+		console.log(e);
+	}
 </script>
 
 <div class="layout_wrapper">
@@ -57,14 +63,7 @@
 								</form>
 							</div>
 
-							<button data-header="burger" class="btn_burger" aria-expanded="false">
-								<span class="text">Open Menu</span>
-								<div class="icon_burger">
-									<span class="icon_burger_bar" />
-									<span class="icon_burger_bar" />
-									<span class="icon_burger_bar" />
-								</div>
-							</button>
+							<BurgerIcon bind:open title="Menü öffnen" />
 						</div>
 					</div>
 				</div>
@@ -85,90 +84,69 @@
 		</div>
 	</div>
 
-	<div class="burger_dropdown" data-header="burger-dropdown">
-		<div class="burger_dropdown_wrapper">
-			<h1 class="visuallyhidden">Mobile Menü</h1>
+	{#if open}
+		<div transition:flyX class="burger_dropdown is_open" data-header="burger-dropdown">
+			<div class="burger_dropdown_wrapper">
+				<h1 class="visuallyhidden">Mobile Menü</h1>
 
-			<div class="actionsbar">
-				<div
-					class="mod_departmentselection"
-					data-init="departmentselection"
-					data-header="departmentselection"
-				>
-					<h2 id="anchorDepartementSelection" class="visuallyhidden">
-						Please fill in a title here. It's used for accessability.
-					</h2>
+				<div class="actionsbar">
+					<BurgerIcon bind:open title="Menu schliessen" />
 				</div>
 
-				<button data-header="burger" class="btn_burger" aria-expanded="false">
-					<span class="text">Close Menu</span>
-					<div class="icon_burger">
-						<span class="icon_burger_bar" />
-						<span class="icon_burger_bar" />
-						<span class="icon_burger_bar" />
-					</div>
-				</button>
-			</div>
+				<div class="scrolling_wrapper">
+					<h2 class="visuallyhidden">Navigation</h2>
+					<div
+						class="mod_multilevelnav"
+						data-init="multilevelnav"
+						data-header="multilevelnav"
+						data-multilevelnav-url-pattern="../../tmp/navigation_mocks/mock_1.json"
+					>
+						<div class="mod_multilevelnav_wrapper">
+							<div class="slides_wrapper" data-multilevelnav="slides-wrapper">
+								<div class="slide var_active" data-multilevelnav="slide">
+									<ul class="no_back_link">
+										<!--Navigation root - render only subitems, don't render the abstract root-->
 
-			<div class="scrolling_wrapper">
-				<h2 class="visuallyhidden">Navigation</h2>
-				<div
-					class="mod_multilevelnav"
-					data-init="multilevelnav"
-					data-header="multilevelnav"
-					data-multilevelnav-url-pattern="../../tmp/navigation_mocks/mock_1.json"
-				>
-					<div class="mod_multilevelnav_wrapper">
-						<div class="slides_wrapper" data-multilevelnav="slides-wrapper">
-							<div class="slide var_active" data-multilevelnav="slide">
-								<ul class="no_back_link">
-									<!--Navigation root - render only subitems, don't render the abstract root-->
+										<li class="var_wrapping_node">
+											<a class="" href="../../rootlevel">
+												<span>Startseite Portal der Stadt Z&uuml;rich</span>
+											</a>
+										</li>
 
-									<li class="var_wrapping_node">
-										<a class="" href="../../rootlevel">
-											<span>Startseite Portal der Stadt Z&uuml;rich</span>
-										</a>
-									</li>
-
-									<li class="">
-										<a href="../../someurl">Über das Departement</a>
-									</li>
-									<li class="var_has_subitems">
-										<a href="#" data-multilevelnav-id="2">Stadtpolizei</a>
-									</li>
-									<li class="">
-										<a href="../../someurl">Schutz & Rettung</a>
-									</li>
-									<li class="section ">
-										<a href="../../someurl">Dienstabteilung Verkehr</a>
-									</li>
-									<li class="">
-										<a href="../../someurl">Stadtrichteramt</a>
-									</li>
-								</ul>
+										<li class="">
+											<a href="../../someurl">Über das Departement</a>
+										</li>
+										<li class="var_has_subitems">
+											<a href="#" data-multilevelnav-id="2">Stadtpolizei</a>
+										</li>
+										<li class="">
+											<a href="../../someurl">Schutz & Rettung</a>
+										</li>
+										<li class="section ">
+											<a href="../../someurl">Dienstabteilung Verkehr</a>
+										</li>
+										<li class="">
+											<a href="../../someurl">Stadtrichteramt</a>
+										</li>
+									</ul>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 
-				<h2 class="visuallyhidden">Meta Navigation</h2>
-				<div class="mod_metanav" data-init="metanav" data-header="metanav">
-					<h2 id="anchorNavMeta" class="visuallyhidden">Service navigation</h2>
-					<ul>
-						<li><a href="#" id="anchorContact">Kontakt</a></li>
-						<li><a href="#">Medien</a></li>
-						<li><a href="#">Jobs</a></li>
-					</ul>
+					<h2 class="visuallyhidden">Meta Navigation</h2>
+					<div class="mod_metanav" data-init="metanav" data-header="metanav">
+						<h2 id="anchorNavMeta" class="visuallyhidden">Service navigation</h2>
+						<ul>
+							<li><a href="#" id="anchorContact">Kontakt</a></li>
+							<li><a href="#">Medien</a></li>
+							<li><a href="#">Jobs</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	{/if}
 
 	<MainNav />
 </div>
-
-<style>
-	button {
-		border: none;
-	}
-</style>

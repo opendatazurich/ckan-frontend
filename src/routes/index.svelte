@@ -26,7 +26,7 @@
 	}
 </script>
 
-<div class="layout_wrapper">
+<div class="content-wrapper">
 	<div class="mod_stageimage ">
 		<a href="/">
 			<picture>
