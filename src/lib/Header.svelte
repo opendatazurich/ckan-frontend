@@ -3,9 +3,6 @@
 	import MainNav from './MainNav.svelte';
 	import { flyX } from '$lib/transitions';
 	let open = false;
-	function resize(e) {
-		console.log(e);
-	}
 </script>
 
 <div class="layout_wrapper">
