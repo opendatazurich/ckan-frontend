@@ -17,6 +17,7 @@
 	import { goto } from '$app/navigation';
 	import Page from '$lib/Page.svelte';
 	import Accordion from '$lib/Accordion.svelte';
+	import SearchField from '$lib/SearchField.svelte';
 
 	export let groups = [];
 	export let tags = [];
@@ -87,16 +88,15 @@
 			<div class="mod_pagetitle">
 				<h2 class="page_title">Datensätze suchen</h2>
 			</div>
-			<div class="mod_searchfield " data-init="searchfield">
+
+			<div class="mod_searchfield">
 				<form
 					on:submit|preventDefault={submit}
 					action="/dataset"
 					class="search_field"
-					data-searchfield="container"
 					role="search"
 				>
-					<input class="text" name="q" placeholder="Suche" autocomplete="off" />
-					<button type="submit" class="search_button " data-searchfield="button" />
+					<SearchField />
 				</form>
 			</div>
 
