@@ -36,8 +36,8 @@
 		<div class="layout_columns var_four_columns">
 			<div class="var_three_quarters">
 				<div>
-					<div class="col_title">
-						<h3 class="content-header">Werkzeuge, Anleitungen, Vorlagen und Anwendungen</h3>
+					<div class="mod_pagetitle">
+						<h2 class="page_title">Werkzeuge, Anleitungen, Vorlagen und Anwendungen</h2>
 					</div>
 
 					<div class="col_right col_full_width">
@@ -56,7 +56,7 @@
 													class="teaser"
 												>
 													<div class="content" data-newsteaser-content>
-														<h4 data-newsteaser-title data-init="ellipsis">Daten nutzen</h4>
+														<h3 data-newsteaser-title data-init="ellipsis">Daten nutzen</h3>
 
 														<p data-newsteaser-text data-init="ellipsis">
 															Lernen Sie Werkzeuge, Anleitungen und Vorlagen zur Verarbeitung
@@ -84,7 +84,7 @@
 													class="teaser"
 												>
 													<div class="content" data-newsteaser-content>
-														<h4 data-newsteaser-title data-init="ellipsis">Anwendungen</h4>
+														<h3 data-newsteaser-title data-init="ellipsis">Anwendungen</h3>
 
 														<p data-newsteaser-text data-init="ellipsis">
 															Diese Anwendungen und Visualisierungen sind mit unseren Datensätzen
@@ -108,7 +108,9 @@
 				</div>
 			</div>
 			<div class="var_one_quarters">
-				<h3 class="content-header">Beliebte Schlagwörter</h3>
+				<div class="mod_pagetitle">
+					<h2 class="page_title">Schlagwörter</h2>
+				</div>
 				<TagList {tags} />
 			</div>
 		</div>
