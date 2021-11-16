@@ -31,118 +31,73 @@
 
 <Hero />
 
-<div class="content-wrapper">
-	<div class="layout_section">
-		<div class="layout_wrapper">
-			<!--
-			<nav
-				class="mod_breadcrumb is_loaded"
-				role="navigation"
-				aria-label="You are here:"
-				data-init="breadcrumb"
-			>
-				<ul>
-					<li class="home">
-						<a href="#">
-							<span class="home"> Home </span>
-						</a>
-					</li>
-					<li class="">
-						<a href="#"> Startseite Portal der Stadt Zürich </a>
-					</li>
-					<li class="">
-						<span>Politik &amp; Recht</span>
-					</li>
-				</ul>
-			</nav>
-			-->
-			<div class="mod_pagetitle">
-				<h2 class="page_title">Datensätze suchen</h2>
-			</div>
-
-			<div class="mod_searchfield">
-				<form
-					on:submit|preventDefault={submit}
-					action="/dataset"
-					class="search_field"
-					role="search"
-				>
-					<SearchField />
-				</form>
-			</div>
-
-			<div class="mainparsys parsys">
-				<div class="parsys_column two_cols">
-					<div class="parsys_column two_cols-c0">
-						<h3 class="content-header">Beliebte Schlagwörter</h3>
-						<TagList {tags} />
+<div class="layout_section">
+	<div class="layout_wrapper">
+		<div class="layout_columns var_four_columns">
+			<div class="var_three_quarters">
+				<div>
+					<div class="col_title">
+						<h3 class="content-header">Werkzeuge, Anleitungen, Vorlagen und Anwendungen</h3>
 					</div>
-					<div class="parsys_column two_cols-c1">
-						<div>
-							<div class="col_title">
-								<h3 class="content-header">Werkzeuge, Anleitungen, Vorlagen und Anwendungen</h3>
-							</div>
 
-							<div class="col_right col_full_width">
-								<div class="mainparsys parsys">
-									<div class="mod_subpageslist section">
-										<div class="mod_subpageslist__wrapper ">
-											<div class="layout_columns var_two_columns">
-												<div class="layout_column">
-													<div
-														class="mod_newsteaser var_fixed_height var_show_text_mobile var_auto_height_mobile"
-														data-init="newsteaser"
-														data-newsteaser-multilines-mobile
-													>
-														<a
-															href="https://stadt-zuerich.ch/portal/de/index/ogd/werkstatt.html"
-															class="teaser"
-														>
-															<div class="content" data-newsteaser-content>
-																<h3 data-newsteaser-title data-init="ellipsis">Daten nutzen</h3>
+					<div class="col_right col_full_width">
+						<div class="mainparsys parsys">
+							<div class="mod_subpageslist section">
+								<div class="mod_subpageslist__wrapper ">
+									<div class="layout_columns var_two_columns">
+										<div class="layout_column">
+											<div
+												class="mod_newsteaser var_fixed_height var_show_text_mobile var_auto_height_mobile"
+												data-init="newsteaser"
+												data-newsteaser-multilines-mobile
+											>
+												<a
+													href="https://stadt-zuerich.ch/portal/de/index/ogd/werkstatt.html"
+													class="teaser"
+												>
+													<div class="content" data-newsteaser-content>
+														<h4 data-newsteaser-title data-init="ellipsis">Daten nutzen</h4>
 
-																<p data-newsteaser-text data-init="ellipsis">
-																	Lernen Sie Werkzeuge, Anleitungen und Vorlagen zur Verarbeitung
-																	unserer Datensätze kennen.
-																</p>
+														<p data-newsteaser-text data-init="ellipsis">
+															Lernen Sie Werkzeuge, Anleitungen und Vorlagen zur Verarbeitung
+															unserer Datensätze kennen.
+														</p>
 
-																<div class="icon-arrow">
-																	<span class="visuallyhidden"
-																		>weiter lesen in &laquo;Daten nutzen&raquo;</span
-																	>
-																</div>
-															</div>
-														</a>
+														<div class="icon-arrow">
+															<span class="visuallyhidden"
+																>weiter lesen in &laquo;Daten nutzen&raquo;</span
+															>
+														</div>
 													</div>
-												</div>
+												</a>
+											</div>
+										</div>
 
-												<div class="layout_column">
-													<div
-														class="mod_newsteaser var_fixed_height var_show_text_mobile var_auto_height_mobile"
-														data-init="newsteaser"
-														data-newsteaser-multilines-mobile
-													>
-														<a
-															href="https://stadt-zuerich.ch/portal/de/index/ogd/anwendungen.html"
-															class="teaser"
-														>
-															<div class="content" data-newsteaser-content>
-																<h3 data-newsteaser-title data-init="ellipsis">Anwendungen</h3>
+										<div class="layout_column">
+											<div
+												class="mod_newsteaser var_fixed_height var_show_text_mobile var_auto_height_mobile"
+												data-init="newsteaser"
+												data-newsteaser-multilines-mobile
+											>
+												<a
+													href="https://stadt-zuerich.ch/portal/de/index/ogd/anwendungen.html"
+													class="teaser"
+												>
+													<div class="content" data-newsteaser-content>
+														<h4 data-newsteaser-title data-init="ellipsis">Anwendungen</h4>
 
-																<p data-newsteaser-text data-init="ellipsis">
-																	Diese Anwendungen und Visualisierungen sind mit unseren
-																	Datensätzen entwickelt worden.
-																</p>
+														<p data-newsteaser-text data-init="ellipsis">
+															Diese Anwendungen und Visualisierungen sind mit unseren Datensätzen
+															entwickelt worden.
+														</p>
 
-																<div class="icon-arrow">
-																	<span class="visuallyhidden"
-																		>weiter lesen in &laquo;Anwendungen&raquo;</span
-																	>
-																</div>
-															</div>
-														</a>
+														<div class="icon-arrow">
+															<span class="visuallyhidden"
+																>weiter lesen in &laquo;Anwendungen&raquo;</span
+															>
+														</div>
 													</div>
-												</div>
+												</a>
 											</div>
 										</div>
 									</div>
@@ -152,11 +107,15 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="mod_pagetitle">
-				<h2 class="page_title">Grösste Kategorien</h2>
+			<div class="var_one_quarters">
+				<h3 class="content-header">Beliebte Schlagwörter</h3>
+				<TagList {tags} />
 			</div>
-			<GroupList {groups} />
 		</div>
+
+		<div class="mod_pagetitle">
+			<h2 class="page_title">Grösste Kategorien</h2>
+		</div>
+		<GroupList {groups} />
 	</div>
 </div>

@@ -17,12 +17,41 @@
 			</p>
 		</div>
 	</section>
+
+	<div class="mod_search">
+		<form action="/dataset" method="get">
+			<div class="layout_wrapper">
+				<h2>Suchen</h2>
+				<div class="layout_columns var_two_columns">
+					<div class="layout_column">
+						<div class="mod_formautocomplete" data-init="formautocomplete">
+							<div class="mod_formtextinput" data-init="formtextinput">
+								<input type="text" name="q" class="ui-autocomplete-input" autocomplete="off" />
+								<label for="search">Suche in Datensätzen...</label>
+							</div>
+						</div>
+					</div>
+					<div class="layout_column">
+						<input type="submit" class="mod_button var_large" value="Suchen" />
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
 </div>
 
 <style>
+	.mod_stageimage {
+		height: fit-content;
+	}
 	.stage_info {
 		height: 100%;
 		display: flex;
 		align-items: center;
+	}
+	@media screen and (min-width: 1024px) {
+		.stage_info {
+			height: calc(100% - 195px);
+		}
 	}
 </style>

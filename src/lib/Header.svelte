@@ -6,73 +6,67 @@
 </script>
 
 <div class="layout_wrapper">
-	<div>
-		<div class="mod_header mod_header--bar " data-init="header">
-			<div class="mod_header__topbar" data-header="topbar">
-				<div class="mod_header__topbar-inner">
-					<div class="top_actions" data-header="topactions">
-						<div class="mod_metanav" data-init="metanav" data-header="metanav">
-							<h2 id="anchorNavMeta" class="visuallyhidden">Service navigation</h2>
-							<ul>
-								<li><a href="/" id="anchorContact">Kontakt</a></li>
-								<li><a href="/about">Medien</a></li>
-								<li><a href="/test">Jobs</a></li>
-							</ul>
-						</div>
+	<div class="mod_header mod_header--bar " data-init="header">
+		<div class="mod_header__topbar" data-header="topbar">
+			<div class="mod_header__topbar-inner">
+				<div class="top_actions" data-header="topactions">
+					<div class="mod_metanav" data-init="metanav" data-header="metanav">
+						<h2 id="anchorNavMeta" class="visuallyhidden">Service navigation</h2>
+						<ul>
+							<li><a href="/" id="anchorContact">Kontakt</a></li>
+							<li><a href="/about">Medien</a></li>
+							<li><a href="/test">Jobs</a></li>
+						</ul>
+					</div>
 
-						<div data-searchfield="wrapper" class="actions">
-							<div
-								class="mod_searchfield "
-								data-init="searchfield"
-								data-searchfield-autocomplete=""
+					<div data-searchfield="wrapper" class="actions">
+						<div class="mod_searchfield " data-init="searchfield" data-searchfield-autocomplete="">
+							<form
+								action="/search"
+								class="search_field"
+								data-searchfield="container"
+								role="search"
 							>
-								<form
-									action="/search"
-									class="search_field"
-									data-searchfield="container"
-									role="search"
-								>
-									<label class="search_field__label" for="form_search_keywords">
-										Suche in der ganzen Stadt
-									</label>
+								<label class="search_field__label" for="form_search_keywords">
+									Suche in der ganzen Stadt
+								</label>
 
-									<input
-										id="form_search_keywords"
-										type="text"
-										class="text"
-										name="q"
-										value=""
-										placeholder="Suche"
-										data-searchfield="field"
-										data-header="searchfieldinput"
-										autocomplete="off"
-									/>
-									<input
-										id="searchboxform_dep_submit"
-										type="submit"
-										class="search_button "
-										name="search"
-										value="Finden"
-										data-searchfield="button"
-									/>
+								<input
+									id="form_search_keywords"
+									type="text"
+									class="text"
+									name="q"
+									value=""
+									placeholder="Suche"
+									data-searchfield="field"
+									data-header="searchfieldinput"
+									autocomplete="off"
+								/>
+								<input
+									id="searchboxform_dep_submit"
+									type="submit"
+									class="search_button "
+									name="search"
+									value="Finden"
+									data-searchfield="button"
+								/>
 
-									<input type="hidden" name="name" data-formautocomplete="get-selected-id" />
-								</form>
-							</div>
-
-							<BurgerIcon bind:open title="Menü öffnen" />
+								<input type="hidden" name="name" data-formautocomplete="get-selected-id" />
+							</form>
 						</div>
+
+						<BurgerIcon bind:open title="Menü öffnen" />
 					</div>
 				</div>
 			</div>
+		</div>
 
-			<div class="mod_header__logobar" data-header="logobar">
-				<div class="mod_header__logobar-inner">
-					<div class="mod_header__logobar-logo">
-						<a href="/" class="mod_logo mod_logo--in-bar" data-header="logo">
-							<img src="/logo.svg" alt="Logo Stadt Zürich" />
-						</a>
-					</div>
+		<div class="mod_header__logobar" data-header="logobar">
+			<div class="mod_header__logobar-inner">
+				<div class="mod_header__logobar-logo">
+					<a href="/" class="mod_logo mod_logo--in-bar" data-header="logo">
+						<img src="/logo.svg" alt="Logo Stadt Zürich" />
+					</a>
 				</div>
 			</div>
 		</div>
