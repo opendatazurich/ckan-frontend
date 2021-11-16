@@ -73,10 +73,7 @@
 				<div class="mod_header__logobar-inner">
 					<div class="mod_header__logobar-logo">
 						<a href="/" class="mod_logo mod_logo--in-bar" data-header="logo">
-							<img
-								src="/assets/media/logo/2-logo_stzh_sd_rgb_blau_digital.svg"
-								alt="Logo Stadt Zürich"
-							/>
+							<img src="/logo.svg" alt="Logo Stadt Zürich" />
 						</a>
 					</div>
 				</div>

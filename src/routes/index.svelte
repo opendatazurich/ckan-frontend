@@ -58,6 +58,149 @@
 	</div>
 </div>
 
+<div data-header="content-wrapper">
+	<div class="layout_section">
+		<div class="layout_wrapper">
+			<nav
+				class="mod_breadcrumb is_loaded"
+				role="navigation"
+				aria-label="You are here:"
+				data-init="breadcrumb"
+			>
+				<ul>
+					<li class="home">
+						<a href="#">
+							<span class="home"> Home </span>
+						</a>
+					</li>
+					<li class="">
+						<a href="#"> Startseite Portal der Stadt Zürich </a>
+					</li>
+					<li class="">
+						<span>Politik &amp; Recht</span>
+					</li>
+				</ul>
+			</nav>
+			<div class="mod_pagetitle" data-init="pagetitle">
+				<h2 id="anchorContent" class="page_title">Datensätze suchen</h2>
+			</div>
+			<div class="mod_searchfield " data-init="searchfield">
+				<form action="#" class="search_field" data-searchfield="container" role="search">
+					<label class="search_field__label" for="form_search_keywords">
+						Label search field is used for accessability reasons
+					</label>
+
+					<input
+						id="form_search_keywords"
+						class="text"
+						name="q"
+						value=""
+						placeholder="Suche"
+						data-searchfield="field"
+						autocomplete="off"
+					/>
+					<button type="submit" class="search_button " data-searchfield="button" />
+				</form>
+			</div>
+
+			<!-- 2 columns -->
+			<div class="mainparsys parsys">
+				<div class="parsys_column two_cols">
+					<div class="parsys_column two_cols-c0">
+						<div class="mod_textandimage">
+							<div class="col_title">
+								<h3 class="content-header">Links</h3>
+							</div>
+
+							<div class="col_left   col_full_width">
+								<div class="mod_styledtext ">
+									Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra
+									nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies
+									nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.
+									Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet
+									adipiscing sem neque sed ipsum.<br /><br /><strong>Untertitel</strong><br />luctus
+									pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec
+									vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci
+									eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec
+									sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit
+									cursus nunc,
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="parsys_column two_cols-c1">
+						<div class="mod_textandimage">
+							<div class="col_title">
+								<h3 class="content-header">Rechts</h3>
+							</div>
+
+							<div class="col_right col_full_width">
+								<div class="mainparsys parsys">
+									<div class="mod_subpageslist section">
+										<div class="mod_subpageslist__wrapper ">
+											<div class="layout_columns var_two_columns">
+												<div class="layout_column">
+													<div
+														class="mod_newsteaser var_fixed_height var_show_text_mobile var_auto_height_mobile"
+														data-init="newsteaser"
+														data-newsteaser-multilines-mobile
+													>
+														<a href="/portal/de/index/aktuelles/publikationen.html" class="teaser">
+															<div class="content" data-newsteaser-content>
+																<h3 data-newsteaser-title data-init="ellipsis">Publikationen</h3>
+
+																<p data-newsteaser-text data-init="ellipsis">
+																	Informationen zu neu erschienenen st&auml;dtischen Publikationen.
+																</p>
+
+																<div class="icon-arrow">
+																	<span class="visuallyhidden"
+																		>weiter lesen in &laquo;Publikationen&raquo;</span
+																	>
+																</div>
+															</div>
+														</a>
+													</div>
+												</div>
+
+												<div class="layout_column">
+													<div
+														class="mod_newsteaser var_fixed_height var_show_text_mobile var_auto_height_mobile"
+														data-init="newsteaser"
+														data-newsteaser-multilines-mobile
+													>
+														<a href="/portal/de/index/aktuelles/agenda.html" class="teaser">
+															<div class="content" data-newsteaser-content>
+																<h3 data-newsteaser-title data-init="ellipsis">Agenda</h3>
+
+																<p data-newsteaser-text data-init="ellipsis">
+																	Veranstaltungen mit Kalender der Stadt Z&uuml;rich, Informationen
+																	zu F&uuml;hrungen, Vortr&auml;gen, Kursen, Festen, Freizeit,
+																	Infoveranstaltungen, Sportanl&auml;ssen, Kultur und Ausstellungen.
+																</p>
+
+																<div class="icon-arrow">
+																	<span class="visuallyhidden"
+																		>weiter lesen in &laquo;Agenda&raquo;</span
+																	>
+																</div>
+															</div>
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="homepage layout-1">
 	<Page hero>
 		<div class="row row1">
