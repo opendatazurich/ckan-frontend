@@ -1,15 +1,22 @@
+<script lang="ts">
+	import { goto } from '$app/navigation';
+
+	function submit(e) {
+		const query = new URLSearchParams(new FormData(e.target) as any);
+		goto(`/dataset?${query}`, { keepfocus: true });
+	}
+</script>
+
 <div class="mod_stageimage">
 	<a href="/">
 		<picture>
 			<source data-srcset="/zh.png" srcset="zh.png" />
-			<!--[if IE 9]></video><![endif]-->
 			<img alt="open data" src="/zh.png" />
 		</picture>
 	</a>
 	<section class="stage_info">
 		<div class="stage_info_wrapper">
 			<h1 class="mod_stageimage__title">Willkommen auf dem Open Data Katalog</h1>
-
 			<p>
 				Der Datenkatalog ist Ihr zentraler Einstiegspunkt zur Suche und Nutzung von offenen Daten
 				der Stadt Zürich. Die hier veröffentlichten Daten stehen kostenlos und zur freien – auch
@@ -19,15 +26,21 @@
 	</section>
 
 	<div class="mod_search">
-		<form action="/dataset" method="get">
+		<form on:submit|preventDefault={submit} action="/dataset" method="GET">
 			<div class="layout_wrapper">
 				<h2>Suchen</h2>
 				<div class="layout_columns var_two_columns">
 					<div class="layout_column">
-						<div class="mod_formautocomplete" data-init="formautocomplete">
-							<div class="mod_formtextinput" data-init="formtextinput">
-								<input type="text" name="q" class="ui-autocomplete-input" autocomplete="off" />
-								<label for="search">Suche in Datensätzen...</label>
+						<div class="mod_formautocomplete">
+							<div class="mod_formtextinput">
+								<input
+									id="search"
+									type="text"
+									name="q"
+									class="ui-autocomplete-input"
+									autocomplete="off"
+									placeholder="Suchen..."
+								/>
 							</div>
 						</div>
 					</div>

@@ -12,21 +12,12 @@
 
 <script lang="ts">
 	import GroupList from '$lib/GroupList.svelte';
-	import AutoSuggestionField from '$lib/AutoSuggestionField.svelte';
 	import TagList from '$lib/TagList.svelte';
-	import { goto } from '$app/navigation';
-	import Page from '$lib/Page.svelte';
-	import Accordion from '$lib/Accordion.svelte';
-	import SearchField from '$lib/SearchField.svelte';
+
 	import Hero from '$lib/Hero.svelte';
 
 	export let groups = [];
 	export let tags = [];
-
-	function submit(e) {
-		const query = new URLSearchParams(new FormData(e.target) as any);
-		goto(`/dataset?${query}`, { keepfocus: true });
-	}
 </script>
 
 <Hero />
@@ -48,17 +39,15 @@
 										<div class="layout_column">
 											<div
 												class="mod_newsteaser var_fixed_height var_show_text_mobile var_auto_height_mobile"
-												data-init="newsteaser"
-												data-newsteaser-multilines-mobile
 											>
 												<a
 													href="https://stadt-zuerich.ch/portal/de/index/ogd/werkstatt.html"
 													class="teaser"
 												>
-													<div class="content" data-newsteaser-content>
-														<h3 data-newsteaser-title data-init="ellipsis">Daten nutzen</h3>
+													<div class="content">
+														<h3>Daten nutzen</h3>
 
-														<p data-newsteaser-text data-init="ellipsis">
+														<p>
 															Lernen Sie Werkzeuge, Anleitungen und Vorlagen zur Verarbeitung
 															unserer Datensätze kennen.
 														</p>

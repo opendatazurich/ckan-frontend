@@ -11,10 +11,8 @@
 	<link rel="stylesheet" media="print" href="/assets/css/print.css" />
 </svelte:head>
 
-<main class="main">
-	<Header />
-
+<Header />
+<main>
 	<slot />
-
-	<Footer />
 </main>
+<Footer />

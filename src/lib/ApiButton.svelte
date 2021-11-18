@@ -28,7 +28,7 @@
 				>.
 			</p>
 			<div class="accordion" id="accordion2">
-				<Accordion show={true} title="API-Schnittstelle »">
+				<Accordion open={true} title="API-Schnittstelle »">
 					<p>
 						Die Daten-Schnittstelle (Data-API) kann über folgende Schnittstellenbefehle der CKAN
 						Action API erreicht werden.
@@ -56,7 +56,7 @@
 						</tbody>
 					</table>
 				</Accordion>
-				<Accordion show={true} title="Abfrage läuft »">
+				<Accordion open={true} title="Abfrage läuft »">
 					<strong>Abfragebeispiel (erste 5 Ergebnisse)</strong>
 					<p>
 						<code
