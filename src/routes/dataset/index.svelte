@@ -48,7 +48,8 @@
 					<div class="layout_columns var_two_columns">
 						<div class="layout_column">
 							<div class="mod_formautocomplete">
-								<div class="mod_formtextinput">
+								<label class="top_label" for="q">Suche nach Stichworten:</label>
+								<div class="mod_formtextinput" id="q">
 									<input
 										type="text"
 										name="q"
@@ -61,30 +62,20 @@
 							</div>
 						</div>
 						<div class="layout_column">
+							<SortControl {options} />
+						</div>
+						<div class="layout_column" />
+						<div class="layout_column">
 							<input type="submit" class="mod_button var_large" value="Suchen" />
 						</div>
 					</div>
 				</form>
 
-				<h3 class="total">
+				<h2 class="total">
 					Suchergebnis: <span class="total">{count} Treffer {q ? `für "${q}"` : ''}</span>
-				</h3>
+				</h2>
 
-				<div class="ticker">
-					<h4 id="webpages" class="section_title">Datensätze</h4>
-					<div class="row">
-						<p class="date">
-							Gesundheits- und Umweltdept. &gt; Umwelt &gt; Energie &gt; Energiestadt Zürich
-						</p>
-						<a href="#" class="ticker_link">
-							<h4 class="title">Energiestadt Zürich</h4>
-							<p>
-								Zürich trägt das europa-weite Qualitätslabel Energiestadt® Gold bzw. european energy
-								award Gold® für seine weg-weisende Energiepolitik.
-							</p>
-						</a>
-					</div>
-				</div>
+				<DatasetList {datasets} />
 			</div>
 			<div class="row wrapper">
 				<div class="primary span9">
@@ -107,8 +98,6 @@
 								<FilterList {filters} />
 								<FilterShowButton />
 							</form>
-
-							<DatasetList {datasets} />
 						</div>
 
 						<Pagination {count} {pageSize} />

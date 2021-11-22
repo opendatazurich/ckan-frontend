@@ -7,28 +7,39 @@
 		{ id: 'title desc', title: 'Name absteigend' }
 	];
 	$: query = new URLSearchParams($page.query);
-	$: path = $page.path;
 	$: value = query.get('sort') || options[0].id;
 
 	function onChange(e) {
 		query.set('sort', e.target.value);
-		goto(`${path}?${query}`);
+		goto(`?${query}`);
 	}
 </script>
 
-<div class="form-select control-group control-order-by">
-	<label for="field-order-by">Sortieren nach</label>
-	<select id="field-order-by" name="sort" {value} on:change={onChange}>
+<div class="sort">
+	<label class="top_label" for="q_topic">Sortieren nach:</label>
+	<select {value} on:change={onChange} name="sort" id="q_topic">
 		{#each options as option}
-			<option value={option.id}>{option.title}</option>
+			<option selected={option.id === value} value={option.id}>{option.title}</option>
 		{/each}
 	</select>
-
-	<button class="btn js-hide" type="submit">Los</button>
 </div>
 
 <style>
-	.js-hide {
-		display: none;
+	.sort {
+		display: flex;
+		flex-direction: column;
+	}
+	.sort > select {
+		padding: 0.5rem 0.75rem;
+		font-size: 1rem;
+		border: 1px solid #999;
+		border-radius: 3px;
+		margin: 0.625rem 0;
+	}
+
+	@media (min-width: 1024px) {
+		.sort > select {
+			height: 3rem;
+		}
 	}
 </style>
