@@ -48,7 +48,7 @@
 					<div class="layout_columns var_two_columns">
 						<div class="layout_column">
 							<div class="mod_formautocomplete">
-								<label class="top_label" for="q">Suche nach Stichworten:</label>
+								<label class="top_label" for="q">Suchen nach:</label>
 								<div class="mod_formtextinput" id="q">
 									<input
 										type="text"
@@ -76,33 +76,7 @@
 				</h2>
 
 				<DatasetList {datasets} />
-			</div>
-			<div class="row wrapper">
-				<div class="primary span9">
-					<section class="module">
-						<div class="module-content">
-							<form
-								on:submit|preventDefault={submit}
-								id="dataset-search-form"
-								class="search-form"
-								method="get"
-								data-module="select-switch"
-							>
-								<AutoSuggestionField placeholder="Datensätze suchen..." />
-								<SortControl {options} />
-
-								<h2>
-									{count === 0 ? 'Keine' : count} Datensätze {q != '' ? `gefunden für “${q}”` : ''}
-								</h2>
-
-								<FilterList {filters} />
-								<FilterShowButton />
-							</form>
-						</div>
-
-						<Pagination {count} {pageSize} />
-					</section>
-				</div>
+				<Pagination {count} {pageSize} />
 			</div>
 		</div>
 		<div class="layout_column var_column_left">
