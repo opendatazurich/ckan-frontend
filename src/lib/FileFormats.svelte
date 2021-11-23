@@ -11,14 +11,22 @@
 	);
 </script>
 
-<div class="mod_filterlist">
-	<ul class="mod_filterlist__list">
-		{#each formats as format}
-			<li class="mod_filterlist__item">
-				<span class="mod_filterlist__button">
-					<span class="mod_filterlist__text">{format}</span>
-				</span>
-			</li>
-		{/each}
-	</ul>
+<div class="formats">
+	{#each formats as format}
+		<span class="format">{format}</span>
+	{/each}
 </div>
+
+<style>
+	.formats {
+		display: flex;
+		flex-wrap: wrap;
+		color: #0f05a0;
+	}
+	.format {
+		border: 1px solid #0f05a0;
+		padding: 0.25em 0.5em;
+		margin-right: 0.25em;
+		margin-top: 0.25em;
+	}
+</style>
