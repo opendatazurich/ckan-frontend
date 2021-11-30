@@ -9,78 +9,32 @@
 
 <script lang="ts">
 	import DatasetList from '$lib/DatasetList.svelte';
-	import FilterList from '$lib/FilterList.svelte';
 	import Filters from '$lib/Filters.svelte';
 	import Pagination from '$lib/Pagination.svelte';
-	import AutoSuggestionField from '$lib/AutoSuggestionField.svelte';
-	import SortControl from '$lib/SortControl.svelte';
-	import { goto } from '$app/navigation';
 	import Page from '$lib/Page.svelte';
 	import Toolbar from '$lib/Toolbar.svelte';
-	import FilterShowButton from '$lib/FilterShowButton.svelte';
+	import TwoColumn from '$lib/TwoColumn.svelte';
+	import SearchForm from '$lib/SearchForm.svelte';
 
 	export let datasets = [];
 	export let search_facets = {};
 	export let count = 0;
-	export let q = '';
-	export let filters = [];
-
-	const options = [
-		{ id: 'score desc, date_last_modified desc', title: 'Relevanz' },
-		{ id: 'title_string asc', title: 'Name aufsteigend' },
-		{ id: 'title_string desc', title: 'Name absteigend' },
-		{ id: 'date_last_modified desc', title: 'Zuletzt geändert' }
-	];
-
-	function submit(e) {
-		const query = new URLSearchParams(new FormData(e.target) as any);
-		goto(`?${query}`, { keepfocus: true, noscroll: true });
-	}
+	export let q = 0;
 </script>
 
 <Page>
 	<Toolbar links={[['/dataset', 'Datensätze']]} />
-	<div class="layout_columns var_aside_columns">
-		<div class="layout_column var_column_right">
-			<div class="mod_search">
-				<form on:submit|preventDefault={submit} method="get">
-					<h2>Suchen</h2>
-					<div class="layout_columns var_two_columns">
-						<div class="layout_column">
-							<div class="mod_formautocomplete">
-								<label class="top_label" for="q">Suchen nach:</label>
-								<div class="mod_formtextinput" id="q">
-									<input
-										type="text"
-										name="q"
-										value={q}
-										aria-describedby="search_description"
-										class="ui-autocomplete-input"
-										autocomplete="off"
-									/>
-								</div>
-							</div>
-						</div>
-						<div class="layout_column">
-							<SortControl {options} />
-						</div>
-						<div class="layout_column" />
-						<div class="layout_column">
-							<input type="submit" class="mod_button var_large" value="Suchen" />
-						</div>
-					</div>
-				</form>
+	<TwoColumn>
+		<div class="mod_search">
+			<SearchForm />
 
-				<h2 class="total">
-					Suchergebnis: <span class="total">{count} Treffer {q ? `für "${q}"` : ''}</span>
-				</h2>
+			<h2 class="total">
+				Suchergebnis: <span class="total">{count} Treffer {q ? `für "${q}"` : ''}</span>
+			</h2>
+			<DatasetList {datasets} />
+			<Pagination {count} {pageSize} />
+		</div>
 
-				<DatasetList {datasets} />
-				<Pagination {count} {pageSize} />
-			</div>
-		</div>
-		<div class="layout_column var_column_left">
-			<Filters {search_facets} />
-		</div>
-	</div>
+		<Filters slot="left" {search_facets} />
+	</TwoColumn>
 </Page>

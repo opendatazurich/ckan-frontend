@@ -11,6 +11,7 @@ export const defaultFacets = [
 	{ id: 'res_format', title: 'Formate' },
 	{ id: 'license_id', title: 'Lizenzen' }
 ];
+export const showcaseFacets = [{ id: 'tags', title: 'Tags' }];
 
 export const get = async (path: string) => {
 	const res = await fetch(url(path));
@@ -112,6 +113,7 @@ const makeLoadDatasets = (facets, facetQueryExtension = '') => {
 
 export const loadDatasets = makeLoadDatasets(defaultFacets);
 export const loadGroupDatasets = (groupId) => makeLoadDatasets(defaultFacets, `groups:${groupId}`);
+export const loadShowcases = makeLoadDatasets(showcaseFacets, `dataset_type:showcase`);
 
 export const getHomepage = async () => {
 	const groups = await get('group_list?all_fields=true&limit=6&sort=package_count');

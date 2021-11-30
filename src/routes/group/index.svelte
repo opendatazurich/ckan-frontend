@@ -34,13 +34,46 @@
 
 <Page>
 	<Toolbar links={[['/group', 'Kategorien']]} />
+	<div class="mod_search">
+		<form on:submit|preventDefault={submit} method="get">
+			<h2>Suchen</h2>
+			<div class="layout_columns var_two_columns">
+				<div class="layout_column">
+					<div class="mod_formautocomplete">
+						<label class="top_label" for="q">Suchen nach:</label>
+						<div class="mod_formtextinput" id="q">
+							<input
+								type="text"
+								name="q"
+								value={q}
+								aria-describedby="search_description"
+								class="ui-autocomplete-input"
+								autocomplete="off"
+							/>
+						</div>
+					</div>
+				</div>
+				<div class="layout_column">
+					<SortControl />
+				</div>
+				<div class="layout_column" />
+				<div class="layout_column">
+					<input type="submit" class="mod_button var_large" value="Suchen" />
+				</div>
+			</div>
+		</form>
+
+		{#if groups.length}
+			<GroupList {groups} />
+		{:else}
+			<p class="extra">Bitte versuch es mit einer anderen Suche.</p>
+		{/if}
+	</div>
 
 	<div class="row wrapper no-nav">
 		<div class="primary span12 category-box">
 			<article class="module">
 				<div class="module-content">
-					<h1 class="hide-heading">Kategorien</h1>
-
 					<form
 						on:submit|preventDefault={submit}
 						id="group-search-form"
