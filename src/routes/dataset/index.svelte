@@ -15,6 +15,7 @@
 	import Toolbar from '$lib/Toolbar.svelte';
 	import TwoColumn from '$lib/TwoColumn.svelte';
 	import SearchForm from '$lib/SearchForm.svelte';
+	import SearchResult from '$lib/SearchResult.svelte';
 
 	export let datasets = [];
 	export let search_facets = {};
@@ -28,9 +29,7 @@
 		<div class="mod_search">
 			<SearchForm />
 
-			<h2 class="total">
-				Suchergebnis: <span class="total">{count} Treffer {q ? `für "${q}"` : ''}</span>
-			</h2>
+			<SearchResult {count} {q} />
 			<DatasetList {datasets} />
 			<Pagination {count} {pageSize} />
 		</div>

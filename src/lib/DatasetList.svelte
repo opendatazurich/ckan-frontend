@@ -5,9 +5,9 @@
 	export let datasets = [];
 </script>
 
+<hr />
 {#if datasets.length}
 	<div class="ticker">
-		<h3 id="webpages" class="section_title">Datensätze</h3>
 		{#each datasets as dataset (dataset.id)}
 			<div class="row">
 				<a sveltekit:prefetch href="/dataset/{dataset.name}" class="ticker_link">
