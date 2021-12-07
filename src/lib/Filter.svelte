@@ -3,7 +3,7 @@
 	import { truncate } from '$lib/string';
 	import { makeFilterUrl } from '$lib/api';
 
-	export let title = 'Filter';
+	//export let title = 'Filter';
 	export let key;
 	export let items = [];
 	const limitKey = `_${key}_limit`;

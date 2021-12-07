@@ -57,6 +57,16 @@ export const loadGroup: Load = async ({ page }) => {
 	};
 };
 
+export const loadShowcase: Load = async ({ page }) => {
+	const { showcaseId } = page.params;
+	const showcase = await get(`ckanext_showcase_show?id=${showcaseId}`);
+	return {
+		props: {
+			showcase
+		}
+	};
+};
+
 const processFacets = (search_facets, facets, query: URLSearchParams) => {
 	return facets
 		.map((facet) => ({ ...facet, items: query.getAll(facet.id) }))

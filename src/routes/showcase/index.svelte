@@ -1,5 +1,6 @@
 <script context="module" lang="ts">
 	import { loadShowcases, pageSize } from '../../lib/api';
+	import marked from 'marked';
 	import type { Load } from '@sveltejs/kit';
 
 	export const load: Load = async (args) => {
@@ -15,6 +16,7 @@
 	import Toolbar from '$lib/Toolbar.svelte';
 	import SearchResult from '$lib/SearchResult.svelte';
 	import SearchForm from '$lib/SearchForm.svelte';
+	import DatasetList from '$lib/DatasetList.svelte';
 
 	export let datasets = [];
 	export let search_facets = {};
@@ -34,7 +36,8 @@
 			<div class="mod_search" data-init="search">
 				<SearchForm />
 				<SearchResult {count} {q} />
-
+				<DatasetList {datasets} />
+				<!--
 				<div class="mod_newsteaser var_event_search_result">
 					{#each datasets as showcase (showcase.id)}
 						<a href="/showcase/{showcase.name}" class="teaser">
@@ -50,35 +53,14 @@
 							<div class="content">
 								<h3>{showcase.title}</h3>
 
-								<div class="mod_eventinfo var_eventteaser var_eventteaser--search_result_list">
-									<div class="mod_eventinfo__column-wrapper">
-										<div class="mod_eventinfo__column mod_eventinfo__column--time-location">
-											<time class="mod_eventinfo__full-date" datetime="2018-06-14T17:00:00">
-												<span class="mod_eventinfo__full-date--day">Donnerstag, </span>
-												<span class="mod_eventinfo__full-date--date">14. Juni 2018, </span>
-											</time>
-											<time class="mod_eventinfo__time">17.00–20.00 Uhr</time>
-											<span class="mod_eventinfo__info">(weitere Daten vorhanden)</span>
-											<span class="mod_eventinfo__location">
-												<span class="mod_eventinfo__location-name"
-													>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-													eirmod tempor invidunt ut lab
-												</span>
-												<span class="mod_eventinfo__location-address">Neumarkt 4, 8001 Zürich</span>
-											</span>
-										</div>
-									</div>
-								</div>
-
 								<p class="content__lead">
-									Zürcher Klöster und Kapellen: von den Reformatoren abgeschafft – Eine Ausstellung
-									vom 8. Juni bis 23. September 2018 im Haus zum Rech.
+									{@html marked(showcase.notes)}
 								</p>
 							</div>
 						</a>
 					{/each}
 				</div>
-
+-->
 				<Pagination {count} {pageSize} />
 			</div>
 		</div>
