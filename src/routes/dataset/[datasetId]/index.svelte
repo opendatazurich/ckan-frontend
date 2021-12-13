@@ -16,6 +16,7 @@
 	import Page from '$lib/Page.svelte';
 	import Toolbar from '$lib/Toolbar.svelte';
 	import { truncate } from '$lib/string';
+	import PageTitle from '$lib/PageTitle.svelte';
 
 	export let dataset = {} as any;
 </script>
@@ -27,26 +28,14 @@
 			[`/dataset/${dataset.name}`, truncate(dataset.title, 28, ' ...')]
 		]}
 	/>
-
-	<div class="row wrapper">
-		<div class="primary span9">
-			<article class="module">
-				<DatasetHeader />
-
-				<div class="module-content">
-					<h1>
-						{dataset.title}
-					</h1>
-					<DatasetNotes notes={dataset.notes} />
-					<DatasetResources {dataset} />
-					<DatasetTags {dataset} />
-					<DatasetInfo {dataset} />
-				</div>
-			</article>
-		</div>
-
-		<aside class="secondary span3">
-			<DatasetLicense {dataset} />
-		</aside>
-	</div>
+	<PageTitle>{dataset.title}</PageTitle>
+	<DatasetHeader />
+	<DatasetNotes notes={dataset.notes} />
+	<h2 id="dataset">Datensatz</h2>
+	<DatasetResources {dataset} />
+	<DatasetTags {dataset} />
+	<DatasetInfo {dataset} />
+	<h2 id="category">Kategorien</h2>
+	<h2 id="showcase">Showcases</h2>
+	<DatasetLicense {dataset} />
 </Page>

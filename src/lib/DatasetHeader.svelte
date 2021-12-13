@@ -1,11 +1,49 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { getDatasetLinks } from './links';
-	import Tabs from './Tabs.svelte';
-
-	$: links = getDatasetLinks($page.params.datasetId, $page.path);
+	$: links = [
+		{ title: 'Datensatz', href: '#dataset' },
+		{ title: 'Kategorien', href: '#category' },
+		{ title: 'Showcases', href: '#showcase' }
+	];
 </script>
 
-<header class="module-content page-header">
-	<Tabs {links} />
+<header class="page_title">
+	{#each links as link}
+		<a href={link.href} class="mod_linkicon" title={link.title}>
+			<svg viewBox="0 0 11 11" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+				<path d="M10 3.5V10H3.5" />
+				<path d="M1 1L10 10" />
+			</svg>
+			<span>
+				{link.title}
+			</span>
+		</a>
+	{/each}
+	<hr />
 </header>
+
+<style>
+	:global(html) {
+		scroll-behavior: smooth;
+	}
+	header {
+		display: grid;
+		border-bottom: 1px solid #dedede;
+	}
+	span {
+		margin-left: 1rem;
+		text-decoration: underline;
+	}
+	svg {
+		width: 1em;
+		heigth: 1em;
+	}
+	a {
+		text-decoration: none;
+		padding: 1rem 0;
+	}
+	@media (min-width: 800px) {
+		header {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+</style>
