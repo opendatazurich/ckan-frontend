@@ -64,39 +64,9 @@
 		</form>
 
 		{#if groups.length}
-			<GroupList {groups} />
+			<GroupList all={false} {groups} />
 		{:else}
 			<p class="extra">Bitte versuch es mit einer anderen Suche.</p>
 		{/if}
-	</div>
-
-	<div class="row wrapper no-nav">
-		<div class="primary span12 category-box">
-			<article class="module">
-				<div class="module-content">
-					<form
-						on:submit|preventDefault={submit}
-						id="group-search-form"
-						class="search-form"
-						class:no-bottom-border={groups.length}
-						method="get"
-					>
-						<SearchField placeholder="Gruppe suchen..." />
-
-						<SortControl />
-						<h2>
-							{groups.length !== 0 ? groups.length : 'Keine'}
-							{groups.length !== 1 ? 'Kategorien' : 'Kategorie'} gefunden{q ? ` für "${q}"` : ''}
-						</h2>
-					</form>
-
-					{#if groups.length}
-						<GroupList {groups} />
-					{:else}
-						<p class="extra">Bitte versuch es mit einer anderen Suche.</p>
-					{/if}
-				</div>
-			</article>
-		</div>
 	</div>
 </Page>

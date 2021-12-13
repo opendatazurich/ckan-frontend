@@ -9,6 +9,7 @@
 
 <script lang="ts">
 	export let groups: Group[] = [];
+	export let all = true;
 </script>
 
 <div data-teaserlist="" class="mod_subpageslist mod_teaserlist">
@@ -34,12 +35,14 @@
 				</div>
 			{/each}
 		</div>
-		<div class="mod_subpageslist__actions">
-			<div class="mod_cta__item">
-				<a href="/group" title="Allen Kategorien"
-					><span class="label mod_cta__label">Alle Kategorien</span></a
-				>
+		{#if all}
+			<div class="mod_subpageslist__actions">
+				<div class="mod_cta__item">
+					<a href="/group" title="Allen Kategorien"
+						><span class="label mod_cta__label">Alle Kategorien</span></a
+					>
+				</div>
 			</div>
-		</div>
+		{/if}
 	</div>
 </div>

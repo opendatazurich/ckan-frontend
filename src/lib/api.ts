@@ -1,4 +1,6 @@
 import type { Load } from '@sveltejs/kit';
+import { removeMarkdown, truncate } from '$lib/string';
+import marked from 'marked';
 
 export const url = (path: string) => `https://data.stadt-zuerich.ch/api/3/action/${path}`;
 //export const url = (path: string) => `https://data.integ.stadt-zuerich.ch/api/3/action/${path}`;
@@ -42,7 +44,7 @@ export const loadDataset = async (datasetId: string) => {
 	const dataset = await get(`package_show?id=${datasetId}`);
 	return {
 		props: {
-			dataset
+			dataset: mapDataset(dataset)
 		}
 	};
 };
@@ -62,7 +64,7 @@ export const loadShowcase: Load = async ({ page }) => {
 	const showcase = await get(`ckanext_showcase_show?id=${showcaseId}`);
 	return {
 		props: {
-			showcase
+			showcase: mapDataset(showcase)
 		}
 	};
 };
@@ -109,7 +111,7 @@ const makeLoadDatasets = (facets, facetQueryExtension = '') => {
 		const filters = processFacets(search_facets, facets, page.query);
 		return {
 			props: {
-				datasets,
+				datasets: datasets.map(mapDataset),
 				search_facets,
 				count,
 				page: pageIndex,
@@ -133,3 +135,20 @@ export const getHomepage = async () => {
 		.map(([key]) => key);
 	return { groups, tags };
 };
+
+const getUrl = (path) => `https://data.stadt-zuerich.ch/uploads/showcase/${path}`;
+
+function normalizeUrl(url: string) {
+	url = url || '';
+	return url.startsWith('http') ? url : getUrl(url);
+}
+
+function mapDataset(dataset) {
+	return {
+		...dataset,
+		normalized_image_url: normalizeUrl(dataset.image_url),
+		html_notes: marked(dataset.notes),
+		truncated_notes: truncate(removeMarkdown(dataset.notes), 180),
+		truncated_title: truncate(dataset.title, 80)
+	};
+}

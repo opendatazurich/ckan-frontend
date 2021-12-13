@@ -1,6 +1,5 @@
 <script context="module" lang="ts">
 	import { loadShowcases, pageSize } from '../../lib/api';
-	import marked from 'marked';
 	import type { Load } from '@sveltejs/kit';
 
 	export const load: Load = async (args) => {
@@ -22,11 +21,6 @@
 	export let search_facets = {};
 	export let count = 0;
 	export let q = 0;
-	const getUrl = (path) => `https://data.stadt-zuerich.ch/uploads/showcase/${path}`;
-	function normalizeUrl(url: string) {
-		url = url || '';
-		return url.startsWith('http') ? url : getUrl(url);
-	}
 </script>
 
 <Page>

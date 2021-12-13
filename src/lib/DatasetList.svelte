@@ -1,13 +1,8 @@
 <script lang="ts">
 	import FileFormats from './FileFormats.svelte';
-	import { removeMarkdown, truncate } from '$lib/string';
+
 	import { page } from '$app/stores';
 	export let datasets = [];
-	const getUrl = (path) => `https://data.stadt-zuerich.ch/uploads/showcase/${path}`;
-	function normalizeUrl(url: string) {
-		url = url || '';
-		return url.startsWith('http') ? url : getUrl(url);
-	}
 </script>
 
 <hr />
@@ -16,15 +11,19 @@
 		{#each datasets as dataset (dataset.id)}
 			<div class="row">
 				<a sveltekit:prefetch href="{$page.path}/{dataset.name}" class="ticker_link">
-					<h4 class="title">{truncate(dataset.title, 80)}</h4>
-					{#if dataset.image_url}
-						<img class="image" alt={dataset.title} src={normalizeUrl(dataset.image_url)} />
-					{/if}
+					<h4 class="title">{dataset.truncated_title}</h4>
 				</a>
+				<div class="cols">
+					{#if dataset.image_url}
+						<a sveltekit:prefetch href="{$page.path}/{dataset.name}">
+							<img alt={dataset.title} src={dataset.normalized_image_url} />
+						</a>
+					{/if}
 
-				<p>
-					{truncate(removeMarkdown(dataset.notes), 180)}
-				</p>
+					<p>
+						{dataset.truncated_notes}
+					</p>
+				</div>
 
 				<FileFormats resources={dataset.resources} />
 			</div>
@@ -38,9 +37,18 @@
 	hr {
 		margin-bottom: 2em;
 	}
-	.image {
-		padding: 1em 0;
+	img {
+		margin: 1rem 0;
 		width: 100%;
-		max-width: 512px;
+	}
+	.cols {
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+	@media (min-width: 800px) {
+		.cols {
+			grid-template-columns: 1fr 1fr;
+			gap: 1rem;
+		}
 	}
 </style>
