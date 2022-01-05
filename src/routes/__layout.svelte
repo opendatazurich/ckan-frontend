@@ -16,3 +16,13 @@
 	<slot />
 </main>
 <Footer />
+
+<style>
+	:global(html) {
+		--color-zuriblau: #0f05a0;
+		--color-grey-80: #606060;
+		--color-grey-70: #606060;
+		--color-zh-grey-3: #dedede;
+		--color-grey-20: #e8e8e8;
+	}
+</style>

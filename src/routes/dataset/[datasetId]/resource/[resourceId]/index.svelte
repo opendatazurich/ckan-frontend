@@ -45,6 +45,8 @@
 	import ApiButton from '$lib/ApiButton.svelte';
 	import Page from '$lib/Page.svelte';
 	import Toolbar from '$lib/Toolbar.svelte';
+	import PageTitle from '$lib/PageTitle.svelte';
+	import TwoColumn from '$lib/TwoColumn.svelte';
 
 	export let dataset = {} as { name: string; title: string; resources: any[] };
 	export let resource = {} as any;
@@ -66,8 +68,9 @@
 		]}
 	/>
 
-	<div class="row wrapper">
-		<section class="module module-resource">
+	<Page>
+		<TwoColumn>
+			<PageTitle>{resource.name}</PageTitle>
 			<div class="module-content">
 				<div class="actions">
 					<ul>
@@ -97,8 +100,6 @@
 						{/if}
 					</ul>
 				</div>
-
-				<h1 class="page-heading">{resource.name}</h1>
 
 				<p class="muted ellipsis">
 					URL: <a href={resource.url} title={resource.url}>{resource.url}</a>
@@ -233,14 +234,14 @@
 					</div>
 				</div>
 			{/if}
-		</section>
 
-		<div class="primary span9">
-			<ResourceInfo {resource} {datastore} />
-		</div>
+			<div>
+				<ResourceInfo {resource} {datastore} />
+			</div>
 
-		<aside class="secondary span3">
-			<ResourceList {dataset} {resource} />
-		</aside>
-	</div>
+			<aside slot="left">
+				<ResourceList {dataset} {resource} />
+			</aside>
+		</TwoColumn>
+	</Page>
 </Page>

@@ -31,11 +31,11 @@
 	<PageTitle>{dataset.title}</PageTitle>
 	<DatasetHeader />
 	<DatasetNotes notes={dataset.notes} />
+	<DatasetTags {dataset} />
+	<DatasetLicense {dataset} />
 	<h2 id="dataset">Datensatz</h2>
 	<DatasetResources {dataset} />
-	<DatasetTags {dataset} />
 	<DatasetInfo {dataset} />
 	<h2 id="category">Kategorien</h2>
 	<h2 id="showcase">Showcases</h2>
-	<DatasetLicense {dataset} />
 </Page>

@@ -22,12 +22,10 @@
 </header>
 
 <style>
-	:global(html) {
-		scroll-behavior: smooth;
-	}
 	header {
 		display: grid;
 		border-bottom: 1px solid #dedede;
+		margin-top: -1rem;
 	}
 	span {
 		margin-left: 1rem;
@@ -39,11 +37,14 @@
 	}
 	a {
 		text-decoration: none;
-		padding: 1rem 0;
+		padding-top: 0.5rem;
 	}
 	@media (min-width: 800px) {
 		header {
 			grid-template-columns: repeat(3, 1fr);
+		}
+		a {
+			padding-top: 1rem;
 		}
 	}
 </style>
