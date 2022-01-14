@@ -2,15 +2,10 @@
 	import { getType } from './dataTypes';
 	import FileIcon from './FileIcon.svelte';
 
-	import ResourceDropdown from './ResourceDropdown.svelte';
-	import { truncate } from './string';
-
 	export let dataset: { name: string; resources: any[] } = {} as any;
 </script>
 
 <section id="dataset-resources" class="resources">
-	<h3>Daten und Ressourcen</h3>
-
 	{#each dataset.resources as resource}
 		<div class="resource">
 			<FileIcon type={resource.format} />
@@ -23,9 +18,6 @@
 					<span class="icon_ico_download" />
 					<a class="download-link" href={resource.url}> Download</a>
 				</div>
-			</div>
-			<div class="resource-icon">
-				<span class="icon_ico_arrow_small_right" />
 			</div>
 		</div>
 	{/each}
@@ -46,10 +38,7 @@
 		padding-left: 1rem;
 		flex: 1;
 	}
-	.resource-icon {
-		display: flex;
-		align-items: center;
-	}
+
 	.download {
 		display: flex;
 		align-items: center;

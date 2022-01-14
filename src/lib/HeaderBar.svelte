@@ -39,7 +39,7 @@
 
 				<div class="actions">
 					<div class="mod_searchfield">
-						<form action="/search" class="search_field" role="search">
+						<form action="/dataset" class="search_field" role="search">
 							<label class="search_field__label" for="form_search_keywords">
 								Suchen im Open Data Katalog
 							</label>
@@ -49,7 +49,6 @@
 								type="text"
 								class="text"
 								name="q"
-								value=""
 								placeholder="Suche"
 								autocomplete="off"
 							/>

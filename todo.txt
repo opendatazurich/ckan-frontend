@@ -1,0 +1,25 @@
+/ suche header kein auto complete
+/ ressourcen list pfeil darg weg
+/ resource embedding weg
+/ suchen button für reset
+
+- facetten cloud in der suche darstellen.
+
+- resource list description (wenn vom api anzeigen, sonst fallback generische beschreibung)
+
+- suche homepage auto complete
+- dataset search auto complete
+
+
+
+- dataset list description volle breite
+- facetten load more wie im alten system (default konfigurierbar mal 10 setzt)
+
+
+- kategorie und showcases
+
+- zusätzliche infos alles darstellen
+- daten api in modal overlay
+- showcase detail: url / related datasets
+
+- adobe plugin api "AppMeasurement"

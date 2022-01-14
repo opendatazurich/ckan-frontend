@@ -1,6 +1,6 @@
 <script lang="ts">
 	$: links = [
-		{ title: 'Datensatz', href: '#dataset' },
+		{ title: 'Daten & Ressourcen', href: '#dataset' },
 		{ title: 'Kategorien', href: '#category' },
 		{ title: 'Showcases', href: '#showcase' }
 	];

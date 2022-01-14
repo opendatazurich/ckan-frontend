@@ -10,7 +10,11 @@
 		goto(`?${query}`, { keepfocus: true, noscroll: true });
 	}
 
-	const options = [
+	function reset(e) {
+		goto('?', { keepfocus: true, noscroll: true });
+	}
+
+	export let options = [
 		{ id: 'score desc, date_last_modified desc', title: 'Relevanz' },
 		{ id: 'title_string asc', title: 'Name aufsteigend' },
 		{ id: 'title_string desc', title: 'Name absteigend' },
@@ -18,7 +22,7 @@
 	];
 </script>
 
-<form on:submit|preventDefault={submit}>
+<form on:submit|preventDefault={submit} on:reset|preventDefault={reset}>
 	<h2>Suchen</h2>
 	<div class="layout_columns var_two_columns">
 		<div class="layout_column">
@@ -41,7 +45,10 @@
 		</div>
 		<div class="layout_column" />
 		<div class="layout_column">
-			<input type="submit" class="mod_button var_large" value="Suchen" />
+			<div class="buttons">
+				<input type="reset" class="mod_button var_secondary" value="Zurücksetzen" />
+				<input type="submit" class="mod_button var_large" value="Suchen" />
+			</div>
 		</div>
 	</div>
 </form>

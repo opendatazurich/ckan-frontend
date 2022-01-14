@@ -190,46 +190,6 @@
 									<p>Ihr Browser unterstützt keine IFrames.</p>
 								</iframe>
 							</div>
-							<div
-								id="embed-cea9d84a-6567-45d3-9f6d-224bf54c565c"
-								class="modal resource-view-embed hide"
-							>
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal">×</button>
-									<h3>Ressourcendarstellung/-view einbetten</h3>
-								</div>
-								<div class="modal-body">
-									<p class="embed-content">
-										Sie können den Einbettungs-Code in ein CMS oder eine Blog-Software, die "raw
-										HTML" unterstützt, einbetten
-									</p>
-									<div class="row-fluid">
-										<div class="span6">
-											<div class="control-group control-full">
-												<label class="control-label" for="width">Breite</label>
-												<div class="controls ">
-													<input id="width" type="text" name="width" value="700" placeholder="" />
-												</div>
-											</div>
-										</div>
-										<div class="span6">
-											<div class="control-group control-full">
-												<label class="control-label" for="height">Höhe</label>
-												<div class="controls ">
-													<input id="height" type="text" name="height" value="400" placeholder="" />
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="control-group pre control-full">
-										<label class="control-label" for="code">Code</label>
-										<div class="controls ">
-											<textarea id="code" name="code" cols="20" rows="3" placeholder="" />
-										</div>
-									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>

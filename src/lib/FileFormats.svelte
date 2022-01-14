@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Box from './Box.svelte';
+
 	export let resources: { format: string }[];
 
 	const formats = Object.keys(
@@ -13,7 +15,7 @@
 
 <div class="formats">
 	{#each formats as format}
-		<span class="format">{format}</span>
+		<Box>{format}</Box>
 	{/each}
 </div>
 
@@ -22,11 +24,5 @@
 		display: flex;
 		flex-wrap: wrap;
 		color: #0f05a0;
-	}
-	.format {
-		border: 1px solid #0f05a0;
-		padding: 0.25em 0.5em;
-		margin-right: 0.25em;
-		margin-top: 0.25em;
 	}
 </style>

@@ -33,7 +33,7 @@
 	<DatasetNotes notes={dataset.notes} />
 	<DatasetTags {dataset} />
 	<DatasetLicense {dataset} />
-	<h2 id="dataset">Datensatz</h2>
+	<h2 id="dataset">Daten & Ressourcen</h2>
 	<DatasetResources {dataset} />
 	<DatasetInfo {dataset} />
 	<h2 id="category">Kategorien</h2>

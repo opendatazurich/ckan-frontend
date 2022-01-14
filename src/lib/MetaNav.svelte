@@ -1,8 +1,11 @@
 <script lang="ts">
 	export let links = [
-		{ href: '/', title: 'Kontakt' },
-		{ href: '/medien', title: 'Medien' },
-		{ href: '/jobs', title: 'Jobs' }
+		{ href: 'https://www.stadt-zuerich.ch/portal/de/index/ogd.html', title: 'Open Data Portal' },
+		{
+			href: 'https://www.stadt-zuerich.ch/portal/de/index/ogd/anwendungen.html',
+			title: 'Abwendungen'
+		},
+		{ href: 'https://www.stadt-zuerich.ch/portal/de/index/ogd/werkstatt.html', title: 'Werkstatt' }
 	];
 </script>
 

@@ -11,7 +11,7 @@
 
 	function onChange(e) {
 		query.set('sort', e.target.value);
-		goto(`?${query}`);
+		goto(`?${query}`, { keepfocus: true, noscroll: true });
 	}
 </script>
 

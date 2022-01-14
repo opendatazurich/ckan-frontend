@@ -16,11 +16,13 @@
 	import TwoColumn from '$lib/TwoColumn.svelte';
 	import SearchForm from '$lib/SearchForm.svelte';
 	import SearchResult from '$lib/SearchResult.svelte';
+	import FilterList from '$lib/FilterList.svelte';
 
 	export let datasets = [];
 	export let search_facets = {};
 	export let count = 0;
 	export let q = 0;
+	export let filters = [];
 </script>
 
 <Page>
@@ -28,7 +30,7 @@
 	<TwoColumn>
 		<div class="mod_search">
 			<SearchForm />
-
+			<FilterList {filters} />
 			<SearchResult {count} {q} />
 			<DatasetList {datasets} />
 			<Pagination {count} {pageSize} />
