@@ -2,8 +2,10 @@
 / ressourcen list pfeil darg weg
 / resource embedding weg
 / suchen button für reset
+/ facetten cloud in der suche darstellen.
+/ dataset list description volle breite
 
-- facetten cloud in der suche darstellen.
+- facetten load more wie im alten system (default konfigurierbar mal 10 setzt)
 
 - resource list description (wenn vom api anzeigen, sonst fallback generische beschreibung)
 
@@ -11,9 +13,6 @@
 - dataset search auto complete
 
 
-
-- dataset list description volle breite
-- facetten load more wie im alten system (default konfigurierbar mal 10 setzt)
 
 
 - kategorie und showcases

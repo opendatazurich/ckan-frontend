@@ -3,6 +3,7 @@
 
 	import { page } from '$app/stores';
 	export let datasets = [];
+	export let cols = false;
 </script>
 
 <hr />
@@ -13,7 +14,7 @@
 				<a sveltekit:prefetch href="{$page.path}/{dataset.name}" class="ticker_link">
 					<h4 class="title">{dataset.truncated_title}</h4>
 				</a>
-				<div class="cols">
+				<div class:cols>
 					{#if dataset.image_url}
 						<a sveltekit:prefetch href="{$page.path}/{dataset.name}">
 							<img alt={dataset.title} src={dataset.normalized_image_url} />

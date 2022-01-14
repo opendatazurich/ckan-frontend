@@ -30,31 +30,7 @@
 			<div class="mod_search" data-init="search">
 				<SearchForm />
 				<SearchResult {count} {q} />
-				<DatasetList {datasets} />
-				<!--
-				<div class="mod_newsteaser var_event_search_result">
-					{#each datasets as showcase (showcase.id)}
-						<a href="/showcase/{showcase.name}" class="teaser">
-							{#if showcase.image_url}
-								<img
-									class="teaser__image loaded"
-									alt={showcase.title}
-									src={normalizeUrl(showcase.image_url)}
-								/>
-							{:else}
-								<img class="teaser__image loaded" alt={showcase.title} src="/no-image.svg" />
-							{/if}
-							<div class="content">
-								<h3>{showcase.title}</h3>
-
-								<p class="content__lead">
-									{@html marked(showcase.notes)}
-								</p>
-							</div>
-						</a>
-					{/each}
-				</div>
--->
+				<DatasetList cols {datasets} />
 				<Pagination {count} {pageSize} />
 			</div>
 		</div>
