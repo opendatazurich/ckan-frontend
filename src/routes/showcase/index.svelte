@@ -16,11 +16,13 @@
 	import SearchResult from '$lib/SearchResult.svelte';
 	import SearchForm from '$lib/SearchForm.svelte';
 	import DatasetList from '$lib/DatasetList.svelte';
+	import FilterList from '$lib/FilterList.svelte';
 
 	export let datasets = [];
 	export let search_facets = {};
 	export let count = 0;
 	export let q = 0;
+	export let filters = [];
 </script>
 
 <Page>
@@ -29,6 +31,7 @@
 		<div class="mainparsys parsys">
 			<div class="mod_search" data-init="search">
 				<SearchForm />
+				<FilterList {filters} />
 				<SearchResult {count} {q} />
 				<DatasetList cols {datasets} />
 				<Pagination {count} {pageSize} />
