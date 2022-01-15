@@ -6,9 +6,7 @@
 / dataset list description volle breite
 / dataset kategorien
 / zusätzliche infos alles darstellen
-- showcases
-
-- facetten load more wie im alten system (default konfigurierbar mal 10 setzt)
+/ facetten load more wie im alten system (default konfigurierbar mal 10 setzt)
 
 - resource list description (wenn vom api anzeigen, sonst fallback generische beschreibung)
 
@@ -16,8 +14,8 @@
 - dataset search auto complete
 
 
-
 - daten api in modal overlay
 - showcase detail: url / related datasets
 
 - adobe plugin api "AppMeasurement"
+- showcases
