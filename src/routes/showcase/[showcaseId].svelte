@@ -3,11 +3,14 @@
 </script>
 
 <script lang="ts">
+	import DatasetTags from '$lib/DatasetTags.svelte';
+
 	import Page from '$lib/Page.svelte';
 	import PageTitle from '$lib/PageTitle.svelte';
 	import Toolbar from '$lib/Toolbar.svelte';
 
 	export let showcase;
+	export let datasets;
 </script>
 
 <Page>
@@ -22,9 +25,24 @@
 	</PageTitle>
 
 	<img src={showcase.normalized_image_url} alt={showcase.title} />
+
+	<h3>Beschreibung</h3>
 	<div>
 		{@html showcase.html_notes}
 	</div>
+
+	{#if showcase.author}
+		<h3>Author</h3>
+		<p>{showcase.author}</p>
+	{/if}
+
+	<h3>Webseite</h3>
+	<a href={showcase.url}>{showcase.url}</a>
+
+	<DatasetTags dataset={showcase} />
+
+	<h3>Datensätze</h3>
+	<p>todo</p>
 </Page>
 
 <style>

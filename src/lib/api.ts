@@ -65,9 +65,11 @@ export const loadGroup: Load = async ({ page }) => {
 export const loadShowcase: Load = async ({ page }) => {
 	const { showcaseId } = page.params;
 	const showcase = await get(`ckanext_showcase_show?id=${showcaseId}`);
+	const datasets = []; // await get(`ckanext_showcase_package_list?showcase_id=${showcaseId}`);
 	return {
 		props: {
-			showcase: mapDataset(showcase)
+			showcase: mapDataset(showcase),
+			datasets
 		}
 	};
 };
