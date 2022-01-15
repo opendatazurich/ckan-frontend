@@ -17,6 +17,7 @@
 	import Toolbar from '$lib/Toolbar.svelte';
 	import { truncate } from '$lib/string';
 	import PageTitle from '$lib/PageTitle.svelte';
+	import GroupList from '$lib/GroupList.svelte';
 
 	export let dataset = {} as any;
 </script>
@@ -37,5 +38,6 @@
 	<DatasetResources {dataset} />
 	<DatasetInfo {dataset} />
 	<h2 id="category">Kategorien</h2>
+	<GroupList groups={dataset.groups} />
 	<h2 id="showcase">Showcases</h2>
 </Page>

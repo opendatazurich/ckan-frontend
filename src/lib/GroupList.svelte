@@ -18,15 +18,17 @@
 			{#each groups as group}
 				<div class="layout_column mod_teaserlist__item">
 					<div data-init="newsteaser" class="mod_newsteaser var_fixed_height">
-						<a href="group/{group.name}" class="teaser"
+						<a href="/group/{group.name}" class="teaser"
 							><img alt={group.name} src={group.image_url} class="teaser__image" />
 							<div data-newsteaser-content="" class="content">
 								<h3 data-newsteaser-title="" style="overflow: hidden; height: auto;">
 									{group.display_name}
 								</h3>
-								<p>
-									{group.package_count} Datensätze
-								</p>
+								{#if group.package_count}
+									<p>
+										{group.package_count} Datensätze
+									</p>
+								{/if}
 
 								<div class="icon-arrow"><span class="visuallyhidden">Zur Kategorie</span></div>
 							</div></a

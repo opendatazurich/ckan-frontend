@@ -42,8 +42,11 @@ export const makeFilterUrl = (path: string, query: URLSearchParams) => {
 
 export const loadDataset = async (datasetId: string) => {
 	const dataset = await get(`package_show?id=${datasetId}`);
+	//const showcases = await get(`ckanext_package_showcase_list?package_id=${datasetId}`);
+
 	return {
 		props: {
+			// showcases,
 			dataset: mapDataset(dataset)
 		}
 	};
@@ -146,9 +149,17 @@ function normalizeUrl(url: string) {
 function mapDataset(dataset) {
 	return {
 		...dataset,
+		groups: dataset.groups.map(mapGroup),
 		normalized_image_url: normalizeUrl(dataset.image_url),
 		html_notes: marked(dataset.notes),
 		truncated_notes: truncate(removeMarkdown(dataset.notes), 180),
 		truncated_title: truncate(dataset.title, 80)
+	};
+}
+
+function mapGroup(group) {
+	return {
+		...group,
+		image_url: group.image_display_url
 	};
 }

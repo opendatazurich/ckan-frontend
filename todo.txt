@@ -4,6 +4,9 @@
 / suchen button für reset
 / facetten cloud in der suche darstellen.
 / dataset list description volle breite
+/ dataset kategorien
+/ zusätzliche infos alles darstellen
+- showcases
 
 - facetten load more wie im alten system (default konfigurierbar mal 10 setzt)
 
@@ -14,10 +17,6 @@
 
 
 
-
-- kategorie und showcases
-
-- zusätzliche infos alles darstellen
 - daten api in modal overlay
 - showcase detail: url / related datasets
 
