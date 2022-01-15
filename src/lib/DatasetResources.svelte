@@ -10,10 +10,12 @@
 		<div class="resource">
 			<FileIcon type={resource.format} />
 			<div class="resource-description">
-				<a class="" href="/dataset/{dataset.name}/resource/{resource.id}" title={resource.name}>
+				<a href="/dataset/{dataset.name}/resource/{resource.id}" title={resource.name}>
 					{resource.name}
 				</a>
-				<div>{getType(resource.format).description}</div>
+				<div>
+					{resource.description ? resource.description : getType(resource.format).description}
+				</div>
 				<div class="download">
 					<span class="icon_ico_download" />
 					<a class="download-link" href={resource.url}> Download</a>
@@ -24,11 +26,6 @@
 </section>
 
 <style>
-	h3 {
-		border-bottom: 1px solid var(--color-zh-grey-3);
-		padding-bottom: 1rem;
-		margin: 0;
-	}
 	.resource {
 		padding: 1rem 0;
 		border-bottom: 1px solid var(--color-zh-grey-3);
@@ -48,9 +45,6 @@
 		padding-left: 0.5rem;
 	}
 	@media (min-width: 800px) {
-		h3 {
-			padding-bottom: 2rem;
-		}
 		.resource {
 			padding: 2rem 0;
 		}

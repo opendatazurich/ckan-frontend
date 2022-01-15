@@ -7,8 +7,7 @@
 / dataset kategorien
 / zusätzliche infos alles darstellen
 / facetten load more wie im alten system (default konfigurierbar mal 10 setzt)
-
-- resource list description (wenn vom api anzeigen, sonst fallback generische beschreibung)
+/ resource list description (wenn vom api anzeigen, sonst fallback generische beschreibung)
 
 - suche homepage auto complete
 - dataset search auto complete
