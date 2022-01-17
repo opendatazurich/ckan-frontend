@@ -11,6 +11,7 @@
 
 	function onChange(e) {
 		query.set('sort', e.target.value);
+		query.delete('page');
 		goto(`?${query}`, { keepfocus: true, noscroll: true });
 	}
 </script>

@@ -7,6 +7,8 @@
 
 	function submit(e) {
 		const query = new URLSearchParams(new FormData(e.target) as any);
+		query.delete('page');
+
 		goto(`?${query}`, { keepfocus: true, noscroll: true });
 	}
 
