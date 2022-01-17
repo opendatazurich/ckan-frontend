@@ -39,7 +39,7 @@
 	<h3>Webseite</h3>
 	<a href={showcase.url}>{showcase.url}</a>
 
-	<DatasetTags dataset={showcase} />
+	<DatasetTags path="/showcase" dataset={showcase} />
 
 	<h3>Datensätze</h3>
 	<p>todo</p>

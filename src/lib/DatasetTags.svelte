@@ -1,11 +1,12 @@
 <script lang="ts">
 	export let dataset: { tags: any[] };
+	export let path = '/dataset';
 </script>
 
 <h3>Tags</h3>
 <div class="tags">
 	{#each dataset.tags as tag}
-		<a class="tag" href="/dataset?tags={tag.name}">{tag.display_name}</a>&nbsp;
+		<a class="tag" href="{path}?tags={tag.name}">{tag.display_name}</a>&nbsp;
 	{/each}
 </div>
 

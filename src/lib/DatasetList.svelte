@@ -4,6 +4,8 @@
 	import { page } from '$app/stores';
 	export let datasets = [];
 	export let cols = false;
+	export let pathPrefix = '';
+	$: getPath = (name) => (pathPrefix ? `${pathPrefix}/${name}` : `${$page.path}/${name}`);
 </script>
 
 <hr />
@@ -11,12 +13,12 @@
 	<div class="ticker">
 		{#each datasets as dataset (dataset.id)}
 			<div class="row">
-				<a sveltekit:prefetch href="{$page.path}/{dataset.name}" class="ticker_link">
+				<a sveltekit:prefetch href={getPath(dataset.name)} class="ticker_link">
 					<h4 class="title">{dataset.truncated_title}</h4>
 				</a>
 				<div class:cols>
 					{#if dataset.image_url}
-						<a sveltekit:prefetch href="{$page.path}/{dataset.name}">
+						<a sveltekit:prefetch href={getPath(dataset.name)}>
 							<img alt={dataset.title} src={dataset.normalized_image_url} />
 						</a>
 					{/if}

@@ -14,6 +14,7 @@ export const defaultFacets = [
 	{ id: 'license_id', title: 'Lizenzen' }
 ];
 export const showcaseFacets = [{ id: 'tags', title: 'Tags' }];
+const groupFacets = defaultFacets.slice(1);
 
 export const get = async (path: string) => {
 	const res = await fetch(url(path));
@@ -129,7 +130,7 @@ const makeLoadDatasets = (facets, facetQueryExtension = '') => {
 };
 
 export const loadDatasets = makeLoadDatasets(defaultFacets);
-export const loadGroupDatasets = (groupId) => makeLoadDatasets(defaultFacets, `groups:${groupId}`);
+export const loadGroupDatasets = (groupId) => makeLoadDatasets(groupFacets, `groups:${groupId}`);
 export const loadShowcases = makeLoadDatasets(showcaseFacets, `dataset_type:showcase`);
 
 export const getHomepage = async () => {
