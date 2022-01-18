@@ -5,6 +5,7 @@
 	export let open = false;
 	export let title = '';
 	export let isStatic = false;
+	export let content = true;
 	function toggle() {
 		open = !open;
 	}
@@ -19,7 +20,7 @@
 				<span class="trigger_title__additonal-text--opened" />
 			</span>
 		</div>
-		<div class="content">
+		<div class:content>
 			<slot />
 		</div>
 	{:else}
@@ -38,7 +39,7 @@
 			<span class="trigger_icon" class:is_collapsed={!open} />
 		</button>
 		{#key open}
-			<div transition:slide={{ easing }} class="content" class:is_hidden={!open}>
+			<div transition:slide={{ easing }} class:content class:is_hidden={!open}>
 				<slot />
 			</div>
 		{/key}

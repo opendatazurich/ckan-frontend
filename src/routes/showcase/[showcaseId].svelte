@@ -3,6 +3,7 @@
 </script>
 
 <script lang="ts">
+	import DatasetList from '$lib/DatasetList.svelte';
 	import DatasetTags from '$lib/DatasetTags.svelte';
 
 	import Page from '$lib/Page.svelte';
@@ -42,7 +43,7 @@
 	<DatasetTags path="/showcase" dataset={showcase} />
 
 	<h3>Datensätze</h3>
-	<p>todo</p>
+	<DatasetList pathPrefix="/dataset" {datasets} />
 </Page>
 
 <style>

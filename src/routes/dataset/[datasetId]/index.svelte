@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
-	import { loadDataset } from '$lib/api';
+	import { loadDataset, loadShowcases } from '$lib/api';
 	export const load: Load = ({ page }) => {
 		return loadDataset(page.params.datasetId);
 	};
@@ -18,8 +18,10 @@
 	import { truncate } from '$lib/string';
 	import PageTitle from '$lib/PageTitle.svelte';
 	import GroupList from '$lib/GroupList.svelte';
+	import DatasetList from '$lib/DatasetList.svelte';
 
 	export let dataset = {} as any;
+	export let showcases = [];
 </script>
 
 <Page>
@@ -37,7 +39,12 @@
 	<h2 id="dataset">Daten & Ressourcen</h2>
 	<DatasetResources {dataset} />
 	<DatasetInfo {dataset} />
-	<h2 id="category">Kategorien</h2>
-	<GroupList groups={dataset.groups} />
-	<h2 id="showcase">Showcases</h2>
+	{#if dataset.groups.length}
+		<h2 id="category">Kategorien</h2>
+		<GroupList all={false} groups={dataset.groups} />
+	{/if}
+	{#if showcases.length}
+		<h2 id="showcase">Showcases</h2>
+		<DatasetList pathPrefix="/showcase" cols datasets={showcases} />
+	{/if}
 </Page>

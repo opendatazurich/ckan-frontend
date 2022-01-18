@@ -43,11 +43,11 @@ export const makeFilterUrl = (path: string, query: URLSearchParams) => {
 
 export const loadDataset = async (datasetId: string) => {
 	const dataset = await get(`package_show?id=${datasetId}`);
-	//const showcases = await get(`ckanext_package_showcase_list?package_id=${datasetId}`);
+	const showcases = await get(`ckanext_package_showcase_list?package_id=${datasetId}`);
 
 	return {
 		props: {
-			// showcases,
+			showcases: showcases.map(mapDataset),
 			dataset: mapDataset(dataset)
 		}
 	};
@@ -66,11 +66,11 @@ export const loadGroup: Load = async ({ page }) => {
 export const loadShowcase: Load = async ({ page }) => {
 	const { showcaseId } = page.params;
 	const showcase = await get(`ckanext_showcase_show?id=${showcaseId}`);
-	const datasets = []; // await get(`ckanext_showcase_package_list?showcase_id=${showcaseId}`);
+	const datasets = await get(`ckanext_showcase_package_list?showcase_id=${showcaseId}`);
 	return {
 		props: {
 			showcase: mapDataset(showcase),
-			datasets
+			datasets: datasets.map(mapDataset)
 		}
 	};
 };

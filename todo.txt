@@ -10,12 +10,9 @@
 / resource list description (wenn vom api anzeigen, sonst fallback generische beschreibung)
 / showcases
 / showcase detail: url
-
-- showcase detail: related datasets
-
-- suche homepage auto complete
-- dataset search auto complete
+/ showcase detail: related datasets
 
 - daten api in modal overlay
-
 - adobe plugin api "AppMeasurement"
+- suche homepage auto complete
+- dataset search auto complete

@@ -48,7 +48,7 @@
 			</div>
 		</div>
 		<div slot="left">
-			<Accordion isStatic title="Kategorie">
+			<Accordion isStatic content={false} title="Kategorie">
 				<Group layout_column={false} {group} />
 			</Accordion>
 			<Filters {search_facets} />
