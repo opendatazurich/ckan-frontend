@@ -13,7 +13,6 @@
 <script lang="ts">
 	import GroupList from '$lib/GroupList.svelte';
 	import TagList from '$lib/TagList.svelte';
-
 	import Hero from '$lib/Hero.svelte';
 
 	export let groups = [];
