@@ -106,7 +106,7 @@ const makeLoadDatasets = (facets, facetQueryExtension = '') => {
 			...facets
 				.map((facet) => ({ ...facet, items: page.query.getAll(facet.id) }))
 				.filter((facet) => facet.items.length)
-				.map((facet) => `${facet.id}:(${facet.items.join(' AND ')})`),
+				.map((facet) => `${facet.id}:(${facet.items.map((item) => `"${item}"`).join(' AND ')})`),
 			facetQueryExtension
 		].join(' AND ');
 
