@@ -13,14 +13,13 @@
 </script>
 
 <script lang="ts">
-	import { page } from '$app/stores';
 	import GroupList from '$lib/GroupList.svelte';
-	import type { Group } from '$lib/GroupList.svelte';
+	import type { GroupType } from '$lib/Group.svelte';
 	import Page from '$lib/Page.svelte';
 	import Toolbar from '$lib/Toolbar.svelte';
 	import SearchForm from '$lib/SearchForm.svelte';
 
-	export let groups: Group[] = [];
+	export let groups: GroupType[] = [];
 
 	let options = [
 		{ id: 'title asc', title: 'Name aufsteigend' },

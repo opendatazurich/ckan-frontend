@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Footer from '$lib/Footer.svelte';
 	import Header from '$lib/Header.svelte';
 </script>
@@ -24,5 +24,7 @@
 		--color-grey-70: #606060;
 		--color-zh-grey-3: #dedede;
 		--color-grey-20: #e8e8e8;
+		--color-black: #000000;
+		--color-white: #ffffff;
 	}
 </style>

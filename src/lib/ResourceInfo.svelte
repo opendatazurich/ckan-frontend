@@ -9,36 +9,32 @@
 	}[];
 </script>
 
-<section class="module">
-	{#if datastore}
-		<div class="module-content">
-			<h2>Datenverzeichnis</h2>
-			<table
-				class="table table-striped table-bordered table-condensed table-toggle-more"
-				data-module="table-toggle-more"
-			>
-				<thead>
-					<tr>
-						<th scope="col">Spalte</th>
-						<th scope="col">Typ</th>
-						<th scope="col">Bezeichnung</th>
-						<th scope="col">Beschreibung</th>
-					</tr>
-				</thead>
+{#if datastore}
+	<h2>Datenverzeichnis</h2>
+	<table
+		class="table table-striped table-bordered table-condensed table-toggle-more"
+		data-module="table-toggle-more"
+	>
+		<thead>
+			<tr>
+				<th scope="col">Spalte</th>
+				<th scope="col">Typ</th>
+				<th scope="col">Bezeichnung</th>
+				<th scope="col">Beschreibung</th>
+			</tr>
+		</thead>
 
-				<tbody>
-					{#each fields as field}
-						<tr>
-							<td>{field.id}</td>
-							<td>{field.type}</td>
-							<td />
-							<td />
-						</tr>
-					{/each}
-				</tbody>
-			</table>
-		</div>
-	{/if}
+		<tbody>
+			{#each fields as field}
+				<tr>
+					<td>{field.id}</td>
+					<td>{field.type}</td>
+					<td />
+					<td />
+				</tr>
+			{/each}
+		</tbody>
+	</table>
+{/if}
 
-	<ResourceInfoTable {resource} />
-</section>
+<ResourceInfoTable {resource} />

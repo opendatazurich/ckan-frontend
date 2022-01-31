@@ -42,8 +42,10 @@
 
 	<DatasetTags path="/showcase" dataset={showcase} />
 
-	<h3>Datensätze</h3>
-	<DatasetList pathPrefix="/dataset" {datasets} />
+	<div class="mod_search">
+		<h3>Datensätze</h3>
+		<DatasetList pathPrefix="/dataset" {datasets} />
+	</div>
 </Page>
 
 <style>

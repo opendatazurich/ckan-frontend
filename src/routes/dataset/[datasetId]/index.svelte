@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
-	import { loadDataset, loadShowcases } from '$lib/api';
+	import { loadDataset } from '$lib/api';
 	export const load: Load = ({ page }) => {
 		return loadDataset(page.params.datasetId);
 	};

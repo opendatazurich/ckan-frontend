@@ -1,20 +1,38 @@
 <script lang="ts">
+	import Accordion from './Accordion.svelte';
+
 	import { truncate } from './string';
 
 	export let dataset: { name: string; resources: any[] };
 	export let resource;
 </script>
 
-<section class="module module-narrow resources">
-	<h2 class="module-heading"><i class="fa fa-files-o" /> Ressourcen</h2>
-
-	<ul class="unstyled nav nav-simple">
+<Accordion title="Ressourcen" isStatic nopadding>
+	<nav>
 		{#each dataset.resources as r}
-			<li class="nav-item" class:active={r === resource}>
-				<a href="/dataset/{dataset.name}/resource/{r.id}"
-					><span>{truncate(r.name, 22, ' ...', false)}</span></a
-				>
-			</li>
+			<a
+				sveltekit:noscroll
+				class:active={r === resource}
+				href="/dataset/{dataset.name}/resource/{r.id}"
+				><span class="bla">{truncate(r.name, 26, ' ...', false)}</span></a
+			>
 		{/each}
-	</ul>
-</section>
+	</nav>
+</Accordion>
+
+<style>
+	nav {
+		display: flex;
+		flex-direction: column;
+	}
+	a {
+		padding: 0.25rem 0.5rem;
+		text-decoration: none;
+		transition: all ease-in 150ms;
+		color: var(--color-black);
+	}
+	.active,
+	a:hover {
+		background-color: var(--color-grey-20);
+	}
+</style>

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { formatTimeAgo } from '$lib/date';
+	import Table from './Table.svelte';
 	export let resource;
 	const dateFormater = (s: string) =>
 		new Date(s).toLocaleDateString('de-CH', { month: 'long', day: 'numeric', year: 'numeric' });
@@ -30,33 +31,6 @@
 	];
 </script>
 
-<div class="module-content">
-	<h2>Zusätzliche Informationen</h2>
-	<table
-		class="table table-striped table-bordered table-condensed table-toggle-more"
-		data-module="table-toggle-more"
-	>
-		<thead>
-			<tr>
-				<th scope="col">Feld</th>
-				<th scope="col">Wert</th>
-			</tr>
-		</thead>
-		<tbody>
-			{#each fields as field}
-				<tr>
-					<th scope="row">{field.title}</th>
-					<td>{field.value}</td>
-				</tr>
-			{/each}
-			<tr class="toggle-show toggle-show-more">
-				<td colspan="2">
-					<small>
-						<a href="#" class="show-more">Mehr anzeigen</a>
-						<a href="#" class="show-less">Verstecken</a>
-					</small>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
+<h2>Zusätzliche Informationen</h2>
+
+<Table {fields} />
