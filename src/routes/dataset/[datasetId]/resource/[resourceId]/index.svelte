@@ -110,41 +110,17 @@
 		</div>
 
 		{#if hasDataset}
-			<ul class="nav nav-tabs nav-tabs-plain">
-				<li class="active" data-id="cea9d84a-6567-45d3-9f6d-224bf54c565c">
-					<a
-						href="/dataset/sid_dav_verkehrszaehlung_miv_od2031/resource/44607195-a2ad-4f9b-b6f1-d26c003d85a2?view_id=cea9d84a-6567-45d3-9f6d-224bf54c565c"
-						data-id="cea9d84a-6567-45d3-9f6d-224bf54c565c"
-					>
-						<i class="fa icon fa-table" />
-						Data Explorer
-					</a>
-				</li>
-			</ul>
+			<h2>Data Explorer</h2>
 
-			<div class="module-content">
-				<div class="resource-view">
-					<div
-						id="view-cea9d84a-6567-45d3-9f6d-224bf54c565c"
-						class="resource-view"
-						data-id="cea9d84a-6567-45d3-9f6d-224bf54c565c"
-						data-title="Data Explorer"
-						data-description=""
-					>
-						<div class="m-top ckanext-datapreview">
-							<iframe
-								title="Dataset: {dataset.name}"
-								src="/dataset/{dataset.name}/resource/{resource.id}/view/cea9d84a-6567-45d3-9f6d-224bf54c565c"
-								frameborder="0"
-								width="100%"
-								style="height: 672px;"
-							>
-								<p>Ihr Browser unterstützt keine IFrames.</p>
-							</iframe>
-						</div>
-					</div>
-				</div>
-			</div>
+			<iframe
+				title="Dataset: {dataset.name}"
+				src="/dataset/{dataset.name}/resource/{resource.id}/view/cea9d84a-6567-45d3-9f6d-224bf54c565c"
+				frameborder="0"
+				width="100%"
+				style="height: 672px;"
+			>
+				<p>Ihr Browser unterstützt keine IFrames.</p>
+			</iframe>
 		{/if}
 
 		<ResourceInfo {resource} {datastore} />

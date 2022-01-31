@@ -1,5 +1,6 @@
 <script lang="ts">
 	export let fields = [];
+	export let headers = ['Feld', 'Wert'];
 </script>
 
 <section class="mod_table var_no_hover">
@@ -7,8 +8,9 @@
 		<table>
 			<thead>
 				<tr>
-					<th>Feld</th>
-					<th>Wert</th>
+					{#each headers as header}
+						<th>{header}</th>
+					{/each}
 				</tr>
 			</thead>
 			<tbody>
@@ -27,9 +29,13 @@
 	.table {
 		overflow-x: scroll;
 	}
+	.header {
+		width: 50%;
+	}
 	@media (min-width: 800px) {
 		.header {
 			white-space: nowrap;
+			width: 25%;
 		}
 	}
 </style>
