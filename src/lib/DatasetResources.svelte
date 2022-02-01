@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Button from './Button.svelte';
+
 	import { getType } from './dataTypes';
 	import FileIcon from './FileIcon.svelte';
 
@@ -17,8 +19,7 @@
 					{resource.description ? resource.description : getType(resource.format).description}
 				</div>
 				<div class="download">
-					<span class="icon_ico_download" />
-					<a class="download-link" href={resource.url}> Download</a>
+					<Button secondary icon="download" href={resource.url}>Herunterladen</Button>
 				</div>
 			</div>
 		</div>
@@ -37,13 +38,9 @@
 	}
 
 	.download {
-		display: flex;
-		align-items: center;
-		color: var(--color-zuriblau);
+		padding-top: 1rem;
 	}
-	.download-link {
-		padding-left: 0.5rem;
-	}
+
 	@media (min-width: 800px) {
 		.resource {
 			padding: 2rem 0;
