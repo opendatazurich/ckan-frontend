@@ -32,7 +32,7 @@
 		]}
 	/>
 	<PageTitle>{dataset.title}</PageTitle>
-	<DatasetHeader />
+	<DatasetHeader hasShowcases={showcases.length > 0} hasGroups={dataset.groups.length > 0} />
 	<DatasetNotes notes={dataset.notes} />
 	<DatasetTags {dataset} />
 	<DatasetLicense {dataset} />
