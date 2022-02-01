@@ -42,6 +42,7 @@
 	import Toolbar from '$lib/Toolbar.svelte';
 	import PageTitle from '$lib/PageTitle.svelte';
 	import TwoColumn from '$lib/TwoColumn.svelte';
+	import Button from '$lib/Button.svelte';
 
 	export let dataset = {} as { name: string; title: string; resources: any[] };
 	export let resource = {} as any;
@@ -67,32 +68,15 @@
 		<PageTitle>{resource.name}</PageTitle>
 		<div class="module-content">
 			<div class="actions">
-				<ul>
-					{#if hasDataset}
-						<li>
-							<a
-								class="btn btn-primary resource-url-analytics resource-type-file"
-								href={resource.url}
-							>
-								<i class="fa fa-arrow-circle-o-down" /> Herunterladen
-							</a>
-						</li>
-
-						<li>
-							<ApiButton resourceId={resource.id} />
-						</li>
-					{/if}
-					{#if hasApi}
-						<li>
-							<a
-								class="btn btn-primary resource-url-analytics resource-type-api"
-								href={resource.url}
-							>
-								<i class="fa fa-key" /> API-Schnittstelle
-							</a>
-						</li>
-					{/if}
-				</ul>
+				{#if hasDataset}
+					<Button secondary icon="download" href={resource.url}>Herunterladen</Button>
+					<ApiButton resourceId={resource.id} />
+				{/if}
+				{#if hasApi}
+					<a class="btn btn-primary resource-url-analytics resource-type-api" href={resource.url}>
+						<i class="fa fa-key" /> API-Schnittstelle
+					</a>
+				{/if}
 			</div>
 
 			<p class="muted ellipsis">

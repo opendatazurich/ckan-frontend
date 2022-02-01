@@ -1,24 +1,29 @@
 <script lang="ts">
 	import Accordion from './Accordion.svelte';
+	import Button from './Button.svelte';
 	import Modal from './Modal.svelte';
 
 	export let resourceId;
 	let show = false;
 </script>
 
-<button class="btn btn-success" on:click={() => (show = true)}
-	><i class="fa fa-flask fa-lg" /> Daten-API</button
->
+<svelte:head>
+	{#if show}
+		<style>
+			body {
+				overflow: hidden;
+			}
+		</style>
+	{/if}
+</svelte:head>
+
+<Button icon="gearwheel" secondary on:click={() => (show = true)}>Daten-API</Button>
 
 {#if show}
-	<Modal>
-		<div on:click={() => (show = false)} class="modal-backdrop" />
+	<Modal on:close={() => (show = false)}>
 		<div class="modal" aria-hidden="false">
 			<div class="modal-header">
-				<h3>
-					CKAN Data API
-					<button on:click={() => (show = false)} class="close" data-dismiss="modal">×</button>
-				</h3>
+				<h3>CKAN Data API</h3>
 			</div>
 			<div class="modal-body">
 				<p>
