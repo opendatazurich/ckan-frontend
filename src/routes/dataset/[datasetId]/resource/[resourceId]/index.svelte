@@ -73,15 +73,14 @@
 					<ApiButton resourceId={resource.id} />
 				{/if}
 				{#if hasApi}
-					<a class="btn btn-primary resource-url-analytics resource-type-api" href={resource.url}>
-						<i class="fa fa-key" /> API-Schnittstelle
-					</a>
+					<Button icon="external_links" href={resource.url} secondary>API-Schnittstelle</Button>
 				{/if}
 			</div>
 
 			<p class="muted ellipsis">
 				URL: <a href={resource.url} title={resource.url}>{resource.url}</a>
 			</p>
+
 			{#if type.description}
 				<div class="prose notes" property="rdfs:label">
 					<p>{type.description}</p>
