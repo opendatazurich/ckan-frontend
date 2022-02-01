@@ -124,6 +124,7 @@ print fileobj.read()
 					</Accordion>
 				</div>
 			</div>
+			<Button secondary on:click={() => (show = false)}>Schliessen</Button>
 		</div>
 	</Modal>
 {/if}
