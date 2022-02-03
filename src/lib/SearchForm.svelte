@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
+	import AutoSuggestionField from './AutoSuggestionField.svelte';
 	import SortControl from './SortControl.svelte';
-
+	export let autocomplete = false;
 	$: q = $page.query.get('q');
 
 	function submit(e) {
@@ -31,14 +32,18 @@
 			<div class="mod_formautocomplete">
 				<label class="top_label" for="q">Suchen nach:</label>
 				<div class="mod_formtextinput" id="q">
-					<input
-						type="text"
-						name="q"
-						value={q}
-						aria-describedby="search_description"
-						class="ui-autocomplete-input"
-						autocomplete="off"
-					/>
+					{#if autocomplete}
+						<AutoSuggestionField value={q} />
+					{:else}
+						<input
+							type="text"
+							name="q"
+							value={q}
+							aria-describedby="search_description"
+							class="ui-autocomplete-input"
+							autocomplete="off"
+						/>
+					{/if}
 				</div>
 			</div>
 		</div>

@@ -30,7 +30,7 @@
 	<TwoColumn>
 		<div class="mainparsys parsys">
 			<div class="mod_search" data-init="search">
-				<SearchForm />
+				<SearchForm autocomplete />
 				<FilterList {filters} />
 				<SearchResult {count} {q} />
 				<DatasetList cols {datasets} />

@@ -29,7 +29,7 @@
 	<Toolbar links={[['/dataset', 'Datensätze']]} />
 	<TwoColumn>
 		<div class="mod_search">
-			<SearchForm />
+			<SearchForm autocomplete />
 			<FilterList {filters} />
 			<SearchResult {count} {q} />
 			<DatasetList {datasets} />

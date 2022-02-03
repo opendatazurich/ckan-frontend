@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import AutoSuggestionField from './AutoSuggestionField.svelte';
 
 	function submit(e) {
 		const query = new URLSearchParams(new FormData(e.target) as any);
@@ -33,14 +34,7 @@
 					<div class="layout_column">
 						<div class="mod_formautocomplete">
 							<div class="mod_formtextinput">
-								<input
-									id="search"
-									type="text"
-									name="q"
-									class="ui-autocomplete-input"
-									autocomplete="off"
-									placeholder="Suchen..."
-								/>
+								<AutoSuggestionField />
 							</div>
 						</div>
 					</div>
