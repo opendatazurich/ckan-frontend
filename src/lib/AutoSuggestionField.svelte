@@ -77,6 +77,7 @@
 		max-height: 21rem;
 		overflow-y: scroll;
 		border: 1px solid var(--color-active);
+		z-index: 2;
 	}
 	.autocomplete-suggestion {
 		padding: 0.25rem 0.5rem;
