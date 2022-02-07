@@ -34,7 +34,7 @@
 					<div class="layout_column">
 						<div class="mod_formautocomplete">
 							<div class="mod_formtextinput">
-								<AutoSuggestionField />
+								<AutoSuggestionField placeholder="Datensätze suchen..." />
 							</div>
 						</div>
 					</div>

@@ -4,6 +4,8 @@
 	import AutoSuggestionField from './AutoSuggestionField.svelte';
 	import SortControl from './SortControl.svelte';
 	export let autocomplete = false;
+	export let scope = 'dataset';
+	export let placeholder = 'Datensätze suchen...'
 	$: q = $page.query.get('q');
 
 	function submit(e) {
@@ -33,7 +35,7 @@
 				<label class="top_label" for="q">Suchen nach:</label>
 				<div class="mod_formtextinput" id="q">
 					{#if autocomplete}
-						<AutoSuggestionField value={q} />
+						<AutoSuggestionField {scope} {placeholder} />
 					{:else}
 						<input
 							type="text"

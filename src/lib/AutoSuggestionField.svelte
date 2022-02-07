@@ -1,17 +1,29 @@
-<script lang="ts">
+<script context="module" lang="ts">
+	export enum Scope {
+		All,
+		Dataset,
+		Showcase,
+	}
+</script>
+<script lang="ts">	
 	import { get } from '$lib/api';
 	import { clickOutside } from '$lib/actions';
 	import { page } from '$app/stores';
 	export let placeholder = 'Suchen...';
+	export let scope = 'dataset';
+	
 	let searchResults = [];
+
 	let show = false;
 	let inputElement;
+	
 	$: value = $page.query.get('q');
 
 	async function onChange(e) {
 		const value = e.target.value;
 		if (value.length > 1) {
-			searchResults = Object.values(await get(`ogdzh_autosuggest?q=${value}`));
+			const { results } = await get(`package_search?q=${value}&fq=dataset_type:${scope}`);
+			searchResults = results.map(r => r.title)
 			show = true;
 		} else {
 			close();
