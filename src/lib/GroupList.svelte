@@ -1,28 +1,25 @@
-<script context="module" lang="ts">
-	export type Group = {
-		display_name: string;
-		package_count: number;
-		name: string;
-		image_url: string;
-	};
-</script>
-
 <script lang="ts">
-	export let groups: Group[] = [];
+	import Group, { GroupType } from './Group.svelte';
+
+	export let groups: GroupType[] = [];
+	export let all = true;
 </script>
 
-<ul class="media-grid media-grid-zh">
-	{#each groups as group}
-		<li class="media-item media-item-zh">
-			<img src={group.image_url} alt={group.name} class="media-image" />
-
-			<h3 class="media-heading">{group.display_name}</h3>
-
-			<strong class="count">{group.package_count} Datensätze</strong>
-
-			<a href="/group/{group.name}" title="{group.display_name} ansehen" class="media-view">
-				<span>{group.display_name} ansehen</span>
-			</a>
-		</li>
-	{/each}
-</ul>
+<div data-teaserlist="" class="mod_subpageslist mod_teaserlist">
+	<div class="mod_subpageslist__wrapper fullwidth">
+		<div class="layout_columns var_three_columns">
+			{#each groups as group}
+				<Group {group} />
+			{/each}
+		</div>
+		{#if all}
+			<div class="mod_subpageslist__actions">
+				<div class="mod_cta__item">
+					<a href="/group" title="Allen Kategorien"
+						><span class="label mod_cta__label">Alle Kategorien</span></a
+					>
+				</div>
+			</div>
+		{/if}
+	</div>
+</div>

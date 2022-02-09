@@ -1,6 +1,8 @@
 <script lang="ts">
-	export let href: string;
+	import Box from './Box.svelte';
+
 	export let resources: { format: string }[];
+
 	const formats = Object.keys(
 		resources
 			.map((resource) => resource.format.toLocaleLowerCase())
@@ -11,10 +13,16 @@
 	);
 </script>
 
-<ul class="dataset-resources unstyled">
+<div class="formats">
 	{#each formats as format}
-		<li>
-			<a {href} class="label" data-format={format}>{format}</a>
-		</li>
+		<Box>{format}</Box>
 	{/each}
-</ul>
+</div>
+
+<style>
+	.formats {
+		display: flex;
+		flex-wrap: wrap;
+		color: #0f05a0;
+	}
+</style>

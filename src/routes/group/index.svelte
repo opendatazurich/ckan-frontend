@@ -13,56 +13,29 @@
 </script>
 
 <script lang="ts">
-	import { page } from '$app/stores';
 	import GroupList from '$lib/GroupList.svelte';
-	import type { Group } from '$lib/GroupList.svelte';
-	import SearchField from '$lib/SearchField.svelte';
-	import SortControl from '$lib/SortControl.svelte';
-	$: q = $page.query.get('q');
+	import type { GroupType } from '$lib/Group.svelte';
+	import Page from '$lib/Page.svelte';
+	import Toolbar from '$lib/Toolbar.svelte';
+	import SearchForm from '$lib/SearchForm.svelte';
 
-	export let groups: Group[] = [];
+	export let groups: GroupType[] = [];
+
+	let options = [
+		{ id: 'title asc', title: 'Name aufsteigend' },
+		{ id: 'title desc', title: 'Name absteigend' }
+	];
 </script>
 
-<div role="main">
-	<div id="content" class="container">
-		<div class="flash-messages" />
+<Page>
+	<Toolbar links={[['/group', 'Kategorien']]} />
+	<div class="mod_search">
+		<SearchForm {options} />
 
-		<div class="toolbar">
-			<ol class="breadcrumb">
-				<li class="home"><a href="/"><i class="fa fa-home" /><span> Start</span></a></li>
-				<li class="active"><a class=" active" href="/group">Kategorien</a></li>
-			</ol>
-		</div>
-
-		<div class="row wrapper no-nav">
-			<div class="primary span12 category-box">
-				<article class="module">
-					<div class="module-content">
-						<h1 class="hide-heading">Kategorien</h1>
-
-						<form
-							id="group-search-form"
-							class="search-form"
-							class:no-bottom-border={groups.length}
-							method="get"
-						>
-							<SearchField placeholder="Gruppe suchen..." />
-
-							<SortControl />
-							<h2>
-								{groups.length !== 0 ? groups.length : 'Keine'}
-								{groups.length !== 1 ? 'Kategorien' : 'Kategorie'} gefunden{q ? ` für "${q}"` : ''}
-							</h2>
-						</form>
-
-						{#if groups.length}
-							<GroupList {groups} />
-						{:else}
-							<p class="extra">Bitte versuch es mit einer anderen Suche.</p>
-						{/if}
-					</div>
-				</article>
-			</div>
-		</div>
+		{#if groups.length}
+			<GroupList all={false} {groups} />
+		{:else}
+			<p class="extra">Bitte versuch es mit einer anderen Suche.</p>
+		{/if}
 	</div>
-</div>
+</Page>

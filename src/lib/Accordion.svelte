@@ -1,21 +1,57 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
-	export let show = false;
-	export let title = 'toggle';
+	import { linear } from 'svelte/easing';
+	const easing = linear;
+	export let open = false;
+	export let title = '';
+	export let isStatic = false;
+	export let nopadding = false;
+	export let content = true;
 	function toggle() {
-		show = !show;
+		open = !open;
 	}
 </script>
 
-<div class="accordion-group">
-	<div class="accordion-heading">
-		<a on:click|preventDefault={toggle} class="accordion-toggle" href="#collapse">{title}</a>
-	</div>
-	{#if show}
-		<div transition:slide|local class="accordion-body">
-			<div class="accordion-inner">
+<div class="mod_accordion">
+	{#if isStatic}
+		<div class="trigger" class:is_active={true} aria-expanded={true}>
+			<span class="trigger_title"
+				>{title}
+				<span class="trigger_title__additonal-text--closed" />
+				<span class="trigger_title__additonal-text--opened" />
+			</span>
+		</div>
+		<div class:nopadding class:content>
+			<slot />
+		</div>
+	{:else}
+		<button
+			on:click|preventDefault={toggle}
+			class="trigger"
+			class:is_active={open}
+			aria-expanded={open}
+		>
+			<span class="trigger_title"
+				>{title}
+				<span class="trigger_title__additonal-text--closed" />
+				<span class="trigger_title__additonal-text--opened" />
+			</span>
+
+			<span class="trigger_icon" class:is_collapsed={!open} />
+		</button>
+		{#key open}
+			<div transition:slide={{ easing }} class:content class:nopadding class:is_hidden={!open}>
 				<slot />
 			</div>
-		</div>
+		{/key}
 	{/if}
 </div>
+
+<style>
+	button {
+		width: 100%;
+	}
+	.nopadding {
+		padding: 0;
+	}
+</style>

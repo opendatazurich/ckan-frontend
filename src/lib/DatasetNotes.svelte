@@ -7,6 +7,7 @@
 	const markup = marked(notes.trim());
 </script>
 
+<h3>Beschreibung</h3>
 <div class="notes embedded-content">
 	{@html markup}
 </div>

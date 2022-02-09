@@ -19,3 +19,15 @@ export function truncate(str: string, length = 180, ellipsis = '...', retrim = t
 export function removeMarkdown(str: string) {
 	return rm(str).replaceAll('&quot;', '"');
 }
+
+// escape json for use in html used by recline.js
+export const escape = (str) =>
+	str
+		.replace(/[\\]/g, '\\\\')
+		.replace(/[\"]/g, '\\"')
+		.replace(/[\/]/g, '\\/')
+		.replace(/[\b]/g, '\\b')
+		.replace(/[\f]/g, '\\f')
+		.replace(/[\n]/g, '\\n')
+		.replace(/[\r]/g, '\\r')
+		.replace(/[\t]/g, '\\t');

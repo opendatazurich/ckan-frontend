@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Filter from './Filter.svelte';
 	import { defaultFacets } from '$lib/api';
+	import Accordion from './Accordion.svelte';
 	export let search_facets = {} as any;
 
 	$: unorderedFilters = Object.keys(search_facets).map((key) => {
@@ -20,13 +21,8 @@
 		.filter((facet) => facet.key);
 </script>
 
-<div class="filters">
-	<div>
-		{#each filters as filter}
-			<svelte:component this={Filter} {...filter} />
-		{/each}
-	</div>
-	<a class="close no-text hide-filters"
-		><i class="fa fa-times-circle" /><span class="text">close</span></a
-	>
-</div>
+{#each filters as filter}
+	<Accordion isStatic title={filter.title}>
+		<Filter {...filter} />
+	</Accordion>
+{/each}
