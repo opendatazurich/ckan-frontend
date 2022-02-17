@@ -142,7 +142,7 @@ export const getHomepage = async () => {
 	return { groups, tags };
 };
 
-const getUrl = (path) => `https://data.stadt-zuerich.ch/uploads/showcase/${path}`;
+const getUrl = (path) => `${ckanUrl}/uploads/showcase/${path}`;
 
 function normalizeUrl(url: string) {
 	url = url || '';
