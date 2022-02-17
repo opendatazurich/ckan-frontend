@@ -2,7 +2,7 @@ import type { Load } from '@sveltejs/kit';
 import { removeMarkdown, truncate } from '$lib/string';
 import marked from 'marked';
 
-const ckanUrl = process.env.CKAN_URL || 'https://data.stadt-zuerich.ch' 
+const ckanUrl = import.meta.env.VITE_CKAN_URL || 'https://data.stadt-zuerich.ch';
 export const url = (path: string) => `${ckanUrl}/api/3/action/${path}`;
 
 export const pageSize = 20;
