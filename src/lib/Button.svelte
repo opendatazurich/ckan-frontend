@@ -5,8 +5,11 @@
 </script>
 
 {#if href}
-	<a {href} class:var_secondary={secondary} class="mod_button{icon ? ` icon_ico_${icon}` : ''}"
-		><slot /></a
+	<a
+		rel="external"
+		{href}
+		class:var_secondary={secondary}
+		class="mod_button{icon ? ` icon_ico_${icon}` : ''}"><slot /></a
 	>
 {:else}
 	<button
