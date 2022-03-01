@@ -32,6 +32,7 @@
 	"type": "module",
 	"dependencies": {
 		"ejs": "^3.1.6",
+		"esbuild": "^0.13.8",
 		"marked": "^4.0.12",
 		"remove-markdown": "^0.3.0"
 	}
