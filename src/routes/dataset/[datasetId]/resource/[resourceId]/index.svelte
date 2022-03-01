@@ -32,7 +32,7 @@
 </script>
 
 <script lang="ts">
-	import marked from 'marked';
+	import { marked } from 'marked';
 	import ResourceInfo from '$lib/ResourceInfo.svelte';
 	import ResourceList from '$lib/ResourceList.svelte';
 	import { truncate } from '$lib/string';

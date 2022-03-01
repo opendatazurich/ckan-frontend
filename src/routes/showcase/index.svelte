@@ -1,10 +1,5 @@
 <script context="module" lang="ts">
-	import { loadShowcases, pageSize } from '../../lib/api';
-	import type { Load } from '@sveltejs/kit';
-
-	export const load: Load = async (args) => {
-		return loadShowcases(args);
-	};
+	export { loadShowcases as load } from '$lib/api';
 </script>
 
 <script lang="ts">
@@ -17,6 +12,7 @@
 	import SearchForm from '$lib/SearchForm.svelte';
 	import DatasetList from '$lib/DatasetList.svelte';
 	import FilterList from '$lib/FilterList.svelte';
+	import { pageSize } from '$lib/api';
 
 	export let datasets = [];
 	export let search_facets = {};

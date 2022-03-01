@@ -1,13 +1,5 @@
 <script context="module" lang="ts">
-	import { getHomepage } from '$lib/api';
-
-	export async function load() {
-		const props = await getHomepage();
-
-		return {
-			props
-		};
-	}
+	export { getHomepage as load } from '$lib/api';
 </script>
 
 <script lang="ts">
