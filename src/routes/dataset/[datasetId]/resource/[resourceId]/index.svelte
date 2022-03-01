@@ -21,11 +21,18 @@
 			);
 		}
 
+		let viewId = null;
+		if (datastore) {
+			const views = await get(`resource_view_list?id=${resourceId}`);
+			viewId = views[0].id;
+		}
+
 		return {
 			props: {
 				...props,
 				resource,
-				datastore
+				datastore,
+				viewId
 			}
 		};
 	};
@@ -47,6 +54,7 @@
 	export let dataset = {} as { name: string; title: string; resources: any[] };
 	export let resource = {} as any;
 	export let datastore = {} as any;
+	export let viewId = '' as any;
 	$: type = getType(resource.format);
 	$: hasApi = resource.resource_type === 'api';
 	$: hasDataset = datastore && !hasApi;
@@ -97,7 +105,7 @@
 
 			<iframe
 				title="Dataset: {dataset.name}"
-				src="/dataset/{dataset.name}/resource/{resource.id}/view/cea9d84a-6567-45d3-9f6d-224bf54c565c"
+				src="/dataset/{dataset.name}/resource/{resource.id}/view/{viewId}"
 				frameborder="0"
 				width="100%"
 				style="height: 672px;"
