@@ -41,7 +41,8 @@ export const makeFilterUrl = (path: string, query: URLSearchParams) => {
 	};
 };
 
-export const loadDataset = async (datasetId: string) => {
+export const loadDataset: Load = async ({ page }) => {
+	const { datasetId } = page.params;
 	const dataset = await get(`package_show?id=${datasetId}`);
 	const showcases = await get(`ckanext_package_showcase_list?package_id=${datasetId}`);
 
@@ -53,12 +54,28 @@ export const loadDataset = async (datasetId: string) => {
 	};
 };
 
-export const loadGroup: Load = async ({ page }) => {
+export const loadGroupOld: Load = async ({ page }) => {
 	const { groupId } = page.params;
 	const group = await get(`group_show?id=${groupId}`);
 	return {
 		props: {
 			group
+		}
+	};
+};
+
+export const loadGroup: Load = async (args) => {
+	const data = (await loadGroupDatasets(args.page.params.groupId)(args)) as any;
+	data.props.group = ((await loadGroupOld(args)) as any).props.group;
+	return data;
+};
+
+export const loadGroups = async ({ fetch, page }) => {
+	const res = await fetch(url(`group_list?all_fields=true&${page.query}`));
+	const data = await res.json();
+	return {
+		props: {
+			groups: data.result
 		}
 	};
 };
@@ -71,6 +88,39 @@ export const loadShowcase: Load = async ({ page }) => {
 		props: {
 			showcase: mapDataset(showcase),
 			datasets: datasets.map(mapDataset)
+		}
+	};
+};
+
+export const loadResource: Load = async (args) => {
+	const { resourceId } = args.page.params;
+	const { props } = (await loadDataset(args)) as any;
+
+	const resource = props.dataset.resources.find((resource) => resource.id == resourceId);
+	if (!resource) {
+		return {
+			status: 404,
+			error: `Resource "${resourceId}" wurde nicht gefunden.`
+		};
+	}
+
+	let datastore = null;
+	if (resource.datastore_active) {
+		datastore = await get(`datastore_search?resource_id=${resourceId}&limit=0&include_total=False`);
+	}
+
+	let viewId = null;
+	if (datastore) {
+		const views = await get(`resource_view_list?id=${resourceId}`);
+		viewId = views[0].id;
+	}
+
+	return {
+		props: {
+			...props,
+			resource,
+			datastore,
+			viewId
 		}
 	};
 };

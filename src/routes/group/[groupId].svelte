@@ -1,12 +1,5 @@
 <script context="module" lang="ts">
-	import { loadGroupDatasets, loadGroup, pageSize } from '../../lib/api';
-	import type { Load } from '@sveltejs/kit';
-
-	export const load: Load = async (args) => {
-		const data = (await loadGroupDatasets(args.page.params.groupId)(args)) as any;
-		data.props.group = ((await loadGroup(args)) as any).props.group;
-		return data;
-	};
+	export { loadGroup as load } from '$lib/api';
 </script>
 
 <script lang="ts">
@@ -21,6 +14,7 @@
 	import FilterList from '$lib/FilterList.svelte';
 	import Accordion from '$lib/Accordion.svelte';
 	import Group from '$lib/Group.svelte';
+	import { pageSize } from '$lib/api';
 
 	export let datasets = [];
 	export let group = {} as any;

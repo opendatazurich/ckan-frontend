@@ -1,15 +1,5 @@
 <script context="module" lang="ts">
-	import { url } from '$lib/api';
-
-	export async function load({ fetch, page }) {
-		const res = await fetch(url(`group_list?all_fields=true&${page.query}`));
-		const data = await res.json();
-		return {
-			props: {
-				groups: data.result
-			}
-		};
-	}
+	export { loadGroups as load } from '$lib/api';
 </script>
 
 <script lang="ts">
