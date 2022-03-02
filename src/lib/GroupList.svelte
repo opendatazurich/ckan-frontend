@@ -1,5 +1,6 @@
 <script lang="ts">
-	import Group, { GroupType } from './Group.svelte';
+	import Group from './Group.svelte';
+	import type { GroupType } from '$lib/types';
 
 	export let groups: GroupType[] = [];
 	export let all = true;

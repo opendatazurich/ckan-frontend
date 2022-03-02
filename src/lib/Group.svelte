@@ -1,13 +1,6 @@
-<script context="module" lang="ts">
-	export type GroupType = {
-		display_name: string;
-		package_count: number;
-		name: string;
-		image_url: string;
-	};
-</script>
-
 <script lang="ts">
+	import type { GroupType } from './types';
+
 	export let group: GroupType;
 	export let layout_column = true;
 </script>
