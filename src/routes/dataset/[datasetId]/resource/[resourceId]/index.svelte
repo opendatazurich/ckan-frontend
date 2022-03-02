@@ -86,7 +86,7 @@
 			</div>
 
 			<p class="muted ellipsis">
-				URL: <a href={resource.url} title={resource.url}>{resource.url}</a>
+				URL: <a rel="external" href={resource.url} title={resource.url}>{resource.url}</a>
 			</p>
 
 			{#if type.description}
