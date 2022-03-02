@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	let value = $page.query.get('q');
+	let value = $page.url.searchParams.get('q');
 	export let placeholder = 'Suchen...';
 	export let inputElement = null;
 </script>

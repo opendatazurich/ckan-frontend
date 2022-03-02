@@ -18,6 +18,9 @@ export const get: RequestHandler = async ({ params }) => {
 		view: `"${escape(JSON.stringify(view))}"`
 	});
 	return {
+		headers: {
+			'Content-Type': 'text/html'
+		},
 		body
 	};
 };

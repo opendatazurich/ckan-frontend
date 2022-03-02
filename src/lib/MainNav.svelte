@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	$: isActive = (path, exact = false) =>
-		exact ? $page.path === path : $page.path.startsWith(path);
+		exact ? $page.url.pathname === path : $page.url.pathname.startsWith(path);
 </script>
 
 <ul class="no_back_link">

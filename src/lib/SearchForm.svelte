@@ -5,8 +5,8 @@
 	import SortControl from './SortControl.svelte';
 	export let autocomplete = false;
 	export let scope = 'dataset';
-	export let placeholder = 'Datensätze suchen...'
-	$: q = $page.query.get('q');
+	export let placeholder = 'Datensätze suchen...';
+	$: q = $page.url.searchParams.get('q');
 
 	function submit(e) {
 		const query = new URLSearchParams(new FormData(e.target) as any);
