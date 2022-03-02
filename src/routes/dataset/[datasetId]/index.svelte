@@ -1,9 +1,5 @@
 <script context="module" lang="ts">
-	import type { Load } from '@sveltejs/kit';
-	import { loadDataset } from '$lib/api';
-	export const load: Load = ({ page }) => {
-		return loadDataset(page.params.datasetId);
-	};
+	export { loadDataset as load } from '$lib/api';
 </script>
 
 <script lang="ts">
@@ -33,7 +29,7 @@
 	/>
 	<PageTitle>{dataset.title}</PageTitle>
 	<DatasetHeader hasShowcases={showcases.length > 0} hasGroups={dataset.groups.length > 0} />
-	<DatasetNotes notes={dataset.notes} />
+	<DatasetNotes notes={dataset.html_notes} />
 	<DatasetTags {dataset} />
 	<DatasetLicense {dataset} />
 	<h2 id="dataset">Daten & Ressourcen</h2>

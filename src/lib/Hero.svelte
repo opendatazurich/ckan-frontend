@@ -27,7 +27,7 @@
 	</section>
 
 	<div class="mod_search">
-		<form on:submit|preventDefault={submit} action="/dataset" method="GET">
+		<form on:submit|preventDefault={submit} action="/dataset">
 			<div class="layout_wrapper">
 				<h2>Suchen</h2>
 				<div class="layout_columns var_two_columns">

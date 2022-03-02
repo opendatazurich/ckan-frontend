@@ -7,9 +7,9 @@
 	export let key;
 	export let items = [];
 	const limitKey = `_${key}_limit`;
-	$: query = new URLSearchParams($page.query);
+	$: query = new URLSearchParams($page.url.searchParams);
 	$: query.delete('page');
-	$: path = $page.path;
+	$: path = $page.url.pathname;
 	$: url = makeFilterUrl(path, query);
 	$: limit = query.has(limitKey) ? -1 : 10;
 	$: filteredItems = items

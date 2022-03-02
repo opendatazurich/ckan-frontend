@@ -6,7 +6,7 @@
 		{ id: 'title asc', title: 'Name aufsteigend' },
 		{ id: 'title desc', title: 'Name absteigend' }
 	];
-	$: query = new URLSearchParams($page.query);
+	$: query = new URLSearchParams($page.url.searchParams);
 	$: value = query.get('sort') || options[0].id;
 
 	function onChange(e) {

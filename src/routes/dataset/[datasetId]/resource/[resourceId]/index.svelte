@@ -1,41 +1,5 @@
 <script context="module" lang="ts">
-	import type { Load } from '@sveltejs/kit';
-	import { loadDataset, get } from '$lib/api';
-
-	export const load: Load = async (args) => {
-		const resourceId = args.page.params.resourceId;
-		const { props } = (await loadDataset(args.page.params.datasetId)) as any;
-
-		const resource = props.dataset.resources.find((resource) => resource.id == resourceId);
-		if (!resource) {
-			return {
-				status: 404,
-				error: `Resource "${resourceId}" wurde nicht gefunden.`
-			};
-		}
-
-		let datastore = null;
-		if (resource.datastore_active) {
-			datastore = await get(
-				`datastore_search?resource_id=${resourceId}&limit=0&include_total=False`
-			);
-		}
-
-		let viewId = null;
-		if (datastore) {
-			const views = await get(`resource_view_list?id=${resourceId}`);
-			viewId = views[0].id;
-		}
-
-		return {
-			props: {
-				...props,
-				resource,
-				datastore,
-				viewId
-			}
-		};
-	};
+	export { loadResource as load } from '$lib/api';
 </script>
 
 <script lang="ts">

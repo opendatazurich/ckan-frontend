@@ -2,8 +2,8 @@
 	import { page } from '$app/stores';
 	import { makeFilterUrl } from '$lib/api';
 	export let filters = [] as { id: string; items: any[]; title: string }[];
-	$: query = new URLSearchParams($page.query);
-	$: path = $page.path;
+	$: query = new URLSearchParams($page.url.searchParams);
+	$: path = $page.url.pathname;
 	$: url = makeFilterUrl(path, query);
 </script>
 

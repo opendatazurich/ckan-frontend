@@ -8,8 +8,8 @@
 
 	$: lastPage = Math.floor(count / pageSize) + 1;
 	$: hasPagination = firstPage != lastPage;
-	$: query = new URLSearchParams($page.query.toString());
-	$: path = $page.path;
+	$: query = new URLSearchParams($page.url.searchParams.toString());
+	$: path = $page.url.pathname;
 	$: pageIndex = +(query.get('page') || '1');
 	$: hasPrevious = pageIndex > firstPage;
 	$: hasNext = pageIndex < lastPage;
