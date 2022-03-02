@@ -11,6 +11,7 @@ declare namespace App {
 
 interface ImportMetaEnv {
 	readonly VITE_CKAN_URL: string;
+	// readonly VITE_STAGE_COLOR: string;
 }
 
 interface ImportMeta {

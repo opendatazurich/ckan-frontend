@@ -5,6 +5,7 @@
 	export let datasets = [];
 	export let cols = false;
 	export let pathPrefix = '';
+
 	$: getPath = (name) => (pathPrefix ? `${pathPrefix}/${name}` : `${$page.url.pathname}/${name}`);
 </script>
 

@@ -41,11 +41,12 @@
 	<a href={showcase.url}>{showcase.url}</a>
 
 	<DatasetTags path="/showcase" dataset={showcase} />
-
-	<div class="mod_search">
-		<h3>Datensätze</h3>
-		<DatasetList pathPrefix="/dataset" {datasets} />
-	</div>
+	{#if datasets.length > 0}
+		<div class="mod_search">
+			<h3>Datensätze</h3>
+			<DatasetList pathPrefix="/dataset" {datasets} />
+		</div>
+	{/if}
 </Page>
 
 <style>
