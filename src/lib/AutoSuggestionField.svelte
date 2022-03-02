@@ -1,11 +1,3 @@
-<script context="module" lang="ts">
-	export enum Scope {
-		All,
-		Dataset,
-		Showcase
-	}
-</script>
-
 <script lang="ts">
 	import { get } from '$lib/api';
 	import { clickOutside } from '$lib/actions';

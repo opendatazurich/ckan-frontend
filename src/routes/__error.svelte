@@ -5,6 +5,9 @@
 </script>
 
 <script lang="ts">
+	function back() {
+		history.back();
+	}
 	export let status;
 	export let error;
 </script>
@@ -37,8 +40,8 @@
 								</li>
 								<li>oder betätigen Sie die Zurücktaste (Back Button) in Ihrem Browser.</li>
 								<li>
-									oder klicken Sie auf unsere automatisch generierte Zurück-Verlinkung: <a
-										href="javascript:history.back();">zurück</a
+									oder klicken Sie auf unsere automatisch generierte Zurück-Verlinkung: <button
+										on:click={back}>zurück</button
 									>
 								</li>
 							</ul>
