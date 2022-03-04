@@ -7,7 +7,8 @@
 	import { page } from '$app/stores';
 	let open = false;
 
-	$: console.log($page.url);
+	/* color to provide a visual clue to differ
+	 a staging/test or production environment */
 	const color =
 		$page.url.hostname.includes('integ') || $page.url.hostname.includes('localhost')
 			? '#ffa500'
