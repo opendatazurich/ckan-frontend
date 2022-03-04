@@ -63,9 +63,9 @@
 
 	<div class="mod_header__logobar">
 		<div class="mod_header__logobar-inner">
-			<div class="mod_header__logobar-logo">
-				<a href="/" class="mod_logo mod_logo--in-bar">
-					<img src="/logo.svg" alt="Logo Stadt Zürich" />
+			<div class="stage-color mod_header__logobar-logo">
+				<a href="/" class="stage-color mod_logo mod_logo--in-bar">
+					<img class="stage-color" src="/logo.svg" alt="Logo Stadt Zürich" />
 				</a>
 			</div>
 		</div>
@@ -75,5 +75,8 @@
 <style>
 	.is_not_sticky {
 		transform: translateY(var(--y-margin));
+	}
+	.stage-color {
+		background-color: var(--color-stage);
 	}
 </style>
