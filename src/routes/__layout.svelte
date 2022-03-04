@@ -28,5 +28,6 @@
 		--color-grey-20: #e8e8e8;
 		--color-black: #000000;
 		--color-white: #ffffff;
+		--color-stage: var(--color-white);
 	}
 </style>

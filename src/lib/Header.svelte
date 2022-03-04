@@ -4,11 +4,19 @@
 	import { flyX } from '$lib/transitions';
 	import MetaNav from './MetaNav.svelte';
 	import HeaderBar from './HeaderBar.svelte';
+	import { page } from '$app/stores';
 	let open = false;
+
+	/* color to provide a visual clue to differ
+	 a staging/test or production environment */
+	const color =
+		$page.url.hostname.includes('integ') || $page.url.hostname.includes('localhost')
+			? '#ffa500'
+			: '#FFFFFF';
 </script>
 
 <header class="layout_wrapper">
-	<HeaderBar bind:open />
+	<HeaderBar --color-stage={color} bind:open />
 
 	{#if open}
 		<aside transition:flyX class="burger_dropdown is_open">
