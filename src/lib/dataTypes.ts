@@ -1,5 +1,3 @@
-import marked from 'marked';
-
 // ripped from: https://github.com/opendatazurich/ckanext-stadtzh-theme/blob/master/ckanext/stadtzhtheme/descr.yaml
 const dataTypes = {
 	csv: {

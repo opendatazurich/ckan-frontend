@@ -1,29 +1,19 @@
 <script lang="ts">
 	export let links = [];
-	$: isActive = (index) => index === links.length - 1;
+	$: isLast = (index) => index === links.length - 1;
 </script>
 
-<div class="toolbar">
-	<ol class="breadcrumb">
+<nav class="mod_breadcrumb is_loaded" aria-label="Sie befinden sich hier:" data-init="breadcrumb">
+	<ul>
 		<li class="home">
-			<a href="/"><i class="fa fa-home" /><span> Start</span></a>
+			<a href="/"><span>Startseite Portal der Stadt Zürich</span></a>
 		</li>
 		{#each links as link, i}
-			<li>
-				<a class:active={isActive(i)} href={link[0]}>{link[1]}</a>
-			</li>
+			{#if isLast(i)}
+				<li><span>{link[1]}</span></li>
+			{:else}
+				<li><a href={link[0]}>{link[1]}</a></li>
+			{/if}
 		{/each}
-	</ol>
-</div>
-
-<style>
-	.breadcrumb {
-        display: flex;        
-        height: 1.3rem;
-        padding: 0.15rem 0;
-        align-items: center;
-	}
-    li:after {
-        margin-right: 0.35rem;
-    }
-</style>
+	</ul>
+</nav>

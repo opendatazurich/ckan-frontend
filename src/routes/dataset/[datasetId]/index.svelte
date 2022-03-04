@@ -1,9 +1,5 @@
 <script context="module" lang="ts">
-	import type { Load } from '@sveltejs/kit';
-	import { loadDataset } from '$lib/api';
-	export const load: Load = ({ page }) => {
-		return loadDataset(page.params.datasetId);
-	};
+	export { loadDataset as load } from '$lib/api';
 </script>
 
 <script lang="ts">
@@ -16,8 +12,12 @@
 	import Page from '$lib/Page.svelte';
 	import Toolbar from '$lib/Toolbar.svelte';
 	import { truncate } from '$lib/string';
+	import PageTitle from '$lib/PageTitle.svelte';
+	import GroupList from '$lib/GroupList.svelte';
+	import DatasetList from '$lib/DatasetList.svelte';
 
 	export let dataset = {} as any;
+	export let showcases = [];
 </script>
 
 <Page>
@@ -27,26 +27,20 @@
 			[`/dataset/${dataset.name}`, truncate(dataset.title, 28, ' ...')]
 		]}
 	/>
-
-	<div class="row wrapper">
-		<div class="primary span9">
-			<article class="module">
-				<DatasetHeader />
-
-				<div class="module-content">
-					<h1>
-						{dataset.title}
-					</h1>
-					<DatasetNotes notes={dataset.notes} />
-					<DatasetResources {dataset} />
-					<DatasetTags {dataset} />
-					<DatasetInfo {dataset} />
-				</div>
-			</article>
-		</div>
-
-		<aside class="secondary span3">
-			<DatasetLicense {dataset} />
-		</aside>
-	</div>
+	<PageTitle>{dataset.title}</PageTitle>
+	<DatasetHeader hasShowcases={showcases.length > 0} hasGroups={dataset.groups.length > 0} />
+	<DatasetNotes notes={dataset.html_notes} />
+	<DatasetTags {dataset} />
+	<DatasetLicense {dataset} />
+	<h2 id="dataset">Daten & Ressourcen</h2>
+	<DatasetResources {dataset} />
+	<DatasetInfo {dataset} />
+	{#if dataset.groups.length}
+		<h2 id="category">Kategorien</h2>
+		<GroupList all={false} groups={dataset.groups} />
+	{/if}
+	{#if showcases.length}
+		<h2 id="showcase">Showcases</h2>
+		<DatasetList pathPrefix="/showcase" cols datasets={showcases} />
+	{/if}
 </Page>

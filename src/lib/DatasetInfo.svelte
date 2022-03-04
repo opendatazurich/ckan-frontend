@@ -1,111 +1,64 @@
 <script lang="ts">
-	import marked from 'marked';
+	import { marked } from 'marked';
 	marked.setOptions({ pedantic: false, smartLists: true });
 
 	export let dataset = {} as any;
+	$: rows = [
+		['Datenowner', dataset.author],
+		['Erstmalige Veröffentlichung', dataset.dateFirstPublished],
+		['Kontakt', `<a href="mailto:${dataset.maintainer_email}">${dataset.maintainer}</a>`],
+		['Zeitraum', dataset.timeRange],
+		['Datentyp', dataset.dataType],
+		['Aktualisierungs­datum', dataset.dateLastUpdated],
+		['Datenlieferant', dataset.data_publisher],
+		['Version', dataset.version],
+		['Räumliche Beziehung', dataset.spatialRelationship],
+		['Aktualisierungs­intervall', dataset.updateInterval],
+		['Rechtsgrundlage', dataset.legalInformation]
+	];
+	$: attributes = dataset.sszFields ? JSON.parse(dataset.sszFields) : [];
 </script>
 
-<section class="additional-info module-content">
-	<table class="table package-metadata">
-		<tbody
-			><tr>
-				<td>
-					<p class="heading">Datenowner</p>
+<section class="mod_table var_no_hover">
+	<div class="table">
+		<table>
+			<tbody>
+				{#each rows as [label, value]}
+					<tr>
+						<th>{label}</th>
+						<td>
+							{@html value}
+						</td>
+					</tr>
+				{/each}
+			</tbody>
+		</table>
+	</div>
 
-					<p class="metadata">{dataset.author}</p>
-				</td>
-				<td>
-					<p class="heading">Erstmalige Veröffentlichung</p>
-
-					<p class="metadata">{dataset.dateFirstPublished}</p>
-				</td>
-			</tr>
-
-			<tr>
-				<td>
-					<p class="heading">Kontakt</p>
-
-					<p class="metadata">
-						<a href="mailto:{dataset.maintainer_email}">{dataset.maintainer}</a>
-					</p>
-				</td>
-				<td>
-					<p class="heading">Zeitraum</p>
-
-					<p class="metadata">{dataset.timeRange}</p>
-				</td>
-			</tr>
-
-			<tr>
-				<td>
-					<p class="heading">Datentyp</p>
-
-					<p class="metadata">{dataset.dataType}</p>
-				</td>
-				<td>
-					<p class="heading">Aktualisierungs­datum</p>
-
-					<p class="metadata">{dataset.dateLastUpdated}</p>
-				</td>
-			</tr>
-
-			<tr>
-				<td>
-					<p class="heading">Datenlieferant</p>
-
-					<p class="metadata">{dataset.data_publisher}</p>
-				</td>
-				<td>
-					<p class="heading">Version</p>
-
-					<p class="metadata">{dataset.version}</p>
-				</td>
-			</tr>
-
-			<tr>
-				<td>
-					<p class="heading">Räumliche Beziehung</p>
-
-					<p class="metadata">{dataset.spatialRelationship}</p>
-				</td>
-				<td>
-					<p class="heading">Aktualisierungs­intervall</p>
-
-					<p class="metadata">{dataset.updateInterval}</p>
-				</td>
-			</tr>
-
-			<tr>
-				<td>
-					<p class="heading">Rechtsgrundlage</p>
-					<p class="metadata">{dataset.legalInformation}</p>
-				</td>
-				<td />
-			</tr>
-		</tbody>
-	</table>
 	{#if dataset.dataQuality}
-		<div class="package-dataquality">
-			<h5>Datenqualität</h5>
-			<p>{dataset.dataQuality}</p>
+		<h3>Datenqualität</h3>
+		<p>{dataset.dataQuality}</p>
+	{/if}
+
+	{#if dataset.sszBemerkungen}
+		<h3>Bemerkungen</h3>
+		<div class="package-comments">
+			{@html marked.parse(dataset.sszBemerkungen)}
 		</div>
 	{/if}
 
-	<h3>Bemerkungen</h3>
-	<div class="package-comments">
-		{@html marked.parse(dataset.sszBemerkungen)}
-	</div>
-
-	{#if dataset.sszFields}
+	{#if attributes}
 		<h3>Attribute</h3>
-		<div class="package-attributes">
-			<table class="table table-striped table-bordered table-condensed">
+		<div class="table">
+			<table>
 				<tbody>
-					{#each JSON.parse(dataset.sszFields) as [title, text]}
+					{#each attributes as [label, value]}
 						<tr>
-							<th>{title}</th>
+							<th>{label}</th>
+							<td>
+								{value}
+							</td>
 						</tr>
-						<tr><td>{text}</td> </tr>
 					{/each}
 				</tbody>
 			</table>

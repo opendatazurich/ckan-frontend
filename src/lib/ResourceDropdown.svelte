@@ -25,7 +25,7 @@
 		</li>
 
 		<li>
-			<a href={resource.url} class="resource-url-analytics" target="_blank">
+			<a rel="external" href={resource.url} class="resource-url-analytics" target="_blank">
 				<i class="fa fa-external-link" />
 				Zur Ressource
 			</a>

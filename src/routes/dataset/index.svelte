@@ -1,86 +1,37 @@
 <script context="module" lang="ts">
-	import { loadDatasets, pageSize } from '../../lib/api';
-	import type { Load } from '@sveltejs/kit';
-
-	export const load: Load = async (args) => {
-		return loadDatasets(args);
-	};
+	export { loadDatasets as load } from '$lib/api';
 </script>
 
 <script lang="ts">
 	import DatasetList from '$lib/DatasetList.svelte';
-	import FilterList from '$lib/FilterList.svelte';
 	import Filters from '$lib/Filters.svelte';
 	import Pagination from '$lib/Pagination.svelte';
-	import AutoSuggestionField from '$lib/AutoSuggestionField.svelte';
-	import SortControl from '$lib/SortControl.svelte';
-	import { goto } from '$app/navigation';
 	import Page from '$lib/Page.svelte';
 	import Toolbar from '$lib/Toolbar.svelte';
-	import FilterShowButton from '$lib/FilterShowButton.svelte';
+	import TwoColumn from '$lib/TwoColumn.svelte';
+	import SearchForm from '$lib/SearchForm.svelte';
+	import SearchResult from '$lib/SearchResult.svelte';
+	import FilterList from '$lib/FilterList.svelte';
+	import { pageSize } from '$lib/api';
 
 	export let datasets = [];
 	export let search_facets = {};
 	export let count = 0;
-	export let q = '';
+	export let q = 0;
 	export let filters = [];
-
-	const options = [
-		{ id: 'score desc, date_last_modified desc', title: 'Relevanz' },
-		{ id: 'title_string asc', title: 'Name aufsteigend' },
-		{ id: 'title_string desc', title: 'Name absteigend' },
-		{ id: 'date_last_modified desc', title: 'Zuletzt geändert' }
-	];
-
-	function submit(e) {
-		const query = new URLSearchParams(new FormData(e.target) as any);
-		goto(`?${query}`, { keepfocus: true });
-	}
 </script>
 
 <Page>
 	<Toolbar links={[['/dataset', 'Datensätze']]} />
-
-	<div class="row wrapper">
-		<div class="primary span9">
-			<section class="module">
-				<div class="module-content">
-					<form
-						on:submit|preventDefault={submit}
-						id="dataset-search-form"
-						class="search-form"
-						method="get"
-						data-module="select-switch"
-					>
-						<AutoSuggestionField placeholder="Datensätze suchen..." />
-						<SortControl {options} />
-
-						<h2>
-							{count === 0 ? 'Keine' : count} Datensätze {q != '' ? `gefunden für “${q}”` : ''}
-						</h2>
-
-						<FilterList {filters} />
-						<FilterShowButton />
-					</form>
-
-					<DatasetList {datasets} />
-				</div>
-
-				<Pagination {count} {pageSize} />
-			</section>
-
-			<section class="module">
-				<div class="module-content">
-					<small>
-						Sie können dieses Register auch über die <a href="/showcases?ver=%2F3">API</a> (siehe
-						<a href="http://docs.ckan.org/en/2.7/api/">API-Dokumentation</a>) abrufen.
-					</small>
-				</div>
-			</section>
+	<TwoColumn>
+		<div class="mod_search">
+			<SearchForm autocomplete />
+			<FilterList {filters} />
+			<SearchResult {count} {q} />
+			<DatasetList {datasets} />
+			<Pagination {count} {pageSize} />
 		</div>
 
-		<aside class="secondary span3">
-			<Filters {search_facets} />
-		</aside>
-	</div>
+		<Filters slot="left" {search_facets} />
+	</TwoColumn>
 </Page>

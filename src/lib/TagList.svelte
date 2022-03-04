@@ -2,6 +2,17 @@
 	export let tags = [];
 </script>
 
-{#each tags as tag}
-	<a class="tag" href="/dataset?tags={tag}">{tag}</a>&nbsp;
-{/each}
+<div class="mod_linklist">
+	<ul class="linklist">
+		{#each tags as tag}
+			<li class="linklist_item">
+				<div class="mod_linklistitem">
+					<a href="/dataset?tags={tag}" class="linklistitem var_icon_arrow_right">
+						<span>{tag}</span>
+						<span class="icon icon_arrow_right" />
+					</a>
+				</div>
+			</li>
+		{/each}
+	</ul>
+</div>

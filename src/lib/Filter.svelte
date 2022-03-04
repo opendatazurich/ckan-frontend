@@ -7,9 +7,9 @@
 	export let key;
 	export let items = [];
 	const limitKey = `_${key}_limit`;
-	$: query = new URLSearchParams($page.query);
+	$: query = new URLSearchParams($page.url.searchParams);
 	$: query.delete('page');
-	$: path = $page.path;
+	$: path = $page.url.pathname;
 	$: url = makeFilterUrl(path, query);
 	$: limit = query.has(limitKey) ? -1 : 10;
 	$: filteredItems = items
@@ -32,31 +32,34 @@
 	};
 </script>
 
-<section class="module module-narrow module-shallow">
-	<h2 class="module-heading">
-		<i class="fa fa-filter" />
-		{title}
-	</h2>
+<div class="mod_linklist">
 	{#if filteredItems.length}
-		<nav>
-			<ul class="unstyled nav nav-simple nav-facet">
-				{#each filteredItems as item}
-					<li class="nav-item" class:active={isActive(item.name)}>
-						<a on:click href={url(key, item.name)}>
+		<ul class="linklist">
+			{#each filteredItems as item}
+				<li class="linklist_item">
+					<div class="mod_linklistitem">
+						<a sveltekit:noscroll href={url(key, item.name)} class="linklistitem">
 							<span>{truncate(item.display_name, 19, '...', false)} ({item.count})</span>
+							<span class="icon" class:icon_ico_cross={isActive(item.name)} />
 						</a>
-					</li>
-				{/each}
-			</ul>
-		</nav>
-		<p class="module-footer">
-			{#if limit !== -1}
-				<a href={moreItemsUrl()} class="read-more">Mehr {title} anzeigen</a>
-			{:else}
-				<a href={lessItemsUrl()} class="read-more">Nur häufig nachgefragte {title} anzeigen</a>
-			{/if}
-		</p>
+					</div>
+				</li>
+			{/each}
+			<li class="linklist_item">
+				<div class="mod_linklistitem">
+					{#if limit !== -1}
+						<a sveltekit:noscroll href={moreItemsUrl()} class="linklistitem"
+							>Mehr {title} anzeigen</a
+						>
+					{:else}
+						<a sveltekit:noscroll href={lessItemsUrl()} class="linklistitem"
+							>Nur häufig nachgefragte {title} anzeigen</a
+						>
+					{/if}
+				</div>
+			</li>
+		</ul>
 	{:else}
-		<p class="module-content empty">Für diese Suche wurden keine {title} gefunden</p>
+		<p>Für diese Suche wurden keine {title} gefunden</p>
 	{/if}
-</section>
+</div>
