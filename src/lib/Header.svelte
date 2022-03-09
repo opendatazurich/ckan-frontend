@@ -9,7 +9,7 @@
 	export let isStaging = false;
 	/* color to provide a visual clue to differ
 	 a staging/test or production environment */
-	const color = isStaging ? '#FFFFFF' : '#ffa500';
+	const color = isStaging ? '#ffa500' : '#ffffff';
 </script>
 
 <header class="layout_wrapper">
