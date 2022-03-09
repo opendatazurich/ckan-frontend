@@ -4,15 +4,12 @@
 	import { flyX } from '$lib/transitions';
 	import MetaNav from './MetaNav.svelte';
 	import HeaderBar from './HeaderBar.svelte';
-	import { page } from '$app/stores';
 	let open = false;
 
+	export let isStaging = false;
 	/* color to provide a visual clue to differ
 	 a staging/test or production environment */
-	const color =
-		$page.url.hostname.includes('data.stadt')
-			? '#FFFFFF'
-			: '#ffa500';
+	const color = isStaging ? '#FFFFFF' : '#ffa500';
 </script>
 
 <header class="layout_wrapper">
