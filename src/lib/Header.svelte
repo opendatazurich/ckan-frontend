@@ -10,9 +10,9 @@
 	/* color to provide a visual clue to differ
 	 a staging/test or production environment */
 	const color =
-		$page.url.hostname.includes('integ') || $page.url.hostname.includes('localhost')
-			? '#ffa500'
-			: '#FFFFFF';
+		$page.url.hostname.includes('data.stadt')
+			? '#FFFFFF'
+			: '#ffa500';
 </script>
 
 <header class="layout_wrapper">
