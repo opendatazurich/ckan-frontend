@@ -2,7 +2,7 @@
 	import type { Load } from '@sveltejs/kit';
 
 	export const load: Load = ({ url }) => {
-		const isStaging = url.hostname.includes('integ') || url.hostname.includes('localhost');
+		const isStaging = url.hostname.includes('integ');
 		return {
 			props: {
 				isStaging
