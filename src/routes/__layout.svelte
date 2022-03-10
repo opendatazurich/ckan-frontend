@@ -1,6 +1,20 @@
+<script context="module" lang="ts">
+	import type { Load } from '@sveltejs/kit';
+
+	export const load: Load = ({ url }) => {
+		const isStaging = url.hostname.includes('integ');
+		return {
+			props: {
+				isStaging
+			}
+		};
+	};
+</script>
+
 <script lang="ts">
 	import Footer from '$lib/Footer.svelte';
 	import Header from '$lib/Header.svelte';
+	export let isStaging;
 </script>
 
 <svelte:head>
@@ -11,7 +25,7 @@
 	<link rel="stylesheet" media="print" href="/assets/css/print.css" />
 </svelte:head>
 
-<Header />
+<Header {isStaging} />
 <main>
 	<slot />
 </main>
@@ -28,5 +42,6 @@
 		--color-grey-20: #e8e8e8;
 		--color-black: #000000;
 		--color-white: #ffffff;
+		--color-stage: var(--color-white);
 	}
 </style>

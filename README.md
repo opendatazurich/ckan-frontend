@@ -1,4 +1,4 @@
-# ogdzn frontend
+# OGDZH frontend
 
 ## Developing
 

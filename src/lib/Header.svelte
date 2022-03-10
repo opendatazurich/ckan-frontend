@@ -5,10 +5,15 @@
 	import MetaNav from './MetaNav.svelte';
 	import HeaderBar from './HeaderBar.svelte';
 	let open = false;
+
+	export let isStaging = false;
+	/* color to provide a visual clue to differ
+	 a staging/test or production environment */
+	const color = isStaging ? '#ffa500' : '#ffffff';
 </script>
 
 <header class="layout_wrapper">
-	<HeaderBar bind:open />
+	<HeaderBar --color-stage={color} bind:open />
 
 	{#if open}
 		<aside transition:flyX class="burger_dropdown is_open">
