@@ -11,6 +11,7 @@ declare namespace App {
 
 interface ImportMetaEnv {
 	readonly VITE_CKAN_URL: string;
+	readonly VITE_ANALYTICS_SRC: string;
 }
 
 interface ImportMeta {
