@@ -12,6 +12,7 @@
 </script>
 
 <script lang="ts">
+	import Analytics from '$lib/Analytics.svelte';
 	import Footer from '$lib/Footer.svelte';
 	import Header from '$lib/Header.svelte';
 	export let isStaging;
@@ -24,7 +25,6 @@
 	<link rel="stylesheet" href="/assets/css/main.min.css" media="all" />
 	<link rel="stylesheet" href="/assets/css/fonts.css" media="all" />
 	<link rel="stylesheet" media="print" href="/assets/css/print.css" />
-	<script src="{analyticsSrc}" async></script>
 </svelte:head>
 
 <Header {isStaging} />
@@ -32,6 +32,7 @@
 	<slot />
 </main>
 <Footer />
+<Analytics />
 
 <style>
 	:global(html) {
