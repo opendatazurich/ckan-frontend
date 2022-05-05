@@ -17,6 +17,7 @@
 	import Header from '$lib/Header.svelte';
 	export let isStaging;
 	export const analyticsSrc = import.meta.env.VITE_ANALYTICS_SRC || '';
+	export const robotsDirective = import.meta.env.VITE_ROBOTS_DIRECTIVE || '';
 </script>
 
 <svelte:head>
@@ -25,6 +26,7 @@
 	<link rel="stylesheet" href="/assets/css/main.min.css" media="all" />
 	<link rel="stylesheet" href="/assets/css/fonts.css" media="all" />
 	<link rel="stylesheet" media="print" href="/assets/css/print.css" />
+	<meta name="robots" content="{robotsDirective}">
 </svelte:head>
 
 <Header {isStaging} />
