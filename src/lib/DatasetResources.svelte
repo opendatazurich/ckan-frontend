@@ -38,7 +38,9 @@
 	}
 
 	.download {
-		padding-top: 1rem;
+		padding: 0.25em 0.5em;
+		margin-right: 0.25em;
+		margin-top: 0.25em;
 	}
 
 	@media (min-width: 800px) {
