@@ -49,7 +49,7 @@
 								type="text"
 								class="text"
 								name="q"
-								placeholder="Suche"
+								placeholder="Datensätze suchen..."
 								autocomplete="off"
 							/>
 						</form>
