@@ -13,11 +13,6 @@
 			title="Dieser Datensatz entspricht der Open Definition."
 			target="_blank"
 		>
-			<img
-				class="open-data"
-				src="//assets.okfn.org/images/ok_buttons/od_80x15_blue.png"
-				alt="[Open Data]"
-			/>
 		</a>
 	</p>
 </section>
