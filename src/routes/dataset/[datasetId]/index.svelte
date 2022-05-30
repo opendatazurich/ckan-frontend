@@ -15,9 +15,12 @@
 	import PageTitle from '$lib/PageTitle.svelte';
 	import GroupList from '$lib/GroupList.svelte';
 	import DatasetList from '$lib/DatasetList.svelte';
+	import DatasetSchemaOrg from '$lib/DatasetSchemaOrg.svelte';
 
 	export let dataset = {} as any;
 	export let showcases = [];
+	export let jsonld = {} as any;
+	console.log(jsonld);
 </script>
 
 <Page>
@@ -44,3 +47,5 @@
 		<DatasetList pathPrefix="/showcase" cols datasets={showcases} />
 	{/if}
 </Page>
+
+<DatasetSchemaOrg {jsonld} />
