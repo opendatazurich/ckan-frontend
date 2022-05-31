@@ -4,6 +4,7 @@ import { marked } from 'marked';
 
 export const ckanUrl = import.meta.env.VITE_CKAN_URL || 'https://data.stadt-zuerich.ch';
 export const backendUrl = import.meta.env.VITE_BACKEND_URL || 'https://ckan-ogdzh.clients.liip.ch';
+export const schemaOrgProfile = import.meta.env.VITE_SCHEMA_ORG_PROFILE || 'stadtzh_schemaorg';
 export const url = (path: string) => `${ckanUrl}/api/3/action/${path}`;
 export const urlBackend = (path: string) => `${backendUrl}/${path}`;
 
@@ -20,6 +21,7 @@ const groupFacets = defaultFacets.slice(1);
 
 export const get = async (path: string) => {
 	const res = await fetch(url(path));
+
 	if (res.ok) {
 		const data = await res.json();
 		return data.result;
@@ -55,7 +57,7 @@ export const loadDataset: Load = async ({ params, fetch }) => {
 	const { datasetId } = params;
 	const dataset = await get(`package_show?id=${datasetId}`);
 	const showcases = await get(`ckanext_package_showcase_list?package_id=${datasetId}`);
-	const res = await fetch(`/dataset/${datasetId}.jsonld`);
+	const res = await fetch(`/dataset/${datasetId}.jsonld?profile=${schemaOrgProfile}`);
 
 	return {
 		props: {

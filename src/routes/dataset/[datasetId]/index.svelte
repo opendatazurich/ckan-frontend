@@ -20,7 +20,6 @@
 	export let dataset = {} as any;
 	export let showcases = [];
 	export let jsonld = {} as any;
-	console.log(jsonld);
 </script>
 
 <Page>
