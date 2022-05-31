@@ -5,7 +5,9 @@ import { marked } from 'marked';
 export const ckanUrl = import.meta.env.VITE_CKAN_URL || 'https://data.stadt-zuerich.ch';
 export const schemaOrgProfile = import.meta.env.VITE_SCHEMA_ORG_PROFILE || 'stadtzh_schemaorg';
 export const url = (path: string) => `${ckanUrl}/api/3/action/${path}`;
-export const schemaOrgUrl = (datasetId: string) => `${ckanUrl}/dataset/${datasetId}.jsonld?profile=${schemaOrgProfile}`;
+export const schemaOrgPath = (datasetId: string) => `/dataset/${datasetId}.jsonld?profile=${schemaOrgProfile}`;
+export const routeUrl = (route: string) => `${ckanUrl}${route}`;
+export const schemaOrgRoute = (datasetId: string) => `/dataset/${datasetId}.jsonld?profile=${schemaOrgProfile}`;
 
 export const pageSize = 20;
 
@@ -29,7 +31,7 @@ export const get = async (path: string) => {
 };
 
 export const getSchema = async (datasetId: string) => {
-	const res = await fetch(schemaOrgUrl(datasetId));
+	const res = await fetch(routeUrl(schemaOrgRoute(datasetId)));
 	if (res.ok) {
 		return await res.json();
 	}
@@ -56,7 +58,7 @@ export const loadDataset: Load = async ({ params, fetch }) => {
 	const { datasetId } = params;
 	const dataset = await get(`package_show?id=${datasetId}`);
 	const showcases = await get(`ckanext_package_showcase_list?package_id=${datasetId}`);
-	const res = await fetch(`/dataset/${datasetId}.jsonld?profile=${schemaOrgProfile}`);
+	const res = await fetch(schemaOrgRoute(datasetId));
 
 	return {
 		props: {
