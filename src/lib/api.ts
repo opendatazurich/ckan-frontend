@@ -3,10 +3,9 @@ import { removeMarkdown, truncate } from '$lib/string';
 import { marked } from 'marked';
 
 export const ckanUrl = import.meta.env.VITE_CKAN_URL || 'https://data.stadt-zuerich.ch';
-export const backendUrl = import.meta.env.VITE_BACKEND_URL || 'https://ckan-ogdzh.clients.liip.ch';
 export const schemaOrgProfile = import.meta.env.VITE_SCHEMA_ORG_PROFILE || 'stadtzh_schemaorg';
 export const url = (path: string) => `${ckanUrl}/api/3/action/${path}`;
-export const urlBackend = (path: string) => `${backendUrl}/${path}`;
+export const urlBackend = (path: string) => `${ckanUrl}/${path}`;
 
 export const pageSize = 20;
 
