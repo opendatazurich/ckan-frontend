@@ -5,7 +5,7 @@ import { marked } from 'marked';
 export const ckanUrl = import.meta.env.VITE_CKAN_URL || 'https://data.stadt-zuerich.ch';
 export const schemaOrgProfile = import.meta.env.VITE_SCHEMA_ORG_PROFILE || 'stadtzh_schemaorg';
 export const url = (path: string) => `${ckanUrl}/api/3/action/${path}`;
-export const urlBackend = (path: string) => `${ckanUrl}/${path}`;
+export const schemaOrgUrl = (datasetId: string) => `${ckanUrl}/dataset/${datasetId}.jsonld?profile=${schemaOrgProfile}`;
 
 export const pageSize = 20;
 
@@ -28,8 +28,8 @@ export const get = async (path: string) => {
 	throw res;
 };
 
-export const getBackend = async (path: string) => {
-	const res = await fetch(urlBackend(path));
+export const getSchema = async (datasetId: string) => {
+	const res = await fetch(schemaOrgUrl(datasetId));
 	if (res.ok) {
 		return await res.json();
 	}
