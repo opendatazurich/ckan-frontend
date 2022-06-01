@@ -3,7 +3,10 @@ import { removeMarkdown, truncate } from '$lib/string';
 import { marked } from 'marked';
 
 export const ckanUrl = import.meta.env.VITE_CKAN_URL || 'https://data.stadt-zuerich.ch';
-export const url = (path: string) => `${ckanUrl}/api/3/action/${path}`;
+export const schemaOrgProfile = import.meta.env.VITE_SCHEMA_ORG_PROFILE || 'stadtzh_schemaorg';
+export const apiUrl = (path: string) => `${ckanUrl}/api/3/action/${path}`;
+export const backendUrl = (route: string) => `${ckanUrl}${route}`;
+export const schemaOrgPath = (datasetId: string) => `/dataset/${datasetId}.jsonld?profile=${schemaOrgProfile}`;
 
 export const pageSize = 20;
 
@@ -17,10 +20,19 @@ export const showcaseFacets = [{ id: 'tags', title: 'Tags' }];
 const groupFacets = defaultFacets.slice(1);
 
 export const get = async (path: string) => {
-	const res = await fetch(url(path));
+	const res = await fetch(apiUrl(path));
+
 	if (res.ok) {
 		const data = await res.json();
 		return data.result;
+	}
+	throw res;
+};
+
+export const getSchema = async (datasetId: string) => {
+	const res = await fetch(backendUrl(schemaOrgPath(datasetId)));
+	if (res.ok) {
+		return await res.json();
 	}
 	throw res;
 };
@@ -41,18 +53,21 @@ export const makeFilterUrl = (path: string, query: URLSearchParams) => {
 	};
 };
 
-export const loadDataset: Load = async ({ params }) => {
+export const loadDataset: Load = async ({ params, fetch }) => {
 	const { datasetId } = params;
 	const dataset = await get(`package_show?id=${datasetId}`);
 	const showcases = await get(`ckanext_package_showcase_list?package_id=${datasetId}`);
+	const res = await fetch(schemaOrgPath(datasetId));
 
 	return {
 		props: {
 			showcases: showcases.map(mapDataset),
-			dataset: mapDataset(dataset)
+			dataset: mapDataset(dataset),
+			jsonld: res.ok && await res.json(),
 		}
 	};
 };
+
 
 export const loadGroupOld: Load = async ({ params }) => {
 	const { groupId } = params;
@@ -71,7 +86,7 @@ export const loadGroup: Load = async (args) => {
 };
 
 export const loadGroups: Load = async ({ fetch, params, url: urlParam }) => {
-	const res = await fetch(url(`group_list?all_fields=true&${urlParam.searchParams}`));
+	const res = await fetch(apiUrl(`group_list?all_fields=true&${urlParam.searchParams}`));
 	const data = await res.json();
 	return {
 		props: {
