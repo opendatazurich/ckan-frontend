@@ -6,7 +6,8 @@ export const ckanUrl = import.meta.env.VITE_CKAN_URL || 'https://data.stadt-zuer
 export const schemaOrgProfile = import.meta.env.VITE_SCHEMA_ORG_PROFILE || 'stadtzh_schemaorg';
 export const apiUrl = (path: string) => `${ckanUrl}/api/3/action/${path}`;
 export const backendUrl = (route: string) => `${ckanUrl}${route}`;
-export const schemaOrgPath = (datasetId: string) => `/dataset/${datasetId}.jsonld?profile=${schemaOrgProfile}`;
+export const schemaOrgPath = (datasetId: string) =>
+	`/dataset/${datasetId}.jsonld?profile=${schemaOrgProfile}`;
 
 export const pageSize = 20;
 
@@ -63,11 +64,10 @@ export const loadDataset: Load = async ({ params, fetch }) => {
 		props: {
 			showcases: showcases.map(mapDataset),
 			dataset: mapDataset(dataset),
-			jsonld: res.ok && await res.json(),
+			jsonld: res.ok && (await res.json())
 		}
 	};
 };
-
 
 export const loadGroupOld: Load = async ({ params }) => {
 	const { groupId } = params;

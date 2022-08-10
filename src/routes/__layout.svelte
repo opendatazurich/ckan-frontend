@@ -26,7 +26,7 @@
 	<link rel="stylesheet" href="/assets/css/main.min.css" media="all" />
 	<link rel="stylesheet" href="/assets/css/fonts.css" media="all" />
 	<link rel="stylesheet" media="print" href="/assets/css/print.css" />
-	<meta name="robots" content="{robotsDirective}">
+	<meta name="robots" content={robotsDirective} />
 </svelte:head>
 
 <Header {isStaging} />

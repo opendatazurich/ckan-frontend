@@ -6,7 +6,7 @@ import { escape } from '$lib/string';
 
 const template = ejs.compile(view);
 
-export const get: RequestHandler = async ({ params }) => {
+export const GET: RequestHandler = async ({ params }) => {
 	const { resourceId, viewId } = params;
 
 	const view = await apiGet(`resource_view_show?id=${viewId}`);
