@@ -12,7 +12,6 @@
 			href="http://opendefinition.org/okd/"
 			title="Dieser Datensatz entspricht der Open Definition."
 			target="_blank"
-		>
-		</a>
+		/>
 	</p>
 </section>
