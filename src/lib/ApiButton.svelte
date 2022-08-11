@@ -17,7 +17,7 @@
 	{/if}
 </svelte:head>
 
-<Button icon="gearwheel" secondary on:click={() => (show = true)}>Daten-API</Button>
+<Button icon="gearwheel" on:click={() => (show = true)}>Daten-API</Button>
 
 {#if show}
 	<Modal on:close={() => (show = false)}>
@@ -124,7 +124,7 @@ print fileobj.read()
 					</Accordion>
 				</div>
 			</div>
-			<Button secondary on:click={() => (show = false)}>Schliessen</Button>
+			<Button on:click={() => (show = false)}>Schliessen</Button>
 		</div>
 	</Modal>
 {/if}

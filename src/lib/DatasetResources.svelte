@@ -19,7 +19,7 @@
 					{resource.description ? resource.description : getType(resource.format).description}
 				</div>
 				<div class="download">
-					<Button secondary icon="download" href={resource.url}>Herunterladen</Button>
+					<Button icon="download" href={resource.url}>Herunterladen</Button>
 				</div>
 			</div>
 		</div>
@@ -38,9 +38,7 @@
 	}
 
 	.download {
-		padding: 0.25em 0.5em;
-		margin-right: 0.25em;
-		margin-top: 0.25em;
+		margin-top: 0.5em;
 	}
 
 	@media (min-width: 800px) {

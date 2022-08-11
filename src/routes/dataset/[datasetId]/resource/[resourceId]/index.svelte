@@ -41,11 +41,11 @@
 		<div class="module-content">
 			<div class="actions">
 				{#if hasDataset}
-					<Button secondary icon="download" href={resource.url}>Herunterladen</Button>
+					<Button icon="download" href={resource.url}>Herunterladen</Button>
 					<ApiButton resourceId={resource.id} />
 				{/if}
 				{#if hasApi}
-					<Button icon="external_links" href={resource.url} secondary>API-Schnittstelle</Button>
+					<Button icon="external_links" href={resource.url}>API-Schnittstelle</Button>
 				{/if}
 			</div>
 
