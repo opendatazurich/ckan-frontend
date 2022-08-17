@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Button from './Button.svelte';
-
 	import { getType } from './dataTypes';
 	import FileIcon from './FileIcon.svelte';
 

@@ -20,20 +20,17 @@
 {/if}
 
 <style>
-	/* hacky centering of icon font */
-	*::before {
+	/* better icon positioning */
+	::before {
 		position: relative;
-		top: 0.1rem;
-		padding: 0 0.5rem 0 0.25rem;
+		top: 2px;
+		right: 6px;
 	}
-	a,
-	button {
-		padding: 0.4rem 0.8rem;
-		margin: 0;
-	}
+	/* line-height is ignored on windows, setting the height forces the button content to be centered */
 	.mod_button {
-		color: var(--color-white);
-		height: 2.5rem;
+		line-height: 3rem;
+		height: 3rem;
+		padding: 0 1rem 0 1rem;
 	}
 	.var_secondary {
 		color: var(--color-zuriblau);
