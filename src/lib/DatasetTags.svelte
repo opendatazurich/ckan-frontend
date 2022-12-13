@@ -4,12 +4,13 @@
 </script>
 
 <h3>Tags</h3>
-<div class="tags">
-	{#each dataset.tags as tag}
-		<a class="tag" href="{path}?tags={tag.name}">{tag.display_name}</a>&nbsp;
-	{/each}
-</div>
-
+{#if dataset.tags}
+    <div class="tags">
+        {#each dataset.tags as tag}
+            <a class="tag" href="{path}?tags={tag.name}">{tag.display_name}</a>&nbsp;
+        {/each}
+    </div>
+{/if}
 <style>
 	.tags {
 		display: flex;
