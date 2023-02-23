@@ -1,15 +1,12 @@
-<script context="module" lang="ts">
-	export { loadGroups as load } from '$lib/api';
-</script>
-
 <script lang="ts">
 	import GroupList from '$lib/GroupList.svelte';
 	import Page from '$lib/Page.svelte';
 	import Toolbar from '$lib/Toolbar.svelte';
 	import SearchForm from '$lib/SearchForm.svelte';
-	import type { GroupType } from '$lib/types';
+	import type { PageData } from './$types';
 
-	export let groups: GroupType[] = [];
+	export let data: PageData;
+	$: groups = data.groups;
 
 	let options = [
 		{ id: 'title asc', title: 'Name aufsteigend' },

@@ -1,7 +1,3 @@
-<script context="module" lang="ts">
-	export { loadGroup as load } from '$lib/api';
-</script>
-
 <script lang="ts">
 	import Pagination from '$lib/Pagination.svelte';
 	import TwoColumn from '$lib/TwoColumn.svelte';
@@ -15,13 +11,10 @@
 	import Accordion from '$lib/Accordion.svelte';
 	import Group from '$lib/Group.svelte';
 	import { pageSize } from '$lib/api';
+	import type { PageData } from './$types';
 
-	export let datasets = [];
-	export let group = {} as any;
-	export let search_facets = {};
-	export let count = 0;
-	export let q = 0;
-	export let filters = [];
+	export let data: PageData;
+	$: ({ datasets, group, search_facets, count, q, filters } = data);
 </script>
 
 <Page>

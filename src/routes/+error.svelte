@@ -1,18 +1,11 @@
-<script context="module">
-	export const load = (args) => ({
-		props: args
-	});
-</script>
-
 <script lang="ts">
+	import { page } from '$app/stores';
 	function back() {
 		history.back();
 	}
-	export let status;
-	export let error;
 </script>
 
-{#if status === 404}
+{#if $page.status === 404}
 	<div data-header="content-wrapper">
 		<div class="layout_section">
 			<div class="layout_wrapper">
@@ -66,7 +59,7 @@
 					<h3 class="title">Hinweis</h3>
 
 					<div class="text">
-						{error.message}
+						{$page.error?.message}
 					</div>
 				</div>
 			</div>

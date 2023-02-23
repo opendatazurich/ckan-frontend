@@ -1,7 +1,3 @@
-<script context="module" lang="ts">
-	export { loadResource as load } from '$lib/api';
-</script>
-
 <script lang="ts">
 	import { marked } from 'marked';
 	import ResourceInfo from '$lib/ResourceInfo.svelte';
@@ -14,11 +10,10 @@
 	import PageTitle from '$lib/PageTitle.svelte';
 	import TwoColumn from '$lib/TwoColumn.svelte';
 	import Button from '$lib/Button.svelte';
+	import type { PageData } from './$types';
 
-	export let dataset = {} as { name: string; title: string; resources: any[] };
-	export let resource = {} as any;
-	export let datastore = {} as any;
-	export let viewId = '' as any;
+	export let data: PageData;
+	$: ({ dataset, resource, datastore, viewId } = data);
 	$: type = getType(resource.format);
 	$: hasApi = resource.resource_type === 'api';
 	$: hasDataset = datastore && !hasApi;
@@ -66,7 +61,6 @@
 
 		{#if hasDataset}
 			<h2>Data Explorer</h2>
-
 			<iframe
 				title="Dataset: {dataset.name}"
 				src="/dataset/{dataset.name}/resource/{resource.id}/view/{viewId}"

@@ -1,7 +1,3 @@
-<script context="module" lang="ts">
-	export { loadDataset as load } from '$lib/api';
-</script>
-
 <script lang="ts">
 	import DatasetHeader from '$lib/DatasetHeader.svelte';
 	import DatasetLicense from '$lib/DatasetLicense.svelte';
@@ -16,10 +12,10 @@
 	import GroupList from '$lib/GroupList.svelte';
 	import DatasetList from '$lib/DatasetList.svelte';
 	import DatasetSchemaOrg from '$lib/DatasetSchemaOrg.svelte';
+	import type { PageData, PageServerData } from './$types';
 
-	export let dataset = {} as any;
-	export let showcases = [];
-	export let jsonld = {} as any;
+	export let data: PageData & PageServerData;
+	$: ({ dataset, showcases, jsonld } = data);
 </script>
 
 <Page>

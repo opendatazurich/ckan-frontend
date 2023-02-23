@@ -1,14 +1,10 @@
-<script context="module" lang="ts">
-	export { getHomepage as load } from '$lib/api';
-</script>
-
 <script lang="ts">
 	import GroupList from '$lib/GroupList.svelte';
 	import TagList from '$lib/TagList.svelte';
 	import Hero from '$lib/Hero.svelte';
+	import type { PageData } from './$types';
 
-	export let groups = [];
-	export let tags = [];
+	export let data: PageData;
 </script>
 
 <Hero />
@@ -91,13 +87,13 @@
 				<div class="mod_pagetitle">
 					<h2 class="page_title">Schlagwörter</h2>
 				</div>
-				<TagList {tags} />
+				<TagList tags={data.tags} />
 			</div>
 		</div>
 
 		<div class="mod_pagetitle">
 			<h2 class="page_title">Grösste Kategorien</h2>
 		</div>
-		<GroupList {groups} />
+		<GroupList groups={data.groups} />
 	</div>
 </div>

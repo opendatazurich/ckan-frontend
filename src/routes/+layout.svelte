@@ -1,21 +1,10 @@
-<script context="module" lang="ts">
-	import type { Load } from '@sveltejs/kit';
-
-	export const load: Load = ({ url }) => {
-		const isStaging = url.hostname.includes('integ');
-		return {
-			props: {
-				isStaging
-			}
-		};
-	};
-</script>
-
 <script lang="ts">
+	import type { LayoutData } from './$types';
 	import Analytics from '$lib/Analytics.svelte';
 	import Footer from '$lib/Footer.svelte';
 	import Header from '$lib/Header.svelte';
-	export let isStaging;
+	export let data: LayoutData;
+
 	export const analyticsSrc = import.meta.env.VITE_ANALYTICS_SRC || '';
 	export const robotsDirective = import.meta.env.VITE_ROBOTS_DIRECTIVE || '';
 </script>
@@ -29,7 +18,7 @@
 	<meta name="robots" content={robotsDirective} />
 </svelte:head>
 
-<Header {isStaging} />
+<Header isStaging={data.isStaging} />
 <main>
 	<slot />
 </main>

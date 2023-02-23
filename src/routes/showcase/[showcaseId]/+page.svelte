@@ -1,7 +1,3 @@
-<script context="module" lang="ts">
-	export { loadShowcase as load } from '$lib/api';
-</script>
-
 <script lang="ts">
 	import DatasetList from '$lib/DatasetList.svelte';
 	import DatasetTags from '$lib/DatasetTags.svelte';
@@ -9,9 +5,11 @@
 	import Page from '$lib/Page.svelte';
 	import PageTitle from '$lib/PageTitle.svelte';
 	import Toolbar from '$lib/Toolbar.svelte';
+	import type { PageData } from './$types';
 
-	export let showcase;
-	export let datasets;
+	export let data: PageData;
+
+	$: ({ showcase, datasets } = data);
 </script>
 
 <Page>

@@ -1,7 +1,3 @@
-<script context="module" lang="ts">
-	export { loadDatasets as load } from '$lib/api';
-</script>
-
 <script lang="ts">
 	import DatasetList from '$lib/DatasetList.svelte';
 	import Filters from '$lib/Filters.svelte';
@@ -13,12 +9,10 @@
 	import SearchResult from '$lib/SearchResult.svelte';
 	import FilterList from '$lib/FilterList.svelte';
 	import { pageSize } from '$lib/api';
+	import type { PageData } from './$types';
 
-	export let datasets = [];
-	export let search_facets = {};
-	export let count = 0;
-	export let q = 0;
-	export let filters = [];
+	export let data: PageData;
+	$: ({ datasets, search_facets, count, q, filters } = data);
 </script>
 
 <Page>

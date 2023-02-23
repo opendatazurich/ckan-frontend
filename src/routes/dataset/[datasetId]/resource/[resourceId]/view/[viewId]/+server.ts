@@ -1,5 +1,5 @@
 import type { RequestHandler } from '@sveltejs/kit';
-import view from './_view.ejs?raw';
+import view from '../_view.ejs?raw';
 import ejs from 'ejs';
 import { get as apiGet, ckanUrl } from '$lib/api';
 import { escape } from '$lib/string';
@@ -17,10 +17,10 @@ export const GET: RequestHandler = async ({ params }) => {
 		resource: `"${escape(JSON.stringify(resource))}"`,
 		view: `"${escape(JSON.stringify(view))}"`
 	});
-	return {
+
+	return new Response(body, {
 		headers: {
 			'Content-Type': 'text/html'
-		},
-		body
-	};
+		}
+	});
 };
