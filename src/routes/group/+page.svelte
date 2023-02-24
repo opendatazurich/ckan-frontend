@@ -1,9 +1,6 @@
 <script lang="ts">
-	import GroupList from '$lib/GroupList.svelte';
-	import Page from '$lib/Page.svelte';
-	import Toolbar from '$lib/Toolbar.svelte';
-	import SearchForm from '$lib/SearchForm.svelte';
 	import type { PageData } from './$types';
+	import { GroupList, Page, Toolbar, SearchForm } from '$lib/components';
 
 	export let data: PageData;
 	$: groups = data.groups;

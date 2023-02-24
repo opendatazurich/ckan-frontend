@@ -1,7 +1,8 @@
 import type { Load } from '@sveltejs/kit';
-import { loadDataset } from '$lib/api';
+import { api } from '$lib/api';
 
-export const load: Load<{ datasetId: string }> = async ({ params, data }) => {
+export const load: Load<{ datasetId: string }> = async ({ params, data, fetch }) => {
+	const { loadDataset } = api(fetch);
 	return {
 		...data,
 		...(await loadDataset(params.datasetId))

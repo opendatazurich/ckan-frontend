@@ -53,7 +53,9 @@
 		<div class="layout_section">
 			<div class="layout_wrapper">
 				<div class="mod_pagetitle" data-init="pagetitle">
-					<h1 id="anchorContent" class="page_title">Ein Fehler ist aufgetreten (Error {status})</h1>
+					<h1 id="anchorContent" class="page_title">
+						Ein Fehler ist aufgetreten (Error {$page.status})
+					</h1>
 				</div>
 				<div class="mod_message failure">
 					<h3 class="title">Hinweis</h3>

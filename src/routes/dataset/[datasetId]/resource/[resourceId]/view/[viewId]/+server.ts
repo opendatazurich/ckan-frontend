@@ -1,22 +1,18 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import view from '../_view.ejs?raw';
 import ejs from 'ejs';
-import { get as apiGet, ckanUrl } from '$lib/api';
-import { escape } from '$lib/string';
+import { api } from '$lib/api';
 
 const template = ejs.compile(view);
 
-export const GET: RequestHandler = async ({ params }) => {
-	const { resourceId, viewId } = params;
+export const GET: RequestHandler<{ resourceId: string; viewId: string }> = async ({
+	params,
+	fetch
+}) => {
+	const { loadView } = api(fetch);
 
-	const view = await apiGet(`resource_view_show?id=${viewId}`);
-	const resource = await apiGet(`resource_show?id=${resourceId}`);
-
-	const body = template({
-		baseUrl: ckanUrl + '/',
-		resource: `"${escape(JSON.stringify(resource))}"`,
-		view: `"${escape(JSON.stringify(view))}"`
-	});
+	const data = await loadView(params);
+	const body = template(data);
 
 	return new Response(body, {
 		headers: {

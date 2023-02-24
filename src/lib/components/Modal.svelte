@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { clickOutside } from './actions';
+	import { clickOutside } from '$lib/actions';
 	const dispatch = createEventDispatcher();
 	function keydown(e: KeyboardEvent) {
 		if (e.code === 'Escape') {

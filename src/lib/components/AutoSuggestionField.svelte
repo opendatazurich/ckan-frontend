@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { get } from '$lib/api';
+	import { api } from '$lib/api';
+	const { getSearch } = api(fetch);
 	import { clickOutside } from '$lib/actions';
 	import { page } from '$app/stores';
 	export let placeholder = 'Suchen...';
-	export let scope = 'dataset';
 
 	let searchResults = [] as any[];
 
@@ -15,8 +15,7 @@
 	async function onChange(e: any) {
 		const value = e.target.value;
 		if (value.length > 1) {
-			const { results } = await get(`package_search?q=${value}&fq=dataset_type:${scope}`);
-			searchResults = results.map((r: any) => r.title);
+			searchResults = await getSearch(value);
 			show = true;
 		} else {
 			close();
@@ -63,9 +62,9 @@
 	{#if show}
 		<div class="autocomplete-suggestions">
 			{#each searchResults as searchResult}
-				<div on:click={() => selectResult(searchResult)} class="autocomplete-suggestion">
+				<button on:click={() => selectResult(searchResult)} class="autocomplete-suggestion">
 					{searchResult}
-				</div>
+				</button>
 			{:else}
 				<div>Keine Treffer zu "{inputElement.value}" gefunden</div>
 			{/each}
@@ -87,6 +86,10 @@
 	.autocomplete-suggestion {
 		padding: 0.25rem 0.5rem;
 		transition: color ease-in 100ms;
+		border: none;
+		background: inherit;
+		width: 100%;
+		text-align: left;
 	}
 	.autocomplete-suggestion:hover {
 		color: var(--color-white);

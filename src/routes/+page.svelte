@@ -1,7 +1,5 @@
 <script lang="ts">
-	import GroupList from '$lib/GroupList.svelte';
-	import TagList from '$lib/TagList.svelte';
-	import Hero from '$lib/Hero.svelte';
+	import { GroupList, TagList, Hero } from '$lib/components';
 	import type { PageData } from './$types';
 
 	export let data: PageData;

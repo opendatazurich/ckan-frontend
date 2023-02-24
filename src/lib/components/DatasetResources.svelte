@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Button from './Button.svelte';
-	import { getType } from './dataTypes';
+	import { getType } from '$lib/dataTypes';
 	import FileIcon from './FileIcon.svelte';
 
 	export let dataset: { name: string; resources: any[] } = {} as any;

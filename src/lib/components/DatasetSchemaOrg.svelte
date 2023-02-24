@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { serialize } from './jsonld';
+	import { serialize } from '$lib/jsonld';
 
 	export let jsonld: any;
 </script>

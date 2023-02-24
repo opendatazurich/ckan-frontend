@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { truncate } from '$lib/string';
-	import { makeFilterUrl } from '$lib/api';
+	import { makeFilterUrl } from '$lib/mapping';
 
 	export let title = 'Filter';
 	export let key: string;

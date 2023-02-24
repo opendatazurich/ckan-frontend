@@ -1,233 +1,155 @@
 import { error } from '@sveltejs/kit';
-import { removeMarkdown, truncate } from '$lib/string';
-import { marked } from 'marked';
-import type { GroupType } from './types';
+import { escape } from '$lib/string';
+import {
+	apiUrl,
+	backendUrl,
+	defaultFacets,
+	groupFacets,
+	schemaOrgProfile,
+	showcaseFacets
+} from '$lib/config';
+import { makeQuery, mapDataset, mapFacets, mapTags } from './mapping';
 
-export const ckanUrl = import.meta.env.VITE_CKAN_URL || 'https://data.stadt-zuerich.ch';
-export const schemaOrgProfile = import.meta.env.VITE_SCHEMA_ORG_PROFILE || 'stadtzh_schemaorg';
-export const apiUrl = (path: string) => `${ckanUrl}/api/3/action/${path}`;
-export const backendUrl = (route: string) => `${ckanUrl}${route}`;
-export const schemaOrgPath = (datasetId: string) =>
-	`/dataset/${datasetId}.jsonld?profile=${schemaOrgProfile}`;
+// we have to inject the fetch function depending on server side rendering or client
+export const api = (fetch: any) => {
+	const get = async (path: string) => {
+		const res = await fetch(apiUrl(path));
 
-export const pageSize = 20;
-
-export const defaultFacets = [
-	{ id: 'groups', title: 'Kategorien' },
-	{ id: 'tags', title: 'Tags' },
-	{ id: 'res_format', title: 'Formate' },
-	{ id: 'license_id', title: 'Lizenzen' }
-];
-const showcaseFacets = [{ id: 'tags', title: 'Tags' }];
-const groupFacets = defaultFacets.slice(1);
-
-export const get = async (path: string) => {
-	const res = await fetch(apiUrl(path));
-
-	if (res.ok) {
-		const data = await res.json();
-		return data.result;
-	}
-	throw res;
-};
-
-export const getSchema = async (datasetId: string) => {
-	const res = await fetch(backendUrl(schemaOrgPath(datasetId)));
-	if (res.ok) {
-		return await res.json();
-	}
-	throw res;
-};
-
-export const makeFilterUrl = (path: string, query: URLSearchParams) => {
-	return (key: string, name: string) => {
-		const newQuery = new URLSearchParams(query);
-		let groups = newQuery.getAll(key);
-		if (groups.includes(name)) {
-			groups = groups.filter((g) => g !== name);
-		} else {
-			groups.push(name);
+		if (res.ok) {
+			const data = await res.json();
+			return data.result;
 		}
-		newQuery.delete(key);
-		newQuery.delete('page');
-		groups.forEach((group) => newQuery.append(key, group));
-		return `${path}?${newQuery}`;
+		throw res;
 	};
-};
 
-/*
-export const loadGroup = async (groupId: string) => {
-	const data = (await loadGroupDatasets(groupId)(args)) as any;
+	const getGroupsOverview = async () =>
+		get('group_list?all_fields=true&limit=6&sort=package_count');
 
-	data.props.group = ((await loadGroupOld(args)) as any).props.group;
-	return data;
-};
-*/
+	const getGroups = (searchParams: URLSearchParams) =>
+		get(`group_list?all_fields=true&${searchParams}`);
 
-export const loadGroups = async (searchParams: URLSearchParams) => {
-	const res = await fetch(apiUrl(`group_list?all_fields=true&${searchParams}`));
-	const data = await res.json();
-	return {
-		groups: data.result as GroupType[]
-	};
-};
+	const loadResource = async ({
+		resourceId,
+		datasetId
+	}: {
+		resourceId: string;
+		datasetId: string;
+	}) => {
+		const { showcase, dataset } = (await loadDataset(datasetId)) as any;
 
-export const loadResource = async ({
-	resourceId,
-	datasetId
-}: {
-	resourceId: string;
-	datasetId: string;
-}) => {
-	const { showcase, dataset } = (await loadDataset(datasetId)) as any;
+		const resource = dataset.resources.find((resource: any) => resource.id == resourceId);
+		if (!resource) {
+			throw error(404, `Resource "${resourceId}" wurde nicht gefunden.`);
+		}
 
-	const resource = dataset.resources.find((resource: any) => resource.id == resourceId);
-	if (!resource) {
-		throw error(404, `Resource "${resourceId}" wurde nicht gefunden.`);
-	}
-
-	let datastore = null;
-	if (resource.datastore_active) {
-		datastore = await get(`datastore_search?resource_id=${resourceId}&limit=0&include_total=False`);
-	}
-
-	let viewId = null;
-	if (datastore) {
-		const views = await get(`resource_view_list?id=${resourceId}`);
-		viewId = views[0].id;
-	}
-
-	return {
-		dataset,
-		showcase,
-		resource,
-		datastore,
-		viewId
-	};
-};
-
-const processFacets = (search_facets: any[], facets: any[], query: URLSearchParams) => {
-	return facets
-		.map((facet) => ({ ...facet, items: query.getAll(facet.id) }))
-		.map((facet) => {
-			const facetItems = search_facets[facet.id]?.items;
-			const items = facet.items.map((item: string) =>
-				facetItems.find((i: { name: string }) => i.name === item)
+		let datastore = null;
+		if (resource.datastore_active) {
+			datastore = await get(
+				`datastore_search?resource_id=${resourceId}&limit=0&include_total=False`
 			);
-			return { ...facet, items };
-		})
-		.filter((facet) => facet.items.length);
-};
+		}
 
-export const loadGroupOld = async (groupId: string) => await get(`group_show?id=${groupId}`);
+		let viewId = null;
+		if (datastore) {
+			const views = await get(`resource_view_list?id=${resourceId}`);
+			viewId = views[0].id;
+		}
 
-export const loadGroupDatasets = async (url: URL, groupId: string) => {
-	const data = await loadDatasets(url, groupFacets, `groups:${groupId}`);
-	const group = await loadGroupOld(groupId);
-	return {
-		...data,
-		group
+		return {
+			dataset,
+			showcase,
+			resource,
+			datastore,
+			viewId
+		};
 	};
-};
 
-const getUrl = (path: string) => `${ckanUrl}/uploads/showcase/${path}`;
+	const getGroup = async (groupId: string) => await get(`group_show?id=${groupId}`);
 
-function normalizeUrl(url: string) {
-	url = url || '';
-	return url.startsWith('http') ? url : getUrl(url);
-}
-
-function mapDataset(dataset: any) {
-	return {
-		...dataset,
-		groups: dataset.groups.map(mapGroup),
-		normalized_image_url: normalizeUrl(dataset.image_url),
-		html_notes: marked(dataset.notes),
-		truncated_notes: truncate(removeMarkdown(dataset.notes), 180),
-		truncated_title: truncate(dataset.title, 80)
+	const getTags = async () => {
+		const { facets } = await get('package_search?facet.field=["tags"]&facet.limit=3&rows=0');
+		return mapTags(facets);
 	};
-}
 
-function mapGroup(group: any) {
-	return {
-		...group,
-		image_url: group.image_display_url
+	const loadGroupDatasets = async (url: URL, groupId: string) => {
+		const data = await loadDatasets(url, groupFacets, `groups:${groupId}`);
+		const group = await getGroup(groupId);
+		return {
+			...data,
+			group
+		};
 	};
-}
 
-export const getGroups = async () => get('group_list?all_fields=true&limit=6&sort=package_count');
+	const loadDatasets = async (url: URL, facets = defaultFacets, facetQueryExtension = '') => {
+		const { query, page, q } = makeQuery(url, facets, facetQueryExtension);
+		const { count, results: datasets, search_facets } = await get(`package_search?${query}`);
+		const filters = mapFacets(search_facets, facets, url.searchParams);
 
-export const getTags = async () => {
-	const { facets } = await get('package_search?facet.field=["tags"]&facet.limit=3&rows=0');
-	return Object.entries(facets.tags as Map<string, number>)
-		.sort((a, b) => b[1] - a[1])
-		.map(([key]) => key);
-};
-
-export const getShowcase = (showcaseId: string) => get(`ckanext_showcase_show?id=${showcaseId}`);
-
-export const getDatasets = (showcaseId: string) =>
-	get(`ckanext_showcase_package_list?showcase_id=${showcaseId}`);
-
-export const loadDatasets = async (url: URL, facets: any[], facetQueryExtension = '') => {
-	const facetIds = facets.map((facet) => facet.id);
-
-	const pageIndex = +(url.searchParams.get('page') || '1');
-	const q = url.searchParams.get('q') || '';
-	const start = (pageIndex - 1) * pageSize;
-
-	const newQuery = new URLSearchParams();
-	newQuery.set('q', q);
-	newQuery.set('sort', url.searchParams.get('sort') || '');
-	newQuery.set('rows', `${pageSize}`);
-	newQuery.set('start', `${start}`);
-	newQuery.set('facet.field', `${JSON.stringify(facetIds)}`);
-	newQuery.set('facet', 'true');
-
-	const facetQuery = [
-		...facets
-			.map((facet) => ({ ...facet, items: url.searchParams.getAll(facet.id) }))
-			.filter((facet) => facet.items.length)
-			.map(
-				(facet) => `${facet.id}:(${facet.items.map((item: string) => `"${item}"`).join(' AND ')})`
-			),
-		facetQueryExtension
-	].join(' AND ');
-
-	newQuery.set('fq', facetQuery);
-
-	const { count, results: datasets, search_facets } = await get(`package_search?${newQuery}`);
-
-	const filters = processFacets(search_facets, facets, url.searchParams);
-
-	return {
-		datasets: datasets.map(mapDataset),
-		search_facets,
-		count,
-		page: pageIndex,
-		q,
-		filters
+		return {
+			datasets: datasets.map(mapDataset),
+			search_facets,
+			count,
+			page,
+			q,
+			filters
+		};
 	};
-};
 
-export const loadDataset = async (datasetId: string) => {
-	const dataset = await get(`package_show?id=${datasetId}`);
-	const showcases = await get(`ckanext_package_showcase_list?package_id=${datasetId}`);
+	const loadDataset = async (datasetId: string) => {
+		const dataset = await get(`package_show?id=${datasetId}`);
+		const showcases = await get(`ckanext_package_showcase_list?package_id=${datasetId}`);
 
-	return {
-		showcases: showcases.map(mapDataset),
-		dataset: mapDataset(dataset)
+		return {
+			showcases: showcases.map(mapDataset),
+			dataset: mapDataset(dataset)
+		};
 	};
-};
 
-export const loadShowcases = (url: URL) =>
-	loadDatasets(url, showcaseFacets, `dataset_type:showcase`);
+	const loadShowcases = (url: URL) => loadDatasets(url, showcaseFacets, `dataset_type:showcase`);
 
-export const loadShowcase = async (showcaseId: string) => {
-	const showcase = await get(`ckanext_showcase_show?id=${showcaseId}`);
-	const datasets = await get(`ckanext_showcase_package_list?showcase_id=${showcaseId}`);
+	const getShowcase = async (showcaseId: string) => {
+		const showcase = await get(`ckanext_showcase_show?id=${showcaseId}`);
+		return mapDataset(showcase);
+	};
+
+	const getDatasets = async (showcaseId: string) => {
+		const datasets = await get(`ckanext_showcase_package_list?showcase_id=${showcaseId}`);
+		return datasets.map(mapDataset);
+	};
+
+	const loadShowcase = (showcaseId: string) => {
+		return {
+			showcase: getShowcase(showcaseId),
+			datasets: getDatasets(showcaseId)
+		};
+	};
+	const getSearch = async (value: string) => {
+		const { results } = await get(`package_search?q=${value}&fq=dataset_type:dataset`);
+		return results.map((r: any) => r.title);
+	};
+
+	const loadView = async ({ resourceId, viewId }: { resourceId: string; viewId: string }) => {
+		const resource = await get(`resource_show?id=${resourceId}`);
+		const view = await get(`resource_view_show?id=${viewId}`);
+
+		return {
+			baseUrl: backendUrl(),
+			resource: `"${escape(JSON.stringify(resource))}"`,
+			view: `"${escape(JSON.stringify(view))}"`
+		};
+	};
+
 	return {
-		showcase: mapDataset(showcase),
-		datasets: datasets.map(mapDataset)
+		getGroupsOverview,
+		getTags,
+		getSearch,
+		loadShowcases,
+		loadShowcase,
+		getGroups,
+		loadGroupDatasets,
+		loadDatasets,
+		loadDataset,
+		loadResource,
+		loadView
 	};
 };

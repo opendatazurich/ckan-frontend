@@ -1,9 +1,10 @@
 import type { Load } from '@sveltejs/kit';
-import { getGroups, getTags } from '$lib/api';
+import { api } from '$lib/api';
 
-export const load: Load = async () => {
+export const load: Load = async ({ fetch }) => {
+	const { getGroupsOverview, getTags } = api(fetch);
 	return {
-		groups: getGroups(),
+		groups: getGroupsOverview(),
 		tags: getTags()
 	};
 };

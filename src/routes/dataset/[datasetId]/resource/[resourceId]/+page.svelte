@@ -1,16 +1,19 @@
 <script lang="ts">
+	import type { PageData } from './$types';
+	import {
+		ResourceInfo,
+		ResourceList,
+		ApiButton,
+		Page,
+		Toolbar,
+		PageTitle,
+		TwoColumn,
+		Button
+	} from '$lib/components';
+
 	import { marked } from 'marked';
-	import ResourceInfo from '$lib/ResourceInfo.svelte';
-	import ResourceList from '$lib/ResourceList.svelte';
 	import { truncate } from '$lib/string';
 	import { getType } from '$lib/dataTypes';
-	import ApiButton from '$lib/ApiButton.svelte';
-	import Page from '$lib/Page.svelte';
-	import Toolbar from '$lib/Toolbar.svelte';
-	import PageTitle from '$lib/PageTitle.svelte';
-	import TwoColumn from '$lib/TwoColumn.svelte';
-	import Button from '$lib/Button.svelte';
-	import type { PageData } from './$types';
 
 	export let data: PageData;
 	$: ({ dataset, resource, datastore, viewId } = data);

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Accordion from './Accordion.svelte';
 
-	import { truncate } from './string';
+	import { truncate } from '$lib/string';
 
 	export let dataset: { name: string; resources: any[] };
 	export let resource: any;

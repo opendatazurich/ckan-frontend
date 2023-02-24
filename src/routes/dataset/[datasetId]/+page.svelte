@@ -1,18 +1,20 @@
 <script lang="ts">
-	import DatasetHeader from '$lib/DatasetHeader.svelte';
-	import DatasetLicense from '$lib/DatasetLicense.svelte';
-	import DatasetNotes from '$lib/DatasetNotes.svelte';
-	import DatasetResources from '$lib/DatasetResources.svelte';
-	import DatasetTags from '$lib/DatasetTags.svelte';
-	import DatasetInfo from '$lib/DatasetInfo.svelte';
-	import Page from '$lib/Page.svelte';
-	import Toolbar from '$lib/Toolbar.svelte';
-	import { truncate } from '$lib/string';
-	import PageTitle from '$lib/PageTitle.svelte';
-	import GroupList from '$lib/GroupList.svelte';
-	import DatasetList from '$lib/DatasetList.svelte';
-	import DatasetSchemaOrg from '$lib/DatasetSchemaOrg.svelte';
 	import type { PageData, PageServerData } from './$types';
+	import {
+		DatasetHeader,
+		DatasetLicense,
+		DatasetNotes,
+		DatasetResources,
+		DatasetTags,
+		DatasetInfo,
+		Page,
+		Toolbar,
+		PageTitle,
+		GroupList,
+		DatasetList,
+		DatasetSchemaOrg
+	} from '$lib/components';
+	import { truncate } from '$lib/string';
 
 	export let data: PageData & PageServerData;
 	$: ({ dataset, showcases, jsonld } = data);

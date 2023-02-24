@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Filter from './Filter.svelte';
-	import { defaultFacets } from '$lib/api';
+	import { defaultFacets } from '$lib/config';
 	import Accordion from './Accordion.svelte';
 	export let search_facets = {} as any;
 

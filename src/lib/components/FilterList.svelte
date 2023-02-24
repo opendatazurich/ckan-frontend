@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { makeFilterUrl } from '$lib/api';
+	import { makeFilterUrl } from '$lib/mapping';
 	export let filters = [] as { id: string; items: any[]; title: string }[];
 	$: query = new URLSearchParams($page.url.searchParams);
 	$: path = $page.url.pathname;
