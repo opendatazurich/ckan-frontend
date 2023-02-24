@@ -13,8 +13,8 @@
 	$: pageIndex = +(query.get('page') || '1');
 	$: hasPrevious = pageIndex > firstPage;
 	$: hasNext = pageIndex < lastPage;
-	$: url = (p) => {
-		query.set('page', p);
+	$: url = (p: number) => {
+		query.set('page', `${p}`);
 		return `${path}?${query}`;
 	};
 	$: leftBound = Math.max(pageIndex - boubleSize, firstPage + 1);

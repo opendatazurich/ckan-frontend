@@ -5,24 +5,24 @@
 	export let placeholder = 'Suchen...';
 	export let scope = 'dataset';
 
-	let searchResults = [];
+	let searchResults = [] as any[];
 
 	let show = false;
-	let inputElement;
+	let inputElement: HTMLInputElement;
 
 	$: value = $page.url.searchParams.get('q');
 
-	async function onChange(e) {
+	async function onChange(e: any) {
 		const value = e.target.value;
 		if (value.length > 1) {
 			const { results } = await get(`package_search?q=${value}&fq=dataset_type:${scope}`);
-			searchResults = results.map((r) => r.title);
+			searchResults = results.map((r: any) => r.title);
 			show = true;
 		} else {
 			close();
 		}
 	}
-	function selectResult(searchResult) {
+	function selectResult(searchResult: string) {
 		inputElement.value = searchResult;
 		inputElement.focus();
 		close();
@@ -33,7 +33,7 @@
 	function open() {
 		show = true;
 	}
-	function keydown(e) {
+	function keydown(e: any) {
 		if (e.code === 'Escape' || e.code === 'Enter') {
 			close();
 		}

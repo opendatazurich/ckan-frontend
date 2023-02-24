@@ -1,4 +1,4 @@
-import { error, type Load } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import { removeMarkdown, truncate } from '$lib/string';
 import { marked } from 'marked';
 import type { GroupType } from './types';
@@ -18,7 +18,7 @@ export const defaultFacets = [
 	{ id: 'res_format', title: 'Formate' },
 	{ id: 'license_id', title: 'Lizenzen' }
 ];
-export const showcaseFacets = [{ id: 'tags', title: 'Tags' }];
+const showcaseFacets = [{ id: 'tags', title: 'Tags' }];
 const groupFacets = defaultFacets.slice(1);
 
 export const get = async (path: string) => {
@@ -55,12 +55,14 @@ export const makeFilterUrl = (path: string, query: URLSearchParams) => {
 	};
 };
 
+/*
 export const loadGroup = async (groupId: string) => {
 	const data = (await loadGroupDatasets(groupId)(args)) as any;
 
 	data.props.group = ((await loadGroupOld(args)) as any).props.group;
 	return data;
 };
+*/
 
 export const loadGroups = async (searchParams: URLSearchParams) => {
 	const res = await fetch(apiUrl(`group_list?all_fields=true&${searchParams}`));
@@ -104,58 +106,17 @@ export const loadResource = async ({
 	};
 };
 
-const processFacets = (search_facets, facets, query: URLSearchParams) => {
+const processFacets = (search_facets: any[], facets: any[], query: URLSearchParams) => {
 	return facets
 		.map((facet) => ({ ...facet, items: query.getAll(facet.id) }))
 		.map((facet) => {
 			const facetItems = search_facets[facet.id]?.items;
-			const items = facet.items.map((item) => facetItems.find((i) => i.name === item));
+			const items = facet.items.map((item: string) =>
+				facetItems.find((i: { name: string }) => i.name === item)
+			);
 			return { ...facet, items };
 		})
 		.filter((facet) => facet.items.length);
-};
-
-const makeLoadDatasets = (facets, facetQueryExtension = '') => {
-	const load: Load = async ({ url }) => {
-		const facetIds = facets.map((facet) => facet.id);
-
-		const pageIndex = +(url.searchParams.get('page') || '1');
-		const q = url.searchParams.get('q') || '';
-		const start = (pageIndex - 1) * pageSize;
-
-		const newQuery = new URLSearchParams();
-		newQuery.set('q', q);
-		newQuery.set('sort', url.searchParams.get('sort') || '');
-		newQuery.set('rows', `${pageSize}`);
-		newQuery.set('start', `${start}`);
-		newQuery.set('facet.field', `${JSON.stringify(facetIds)}`);
-		newQuery.set('facet', 'true');
-
-		const facetQuery = [
-			...facets
-				.map((facet) => ({ ...facet, items: url.searchParams.getAll(facet.id) }))
-				.filter((facet) => facet.items.length)
-				.map((facet) => `${facet.id}:(${facet.items.map((item) => `"${item}"`).join(' AND ')})`),
-			facetQueryExtension
-		].join(' AND ');
-
-		newQuery.set('fq', facetQuery);
-
-		const { count, results: datasets, search_facets } = await get(`package_search?${newQuery}`);
-
-		const filters = processFacets(search_facets, facets, url.searchParams);
-		return {
-			props: {
-				datasets: datasets.map(mapDataset),
-				search_facets,
-				count,
-				page: pageIndex,
-				q,
-				filters
-			}
-		};
-	};
-	return load;
 };
 
 export const loadGroupOld = async (groupId: string) => await get(`group_show?id=${groupId}`);
@@ -176,7 +137,7 @@ function normalizeUrl(url: string) {
 	return url.startsWith('http') ? url : getUrl(url);
 }
 
-function mapDataset(dataset) {
+function mapDataset(dataset: any) {
 	return {
 		...dataset,
 		groups: dataset.groups.map(mapGroup),
@@ -187,14 +148,12 @@ function mapDataset(dataset) {
 	};
 }
 
-function mapGroup(group) {
+function mapGroup(group: any) {
 	return {
 		...group,
 		image_url: group.image_display_url
 	};
 }
-
-// fix
 
 export const getGroups = async () => get('group_list?all_fields=true&limit=6&sort=package_count');
 
@@ -229,7 +188,9 @@ export const loadDatasets = async (url: URL, facets: any[], facetQueryExtension 
 		...facets
 			.map((facet) => ({ ...facet, items: url.searchParams.getAll(facet.id) }))
 			.filter((facet) => facet.items.length)
-			.map((facet) => `${facet.id}:(${facet.items.map((item) => `"${item}"`).join(' AND ')})`),
+			.map(
+				(facet) => `${facet.id}:(${facet.items.map((item: string) => `"${item}"`).join(' AND ')})`
+			),
 		facetQueryExtension
 	].join(' AND ');
 
@@ -252,13 +213,10 @@ export const loadDatasets = async (url: URL, facets: any[], facetQueryExtension 
 export const loadDataset = async (datasetId: string) => {
 	const dataset = await get(`package_show?id=${datasetId}`);
 	const showcases = await get(`ckanext_package_showcase_list?package_id=${datasetId}`);
-	//const jsonld = await getSchema(datasetId);
-	//const res = await fetch(schemaOrgPath(datasetId));
 
 	return {
 		showcases: showcases.map(mapDataset),
 		dataset: mapDataset(dataset)
-		//jsonld: jsonld
 	};
 };
 

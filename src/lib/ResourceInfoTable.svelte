@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { formatTimeAgo } from '$lib/date';
 	import Table from './Table.svelte';
-	export let resource;
+	export let resource: any;
 	const dateFormater = (s: string) =>
 		new Date(s).toLocaleDateString('de-CH', { month: 'long', day: 'numeric', year: 'numeric' });
 
@@ -13,7 +13,7 @@
 		.map(([id, value]) => ({ title: id.replaceAll('_', ' '), value }))
 		.filter((field) => field.value)
 		.sort((a, b) => a.title.localeCompare(b.title));
-	$: field = (id, title, formater = (x) => x) => ({
+	$: field = (id: string, title: string, formater = (x: string): any => x) => ({
 		title,
 		value: formater(resource[id]) || 'unbekannt'
 	});

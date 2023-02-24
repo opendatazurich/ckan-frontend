@@ -9,7 +9,7 @@
 			.reduce((obj, format) => {
 				obj[format] = true;
 				return obj;
-			}, {})
+			}, {} as { [key: string]: boolean })
 	);
 </script>
 

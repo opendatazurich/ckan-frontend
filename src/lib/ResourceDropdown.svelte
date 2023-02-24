@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { clickOutside } from '$lib/actions';
-	export let dataset;
-	export let resource;
+	export let dataset: any;
+	export let resource: any;
 	let open = false;
 </script>
 
@@ -25,7 +25,7 @@
 		</li>
 
 		<li>
-			<a rel="external" href={resource.url} class="resource-url-analytics" target="_blank">
+			<a rel="noreferrer" href={resource.url} class="resource-url-analytics" target="_blank">
 				<i class="fa fa-external-link" />
 				Zur Ressource
 			</a>

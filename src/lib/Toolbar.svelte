@@ -1,6 +1,6 @@
 <script lang="ts">
-	export let links = [];
-	$: isLast = (index) => index === links.length - 1;
+	export let links = [] as any[];
+	$: isLast = (index: number) => index === links.length - 1;
 </script>
 
 <nav class="mod_breadcrumb is_loaded" aria-label="Sie befinden sich hier:" data-init="breadcrumb">

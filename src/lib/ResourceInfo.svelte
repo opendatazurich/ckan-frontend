@@ -2,10 +2,9 @@
 	import ResourceInfoTable from './ResourceInfoTable.svelte';
 	import Table from './Table.svelte';
 
-	export let resource;
-	export let datastore;
-	//.filter((field) => field.id[0] !== '_')
-	$: fields = (datastore?.fields || []).map(({ id, type }) => ({ title: id, value: type }));
+	export let resource: any;
+	export let datastore: any;
+	$: fields = (datastore?.fields || []).map(({ id, type }: any) => ({ title: id, value: type }));
 </script>
 
 {#if datastore}

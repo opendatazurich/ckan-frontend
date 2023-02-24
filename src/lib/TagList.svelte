@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let tags = [];
+	export let tags = [] as string[];
 </script>
 
 <div class="mod_linklist">

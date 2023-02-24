@@ -8,15 +8,15 @@
 	export let placeholder = 'Datensätze suchen...';
 	$: q = $page.url.searchParams.get('q');
 
-	function submit(e) {
-		const query = new URLSearchParams(new FormData(e.target) as any);
+	function submit(e: SubmitEvent) {
+		const query = new URLSearchParams(new FormData(e.target as any) as any);
 		query.delete('page');
 
-		goto(`?${query}`, { keepfocus: true, noscroll: true });
+		goto(`?${query}`, { keepFocus: true, noScroll: true });
 	}
 
-	function reset(e) {
-		goto('?', { keepfocus: true, noscroll: true });
+	function reset() {
+		goto('?', { keepFocus: true, noScroll: true });
 	}
 
 	export let options = [

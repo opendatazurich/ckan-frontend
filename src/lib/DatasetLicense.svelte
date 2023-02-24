@@ -6,12 +6,6 @@
 	<h3 class="module-heading"><i class="fa fa-lock" /> Lizenz</h3>
 
 	<p class="module-content">
-		<a href={dataset.license_url} rel="dc:rights" target="_blank">{dataset.license_title}</a>
-
-		<a
-			href="http://opendefinition.org/okd/"
-			title="Dieser Datensatz entspricht der Open Definition."
-			target="_blank"
-		/>
+		<a href={dataset.license_url} rel="noreferrer" target="_blank">{dataset.license_title}</a>
 	</p>
 </section>

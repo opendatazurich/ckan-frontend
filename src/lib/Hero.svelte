@@ -2,9 +2,9 @@
 	import { goto } from '$app/navigation';
 	import AutoSuggestionField from './AutoSuggestionField.svelte';
 
-	function submit(e) {
-		const query = new URLSearchParams(new FormData(e.target) as any);
-		goto(`/dataset?${query}`, { keepfocus: true });
+	function submit(e: Event) {
+		const query = new URLSearchParams(new FormData(e.target as HTMLFormElement) as any);
+		goto(`/dataset?${query}`, { keepFocus: true });
 	}
 </script>
 

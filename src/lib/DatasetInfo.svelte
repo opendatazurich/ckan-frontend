@@ -9,11 +9,11 @@
 		['Kontakt', `<a href="mailto:${dataset.maintainer_email}">${dataset.maintainer}</a>`],
 		['Zeitraum', dataset.timeRange],
 		['Datentyp', dataset.dataType],
-		['Aktualisierungs­datum', dataset.dateLastUpdated],
+		['Aktualisierungsdatum', dataset.dateLastUpdated],
 		['Datenlieferant', dataset.data_publisher],
 		['Version', dataset.version],
 		['Räumliche Beziehung', dataset.spatialRelationship],
-		['Aktualisierungs­intervall', dataset.updateInterval],
+		['Aktualisierungsintervall', dataset.updateInterval],
 		['Rechtsgrundlage', dataset.legalInformation]
 	];
 	$: attributes = dataset.sszFields ? JSON.parse(dataset.sszFields) : [];

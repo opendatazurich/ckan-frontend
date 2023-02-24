@@ -1,6 +1,6 @@
 <script lang="ts">
-	export let count;
-	export let q;
+	export let count: number;
+	export let q: string;
 </script>
 
 <h2 class="total">

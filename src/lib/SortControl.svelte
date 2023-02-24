@@ -9,10 +9,10 @@
 	$: query = new URLSearchParams($page.url.searchParams);
 	$: value = query.get('sort') || options[0].id;
 
-	function onChange(e) {
+	function onChange(e: any) {
 		query.set('sort', e.target.value);
 		query.delete('page');
-		goto(`?${query}`, { keepfocus: true, noscroll: true });
+		goto(`?${query}`, { keepFocus: true, noScroll: true });
 	}
 </script>
 

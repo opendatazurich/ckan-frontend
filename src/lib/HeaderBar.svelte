@@ -1,16 +1,12 @@
-<script>
+<script lang="ts">
 	import BurgerIcon from './BurgerIcon.svelte';
 	import MetaNav from './MetaNav.svelte';
 	import { navigating } from '$app/stores';
 	import { onMount } from 'svelte';
 	export let open = false;
-	let scrollY;
-	let lastScrollY;
+	let scrollY: number;
 	const yMargin = 121;
-	$: {
-		const temp = lastScrollY;
-		lastScrollY = scrollY;
-	}
+
 	$: isSticky = scrollY < yMargin;
 	$: hideLogo = scrollY > 10;
 	$: {

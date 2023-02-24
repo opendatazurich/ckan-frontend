@@ -4,8 +4,8 @@
 	import { makeFilterUrl } from '$lib/api';
 
 	export let title = 'Filter';
-	export let key;
-	export let items = [];
+	export let key: string;
+	export let items = [] as { name: string; count: number; display_name: string }[];
 	const limitKey = `_${key}_limit`;
 	$: query = new URLSearchParams($page.url.searchParams);
 	$: query.delete('page');
@@ -38,7 +38,7 @@
 			{#each filteredItems as item}
 				<li class="linklist_item">
 					<div class="mod_linklistitem">
-						<a sveltekit:noscroll href={url(key, item.name)} class="linklistitem">
+						<a data-sveltekit-noscroll href={url(key, item.name)} class="linklistitem">
 							<span>{truncate(item.display_name, 19, '...', false)} ({item.count})</span>
 							<span class="icon" class:icon_ico_cross={isActive(item.name)} />
 						</a>
@@ -48,11 +48,11 @@
 			<li class="linklist_item">
 				<div class="mod_linklistitem">
 					{#if limit !== -1}
-						<a sveltekit:noscroll href={moreItemsUrl()} class="linklistitem"
+						<a data-sveltekit-noscroll href={moreItemsUrl()} class="linklistitem"
 							>Mehr {title} anzeigen</a
 						>
 					{:else}
-						<a sveltekit:noscroll href={lessItemsUrl()} class="linklistitem"
+						<a data-sveltekit-noscroll href={lessItemsUrl()} class="linklistitem"
 							>Nur häufig nachgefragte {title} anzeigen</a
 						>
 					{/if}

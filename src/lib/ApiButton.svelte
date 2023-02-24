@@ -3,7 +3,7 @@
 	import Button from './Button.svelte';
 	import Modal from './Modal.svelte';
 
-	export let resourceId;
+	export let resourceId: string;
 	let show = false;
 </script>
 
@@ -30,8 +30,10 @@
 					<strong
 						>Zugriff auf Ressourcen per Web-Schnittstelle mit umfangreichen Suchmöglichkeiten</strong
 					>. Weiterführende Information in der
-					<a href="http://docs.ckan.org/en/latest/maintaining/datastore.html" target="_blank"
-						>zentralen CKAN Data API und DataStore Dokumentation</a
+					<a
+						rel="noreferrer"
+						href="http://docs.ckan.org/en/latest/maintaining/datastore.html"
+						target="_blank">zentralen CKAN Data API und DataStore Dokumentation</a
 					>.
 				</p>
 				<div class="accordion" id="accordion2">

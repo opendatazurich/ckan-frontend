@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let fields = [];
+	export let fields = [] as any[];
 	export let headers = ['Feld', 'Wert'];
 </script>
 
