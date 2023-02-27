@@ -1,0 +1,12 @@
+:root {
+	--color-zuriblau: #0f05a0;
+	--color-active: #070250;
+	--color-grey-80: #606060;
+	--color-grey-70: #606060;
+	--color-grey-input: #999999;
+	--color-zh-grey-3: #dedede;
+	--color-grey-20: #e8e8e8;
+	--color-black: #000000;
+	--color-white: #ffffff;
+	--color-stage: var(--color-white);
+}

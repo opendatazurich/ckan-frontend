@@ -2,12 +2,17 @@
 <html lang="de">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
+		<link rel="stylesheet" href="%sveltekit.assets%/assets/css/critical.min.css" />
+		<link rel="preload" href="%sveltekit.assets%/assets/css/main.min.css" as="style" />
+		<link rel="stylesheet" href="%sveltekit.assets%/assets/css/main.min.css" media="all" />
+		<link rel="stylesheet" href="%sveltekit.assets%/assets/css/fonts.css" media="all" />
+		<link rel="stylesheet" media="print" href="%sveltekit.assets%/assets/css/print.css" />
 		<title>Open Data Zürich - Stadt Zürich</title>
 		%sveltekit.head%
 	</head>
-	<body>
-		<div>%sveltekit.body%</div>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>

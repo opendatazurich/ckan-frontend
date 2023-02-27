@@ -1,6 +1,6 @@
 /** click outside of node trigges cb */
-export function clickOutside(node, cb) {
-	const handleClick = (event) => {
+export function clickOutside(node: any, cb: (node: any) => void) {
+	const handleClick = (event: MouseEvent) => {
 		if (node && !node.contains(event.target) && !event.defaultPrevented) {
 			cb(node);
 		}

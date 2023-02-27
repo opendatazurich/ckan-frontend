@@ -12,8 +12,8 @@ const DIVISIONS = [
 	{ amount: Number.POSITIVE_INFINITY, name: 'years' }
 ];
 
-export function formatTimeAgo(date) {
-	let duration = (date - Date.now()) / 1000;
+export function formatTimeAgo(date: Date) {
+	let duration = (date.getTime() - Date.now()) / 1000;
 
 	for (let i = 0; i <= DIVISIONS.length; i++) {
 		const division = DIVISIONS[i];

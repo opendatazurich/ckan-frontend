@@ -57,7 +57,7 @@ const dataTypes = {
 			'ZIP-File. Das ZIP-Dateiformat ist ein Format für verlustfrei komprimierte Dateien, das einerseits den Platzbedarf bei der Archivierung reduziert und andererseits als Containerdatei fungiert, in der mehrere zusammengehörige Dateien zusammengefasst werden können.',
 		link: 'Weitere Informationen zum ZIP-Dateiformat finden Sie hier in [Wikipedia](https://de.wikipedia.org/wiki/ZIP-Dateiformat).'
 	}
-};
+} as { [key: string]: { description: string; link: string } };
 
 export const getType = (type: string) => {
 	return dataTypes[type.toLowerCase()] || { description: '', link: '' };
