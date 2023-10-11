@@ -1,0 +1,22 @@
+include:
+  - project: 'liipops/containers-builder'
+    file: '/tasks.yml'
+    ref: v2
+
+stages:
+  - build
+
+
+Build production image:
+  stage: build
+  extends: .build-definition
+  variables:
+    BUILD_IMAGE_NAME: ckan-frontend
+    BUILD_IMAGE_TAG: ${CI_COMMIT_SHORT_SHA}
+  rules:
+    # If a tag is present use it instead of the commit sha
+    - if: $CI_COMMIT_TAG
+      variables:
+        BUILD_IMAGE_TAG: $CI_COMMIT_TAG
+
+
