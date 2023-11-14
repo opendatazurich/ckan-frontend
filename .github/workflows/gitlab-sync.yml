@@ -1,7 +1,7 @@
 name: Mirror and run GitLab CI
 
 # Only run it on tags
-on: 
+on:
   push:
     tags:
       - '*'
@@ -12,11 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Mirror + trigger CI
-        uses: SvanBoxel/gitlab-mirror-and-ci-action@master
+        uses: SvanBoxel/gitlab-mirror-and-ci-action@0.5
         with:
           args: "https://gitlab.liip.ch/ogdzh/ckan-frontend-ci"
         env:
-          FOLLOW_TAGS: "false"
+          FOLLOW_TAGS: "true"
           FORCE_PUSH: "false"
           GITLAB_HOSTNAME: "gitlab.liip.ch"
           GITLAB_USERNAME: ${{ secrets.GITLAB_USERNAME }}
