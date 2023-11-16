@@ -1,7 +1,7 @@
 ##################
 # BUILD FRONTEND #
 ##################
-FROM node:20-alpine AS build-frontend
+FROM node:18-alpine AS build-frontend
 
 ENV VITE_CKAN_URL=${VITE_CKAN_URL}
 ENV VITE_ANALYTICS_SRC=${VITE_ANALYTICS_SRC}
@@ -16,7 +16,7 @@ RUN npm install && npm run build
 ##################
 # FINAL APP      #
 ##################
-FROM node:20-alpine
+FROM node:18-alpine
 
 WORKDIR /app
 
