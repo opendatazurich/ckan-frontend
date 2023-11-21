@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { GroupType } from './types';
+	import type { GroupType } from '../types';
 
 	export let group: GroupType;
 	export let layout_column = true;

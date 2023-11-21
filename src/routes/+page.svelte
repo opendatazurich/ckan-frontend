@@ -19,7 +19,7 @@
 					<div class="col_right col_full_width">
 						<div class="mainparsys parsys">
 							<div class="mod_subpageslist section">
-								<div class="mod_subpageslist__wrapper ">
+								<div class="mod_subpageslist__wrapper">
 									<div class="layout_columns var_two_columns">
 										<div class="layout_column">
 											<div
