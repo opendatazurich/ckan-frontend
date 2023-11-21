@@ -1,10 +1,11 @@
 <script lang="ts">
 	import '../app.css';
+	import { env } from '$env/dynamic/public';
 	import type { LayoutData } from './$types';
 	import { Analytics, Footer, Header } from '$lib/components';
 	export let data: LayoutData;
 
-	export const robotsDirective = import.meta.env.VITE_ROBOTS_DIRECTIVE || '';
+	export const robotsDirective = env.PUBLIC_ROBOTS_DIRECTIVE || '';
 </script>
 
 <svelte:head>
