@@ -7,7 +7,7 @@
 
 <div use:clickOutside={() => (open = false)} class="dropdown btn-group" class:open>
 	<a
-		href="#"
+		href="javascript;"
 		on:click={() => (open = !open)}
 		class="btn btn-primary dropdown-toggle"
 		data-toggle="dropdown"

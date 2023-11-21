@@ -6,7 +6,6 @@ include:
 stages:
   - build
 
-
 Build production image:
   stage: build
   extends: .build-definition
@@ -19,5 +18,3 @@ Build production image:
       variables:
         BUILD_IMAGE_TAG: $CI_COMMIT_TAG
     - when: always
-
-

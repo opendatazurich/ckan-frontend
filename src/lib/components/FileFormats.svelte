@@ -6,10 +6,13 @@
 	const formats = Object.keys(
 		resources
 			.map((resource) => resource.format.toLocaleLowerCase())
-			.reduce((obj, format) => {
-				obj[format] = true;
-				return obj;
-			}, {} as { [key: string]: boolean })
+			.reduce(
+				(obj, format) => {
+					obj[format] = true;
+					return obj;
+				},
+				{} as { [key: string]: boolean }
+			)
 	);
 </script>
 

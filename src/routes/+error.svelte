@@ -12,7 +12,7 @@
 				<div class="mod_pagetitle" data-init="pagetitle">
 					<h1 id="anchorContent" class="page_title">Dokument nicht auffindbar (Error 404)</h1>
 				</div>
-				<div class="mod_message failure ">
+				<div class="mod_message failure">
 					<h3 class="title" data-form="formMessageTitle" tabindex="-1">Hinweis</h3>
 
 					<div class="text">
@@ -21,7 +21,7 @@
 						ersetzt.
 					</div>
 				</div>
-				<div class="mod_styledtext ">
+				<div class="mod_styledtext">
 					<p>Wir empfehlen Ihnen folgende Schritte:</p>
 					<ol>
 						<li>
