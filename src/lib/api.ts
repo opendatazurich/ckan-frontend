@@ -5,7 +5,6 @@ import {
 	backendUrl,
 	defaultFacets,
 	groupFacets,
-	schemaOrgProfile,
 	showcaseFacets
 } from '$lib/config';
 import { makeQuery, mapDataset, mapFacets, mapTags } from './mapping';
