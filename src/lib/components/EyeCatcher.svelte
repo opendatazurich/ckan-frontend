@@ -5,10 +5,12 @@
 {#if surveyLink}
 	<div class="eye-catcher-container">
 		<div class="eye-catcher">
-			<div>Wie gefällt dir<br />unser Datenkatalog?</div>
-			<a href={surveyLink} class="">
-				Kurze Befragung<br />mitmachen <span class="icon icon_arrow_right"></span>
-			</a>
+			<div class="inner-frame">
+				<div>Wie gefällt dir<br />unser Datenkatalog?</div>
+				<a href={surveyLink} class="">
+					Kurze Befragung mitmachen <span class="icon icon_arrow_right"></span>
+				</a>
+			</div>
 		</div>
 	</div>
 {/if}
@@ -20,15 +22,11 @@
 		z-index: 6;
 	}
 	.eye-catcher {
-		width: 12rem;
-		height: 12rem;
-		border-radius: 112px;
+		width: 14rem;
+		height: 14rem;
+		border-radius: 7rem;
 		background: #f1f26a;
 		color: #000000;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
 		padding: 0;
 		gap: 4px;
 		isolation: isolate;
@@ -39,28 +37,35 @@
 		font-size: 16px;
 		line-height: 119%;
 	}
+	.eye-catcher .inner-frame {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
 
 	@media screen and (max-width: 1023px) {
 		.eye-catcher {
 			position: absolute;
 			top: 9rem;
-			left: calc(100% - 12.6rem);
+			left: calc(100% - 15rem);
 		}
 	}
 
 	@media screen and (min-width: 1024px) {
 		.eye-catcher {
 			position: absolute;
-			top: 9rem;
-			left: calc(50% - 12.6rem);
+			top: 10.5rem;
+			left: calc(50% - 15rem);
 		}
 	}
 
 	@media screen and (min-width: 1260px) {
 		.eye-catcher {
 			position: absolute;
-			top: 6rem;
-			left: calc(70% + 12.6rem);
+			top: 7rem;
+			left: calc(70% + 13rem);
 		}
 	}
 	.eye-catcher a {
