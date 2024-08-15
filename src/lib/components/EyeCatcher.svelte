@@ -3,26 +3,28 @@
 </script>
 
 {#if surveyLink}
-	<div class="eye-catcher">
-		<div class="question">Wie gefällt dir<br />unser Datenkatalog?</div>
-		<a href={surveyLink} class="">
-			Kurze Befragung<br />mitmachen <span class="icon icon_arrow_right"></span>
-		</a>
+	<div class="eye-catcher-container">
+		<div class="eye-catcher">
+			<div>Wie gefällt dir<br />unser Datenkatalog?</div>
+			<a href={surveyLink} class="">
+				Kurze Befragung<br />mitmachen <span class="icon icon_arrow_right"></span>
+			</a>
+		</div>
 	</div>
 {/if}
 
 <style>
-	.eye-catcher {
-		position: absolute;
+	.eye-catcher-container {
+		position: relative;
+		width: 100%;
 		z-index: 6;
-		left: 30rem;
-		top: 10rem;
-		width: 224px;
-		height: 224px;
+	}
+	.eye-catcher {
+		width: 12rem;
+		height: 12rem;
 		border-radius: 112px;
 		background: #f1f26a;
 		color: #000000;
-
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -30,7 +32,6 @@
 		padding: 0;
 		gap: 4px;
 		isolation: isolate;
-
 		text-align: center;
 		font-family: HelveticaNeueLTW05_85Heavy, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 		font-style: normal;
@@ -38,13 +39,34 @@
 		font-size: 16px;
 		line-height: 119%;
 	}
-	.eye-catcher .question {
+
+	@media screen and (max-width: 1023px) {
+		.eye-catcher {
+			position: absolute;
+			top: 9rem;
+			left: calc(100% - 12.6rem);
+		}
+	}
+
+	@media screen and (min-width: 1024px) {
+		.eye-catcher {
+			position: absolute;
+			top: 9rem;
+			left: calc(50% - 12.6rem);
+		}
+	}
+
+	@media screen and (min-width: 1260px) {
+		.eye-catcher {
+			position: absolute;
+			top: 6rem;
+			left: calc(70% + 12.6rem);
+		}
 	}
 	.eye-catcher a {
 		color: #7b4fb7;
 		text-decoration: none;
 	}
-
 	.eye-catcher .icon {
 		right: 0;
 	}
