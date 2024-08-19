@@ -49,3 +49,9 @@
 		<MainNav />
 	</div>
 </header>
+
+<style>
+	header {
+		position: relative;
+	}
+</style>
