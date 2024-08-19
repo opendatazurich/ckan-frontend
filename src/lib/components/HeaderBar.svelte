@@ -1,5 +1,4 @@
 <script lang="ts">
-	import {surveyLink} from "$lib/config";
 	import BurgerIcon from './BurgerIcon.svelte';
 	import MetaNav from './MetaNav.svelte';
 	import { navigating } from '$app/stores';
@@ -28,7 +27,6 @@
 	class="mod_header mod_header--bar"
 	class:hide_logo={hideLogo}
 	class:is_sticky_topbar={isSticky}
-	class:contains_survey_link={surveyLink}
 >
 	<div class="mod_header__topbar" class:is_not_sticky={!isSticky && mounted}>
 		<div class="mod_header__topbar-inner">
@@ -66,14 +64,6 @@
 					<img class="stage-color" src="/logo.svg" alt="Logo Stadt Zürich" />
 				</a>
 			</div>
-
-			{#if surveyLink}
-				<div class="stage-color mod_header__logobar-logo">
-					<a href="{surveyLink}" class="stage-color mod_logo mod_logo--in-bar">
-						Wie gefällt dir unser Datenkatalog? - Mach mit bei unser kurzen Befragung
-					</a>
-				</div>
-			{/if}
 		</div>
 	</div>
 </div>
@@ -84,15 +74,5 @@
 	}
 	.stage-color {
 		background-color: var(--color-stage);
-	}
-	.contains_survey_link .mod_header__logobar-logo {
-		height: auto;
-		flex-wrap: wrap;
-	}
-
-	.contains_survey_link .mod_header__logobar-inner,
-	.contains_survey_link .mod_header__topbar-inner {
-		flex-wrap: wrap;
-		display: flex;
 	}
 </style>

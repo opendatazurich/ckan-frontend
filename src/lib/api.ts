@@ -1,12 +1,6 @@
 import { error } from '@sveltejs/kit';
 import { escape } from '$lib/string';
-import {
-	apiUrl,
-	backendUrl,
-	defaultFacets,
-	groupFacets,
-	showcaseFacets
-} from '$lib/config';
+import { apiUrl, backendUrl, defaultFacets, groupFacets, showcaseFacets } from '$lib/config';
 import { makeQuery, mapDataset, mapFacets, mapTags } from './mapping';
 
 // we have to inject the fetch function depending on server side rendering or client

@@ -12,6 +12,7 @@ import DatasetList from './DatasetList.svelte';
 import DatasetNotes from './DatasetNotes.svelte';
 import DatasetResources from './DatasetResources.svelte';
 import DatasetSchemaOrg from './DatasetSchemaOrg.svelte';
+import EyeCatcher from './EyeCatcher.svelte';
 import DatasetTags from './DatasetTags.svelte';
 import FileFormats from './FileFormats.svelte';
 import FileIcon from './FileIcon.svelte';
@@ -60,6 +61,7 @@ export {
 	DatasetResources,
 	DatasetSchemaOrg,
 	DatasetTags,
+	EyeCatcher,
 	FileFormats,
 	FileIcon,
 	Filter,

@@ -1,5 +1,6 @@
 <script>
 	import BurgerIcon from './BurgerIcon.svelte';
+	import EyeCatcher from './EyeCatcher.svelte';
 	import MainNav from './MainNav.svelte';
 	import { flyX } from '$lib/transitions';
 	import MetaNav from './MetaNav.svelte';
@@ -13,6 +14,8 @@
 </script>
 
 <header class="layout_wrapper">
+	<EyeCatcher />
+
 	<HeaderBar --color-stage={color} bind:open />
 
 	{#if open}
