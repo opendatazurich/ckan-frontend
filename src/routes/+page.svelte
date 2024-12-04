@@ -26,7 +26,7 @@
 												class="mod_newsteaser var_fixed_height var_show_text_mobile var_auto_height_mobile"
 											>
 												<a
-													href="https://stadt-zuerich.ch/portal/de/index/ogd/werkstatt.html"
+													href="https://www.stadt-zuerich.ch/de/politik-und-verwaltung/statistik-und-daten/open-government-data/werkstatt.html"
 													class="teaser"
 												>
 													<div class="content">
@@ -54,7 +54,7 @@
 												data-newsteaser-multilines-mobile
 											>
 												<a
-													href="https://stadt-zuerich.ch/portal/de/index/ogd/anwendungen.html"
+													href="https://www.stadt-zuerich.ch/de/politik-und-verwaltung/statistik-und-daten/open-government-data/anwendungen.html"
 													class="teaser"
 												>
 													<div class="content" data-newsteaser-content>
