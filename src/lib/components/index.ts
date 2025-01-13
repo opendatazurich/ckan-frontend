@@ -34,7 +34,6 @@ import PageTitle from './PageTitle.svelte';
 import Pagination from './Pagination.svelte';
 import ResourceDropdown from './ResourceDropdown.svelte';
 import ResourceInfo from './ResourceInfo.svelte';
-import ResourceInfoTable from './ResourceInfoTable.svelte';
 import ResourceList from './ResourceList.svelte';
 import SearchField from './SearchField.svelte';
 import SearchForm from './SearchForm.svelte';
@@ -82,7 +81,6 @@ export {
 	Pagination,
 	ResourceDropdown,
 	ResourceInfo,
-	ResourceInfoTable,
 	ResourceList,
 	SearchField,
 	SearchForm,
