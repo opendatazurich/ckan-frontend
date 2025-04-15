@@ -14,7 +14,9 @@
 </script>
 
 <header class="layout_wrapper">
+	<!--
 	<EyeCatcher />
+	-->
 
 	<HeaderBar --color-stage={color} bind:open />
 
