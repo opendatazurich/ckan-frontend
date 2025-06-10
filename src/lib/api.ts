@@ -45,7 +45,11 @@ export const api = (fetch: any) => {
 		let viewId = null;
 		if (datastore) {
 			const views = await get(`resource_view_list?id=${resourceId}`);
-			viewId = views[0].id;
+			if (views && views.length > 0) {
+				viewId = views[0].id;
+			} else {
+				datastore = null;
+			}
 		}
 
 		return {
