@@ -1,7 +1,5 @@
 include:
-  - project: 'liipops/containers-builder'
-    file: '/tasks.yml'
-    ref: v2
+  - component: $CI_SERVER_FQDN/components/containers-builder/build@0.7.2
 
 stages:
   - build
