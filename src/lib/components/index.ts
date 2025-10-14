@@ -12,6 +12,7 @@ import DatasetList from './DatasetList.svelte';
 import DatasetNotes from './DatasetNotes.svelte';
 import DatasetResources from './DatasetResources.svelte';
 import DatasetSchemaOrg from './DatasetSchemaOrg.svelte';
+import EyeCatcher from './EyeCatcher.svelte';
 import DatasetTags from './DatasetTags.svelte';
 import FileFormats from './FileFormats.svelte';
 import FileIcon from './FileIcon.svelte';
@@ -33,7 +34,6 @@ import PageTitle from './PageTitle.svelte';
 import Pagination from './Pagination.svelte';
 import ResourceDropdown from './ResourceDropdown.svelte';
 import ResourceInfo from './ResourceInfo.svelte';
-import ResourceInfoTable from './ResourceInfoTable.svelte';
 import ResourceList from './ResourceList.svelte';
 import SearchField from './SearchField.svelte';
 import SearchForm from './SearchForm.svelte';
@@ -60,6 +60,7 @@ export {
 	DatasetResources,
 	DatasetSchemaOrg,
 	DatasetTags,
+	EyeCatcher,
 	FileFormats,
 	FileIcon,
 	Filter,
@@ -80,7 +81,6 @@ export {
 	Pagination,
 	ResourceDropdown,
 	ResourceInfo,
-	ResourceInfoTable,
 	ResourceList,
 	SearchField,
 	SearchForm,

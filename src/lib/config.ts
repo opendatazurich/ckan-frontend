@@ -1,5 +1,8 @@
-const ckanUrl = import.meta.env.VITE_CKAN_URL || 'https://data.stadt-zuerich.ch';
-export const schemaOrgProfile = import.meta.env.VITE_SCHEMA_ORG_PROFILE || 'stadtzh_schemaorg';
+import { env } from '$env/dynamic/public';
+
+const ckanUrl = env.PUBLIC_CKAN_URL || 'https://data.stadt-zuerich.ch';
+export const schemaOrgProfile = env.PUBLIC_SCHEMA_ORG_PROFILE || 'stadtzh_schemaorg';
+export const surveyLink = env.PUBLIC_SURVEY_LINK || false;
 export const pageSize = 20;
 export const defaultFacets = [
 	{ id: 'groups', title: 'Kategorien' },

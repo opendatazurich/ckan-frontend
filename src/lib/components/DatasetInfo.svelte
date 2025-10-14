@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { marked } from 'marked';
-	marked.setOptions({ pedantic: false, smartLists: true });
 
 	export let dataset = {} as any;
 	$: rows = [
@@ -43,7 +42,7 @@
 	{#if dataset.sszBemerkungen}
 		<h3>Bemerkungen</h3>
 		<div class="package-comments">
-			{@html marked.parse(dataset.sszBemerkungen)}
+			{@html marked.parse(dataset.sszBemerkungen, { pedantic: false })}
 		</div>
 	{/if}
 

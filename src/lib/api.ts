@@ -1,13 +1,6 @@
 import { error } from '@sveltejs/kit';
 import { escape } from '$lib/string';
-import {
-	apiUrl,
-	backendUrl,
-	defaultFacets,
-	groupFacets,
-	schemaOrgProfile,
-	showcaseFacets
-} from '$lib/config';
+import { apiUrl, backendUrl, defaultFacets, groupFacets, showcaseFacets } from '$lib/config';
 import { makeQuery, mapDataset, mapFacets, mapTags } from './mapping';
 
 // we have to inject the fetch function depending on server side rendering or client
@@ -52,7 +45,11 @@ export const api = (fetch: any) => {
 		let viewId = null;
 		if (datastore) {
 			const views = await get(`resource_view_list?id=${resourceId}`);
-			viewId = views[0].id;
+			if (views && views.length > 0) {
+				viewId = views[0].id;
+			} else {
+				datastore = null;
+			}
 		}
 
 		return {

@@ -22,7 +22,7 @@
 	<TwoColumn>
 		<div class="mainparsys parsys">
 			<div class="mod_search" data-init="search">
-				<SearchForm autocomplete scope="showcase" placeholder="Showcases suchen..." />
+				<SearchForm autocomplete placeholder="Showcases suchen..." />
 				<FilterList {filters} />
 				<SearchResult {count} {q} />
 				<DatasetList cols {datasets} />

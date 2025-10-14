@@ -12,7 +12,7 @@
 	});
 	$: filters = defaultFacets
 		.map((facet) => {
-			const filter = unorderedFilters.find((filter) => filter.key === facet.id);
+			const filter = unorderedFilters.find((filter) => filter.key === facet.id)!;
 			return {
 				...filter,
 				title: facet.title
