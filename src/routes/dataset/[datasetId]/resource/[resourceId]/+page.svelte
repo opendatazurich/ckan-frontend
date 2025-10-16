@@ -10,6 +10,7 @@
 		TwoColumn,
 		Button
 	} from '$lib/components';
+	import DataTablesPreviewCKAN from "./view/DataTablesPreviewCKAN.svelte";
 
 	import { marked } from 'marked';
 	import { truncate } from '$lib/string';
@@ -20,6 +21,9 @@
 	$: type = getType(resource.format);
 	$: hasApi = resource.resource_type === 'api';
 	$: hasDataset = datastore && !hasApi;
+
+	import { ckanUrl } from '$lib/config';
+	const resourceId = data.resource.id
 </script>
 
 <Page>
@@ -70,15 +74,8 @@
 
 		{#if hasDataset}
 			<h2>Data Explorer</h2>
-			<iframe
-				title="Dataset: {dataset.name}"
-				src="/dataset/{dataset.name}/resource/{resource.id}/view/{viewId}"
-				frameborder="0"
-				width="100%"
-				style="height: 672px;"
-			>
-				<p>Ihr Browser unterstützt keine IFrames.</p>
-			</iframe>
+			<DataTablesPreviewCKAN {ckanUrl} {resourceId} pageLength={25} />
+
 		{/if}
 
 		<ResourceInfo {resource} {datastore} />

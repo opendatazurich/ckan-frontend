@@ -1,6 +1,6 @@
 import { env } from '$env/dynamic/public';
 
-const ckanUrl = env.PUBLIC_CKAN_URL || 'https://data.stadt-zuerich.ch';
+export const ckanUrl = env.PUBLIC_CKAN_URL || 'https://data.stadt-zuerich.ch';
 export const schemaOrgProfile = env.PUBLIC_SCHEMA_ORG_PROFILE || 'stadtzh_schemaorg';
 export const surveyLink = env.PUBLIC_SURVEY_LINK || false;
 export const pageSize = 20;
