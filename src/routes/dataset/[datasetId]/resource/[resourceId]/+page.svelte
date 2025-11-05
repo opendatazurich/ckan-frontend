@@ -14,6 +14,7 @@
 	import { marked } from 'marked';
 	import { truncate } from '$lib/string';
 	import { getType } from '$lib/dataTypes';
+	import { ckanUrl } from '$lib/config';
 
 	export let data: PageData;
 	$: ({ dataset, resource, datastore, viewId } = data);
@@ -72,7 +73,7 @@
 			<h2>Data Explorer</h2>
 			<iframe
 				title="Dataset: {dataset.name}"
-				src="/dataset/{dataset.name}/resource/{resource.id}/view/{viewId}"
+				src="{ckanUrl}/dataset/{dataset.name}/resource/{resource.id}/view/{viewId}"
 				frameborder="0"
 				width="100%"
 				style="height: 672px;"
