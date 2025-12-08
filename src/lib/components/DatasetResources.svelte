@@ -2,6 +2,7 @@
 	import Button from './Button.svelte';
 	import { getType } from '$lib/dataTypes';
 	import FileIcon from './FileIcon.svelte';
+	import { marked } from 'marked';
 
 	export let dataset: { name: string; resources: any[] } = {} as any;
 </script>
@@ -17,6 +18,11 @@
 				<div>
 					{resource.description ? resource.description : getType(resource.format).description}
 				</div>
+				{#if resource.markdown_snippet}
+					<div class="snippet">
+						{@html marked.parse(resource.markdown_snippet)}
+					</div>
+				{/if}
 				<div class="download">
 					<Button secondary icon="download" href={resource.url}>Herunterladen</Button>
 				</div>
