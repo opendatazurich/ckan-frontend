@@ -52,12 +52,6 @@
 				URL: <a rel="external" href={resource.url} title={resource.url}>{resource.url}</a>
 			</p>
 
-			{#if resource.markdown_snippet}
-				<div class="snippet">
-					{@html marked.parse(resource.markdown_snippet)}
-				</div>
-			{/if}
-
 			{#if type.description}
 				<div class="prose notes" property="rdfs:label">
 					<p>{type.description}</p>
