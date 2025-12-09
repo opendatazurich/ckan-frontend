@@ -30,7 +30,7 @@ description:
       - display showcases
       - conform to CI/CD of City of Zurich
 legal:
-  license: GPL-3.0-only
+  license: AGPL-3.0-or-later
 maintenance:
   type: contract
   contractors:
