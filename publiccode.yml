@@ -1,0 +1,48 @@
+publiccodeYmlVersion: 0.5.0
+name: ckan-frontend
+url: https://github.com/opendatazurich/ckan-frontend
+releaseDate: 2021-10-20
+logo: https://data.stadt-zuerich.ch/logo.svg
+platforms:
+  - web
+categories:
+  - data-visualization
+organisation:
+  uri: https://data.stadt-zuerich.ch
+usedBy:
+  - Statistik Stadt Zürich (SSZ)
+developmentStatus: stable
+softwareType: standalone/web
+dependsOn:
+  open:
+    - name: svelte
+      versionMin: "4.2"
+    - name: npm
+      versionMin: "11.6"
+description:
+  en:
+    localisedName: ckan-frontend
+    shortDescription: Web-Application to display data from City of Zürich's CKAN instance (https://data.stadt-zuerich.ch/)
+    longDescription: This Web-Application, based on Svelte, is used as a Frontend to display the data from City of Zürich's CKAN instance in a CI/CD conforming way. It accesses the data via the CKAN API.
+    features:
+      - display datasets
+      - display showcases
+      - conform to CI/CD of City of Zurich
+legal:
+  license: AGPL-3.0-or-later
+maintenance:
+  type: contract
+  contractors:
+    - name: Liip AG
+      until: 2030-12-01
+      email: opendata@liip.ch
+      website: https://www.liip.ch/
+localisation:
+  localisationReady: false
+  availableLanguages:
+    - de
+intendedAudience:
+  scope:
+    - government
+    - local-authorities
+    - research
