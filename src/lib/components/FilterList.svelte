@@ -13,7 +13,7 @@
 			<span class="facet">{filter.title}:</span>
 			{#each filter?.items as item}
 				<span class="pill">
-					<span>{item.display_name}</span>
+					<span>{item?.display_name ?? ''}</span>
 					<a
 						data-sveltekit-noscroll
 						class="remove"
