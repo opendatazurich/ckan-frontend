@@ -11,13 +11,13 @@
 	{#each filters as filter}
 		<div>
 			<span class="facet">{filter.title}:</span>
-			{#each filter?.items as item}
+			{#each filter?.items ?? [] as item}
 				<span class="pill">
 					<span>{item?.display_name ?? ''}</span>
 					<a
 						data-sveltekit-noscroll
 						class="remove"
-						href={url(filter.id, item.name)}
+						href={url(filter.id, item?.name ?? '')}
 						title="Entfernen"
 					>
 						<svg width="18" height="18" viewBox="0 0 1001 1001">

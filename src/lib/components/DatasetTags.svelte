@@ -6,8 +6,8 @@
 <h3>Tags</h3>
 {#if dataset.tags}
 	<div class="tags">
-		{#each dataset.tags as tag}
-			<a class="tag" href="{path}?tags={tag.name}">{tag.display_name}</a>&nbsp;
+		{#each dataset.tags.filter((t) => t?.name) as tag}
+			<a class="tag" href="{path}?tags={tag.name}">{tag.display_name ?? ''}</a>&nbsp;
 		{/each}
 	</div>
 {/if}

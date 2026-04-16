@@ -5,9 +5,10 @@
 	export let search_facets = {} as any;
 
 	$: unorderedFilters = Object.keys(search_facets).map((key) => {
+		const raw = search_facets[key]?.items ?? [];
 		return {
 			key,
-			items: search_facets[key]?.items
+			items: raw.filter((item: { name?: string } | null) => item != null && item.name != null)
 		};
 	});
 	$: filters = defaultFacets
