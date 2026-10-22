@@ -1,7 +1,7 @@
 ##################
 # BUILD FRONTEND #
 ##################
-FROM node:20.9.0-alpine AS build-frontend
+FROM node:22.23.4-alpine AS build-frontend
 
 ENV PUBLIC_CKAN_URL=${PUBLIC_CKAN_URL}
 ENV PUBLIC_ANALYTICS_SRC=${PUBLIC_ANALYTICS_SRC}
@@ -22,7 +22,7 @@ RUN npm run build
 ##################
 # FINAL APP      #
 ##################
-FROM node:20.9.0-alpine
+FROM node:22.23.4-alpine
 
 WORKDIR /app
 
