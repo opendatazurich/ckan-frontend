@@ -3,10 +3,10 @@
 		<div class="links_wrapper">
 			<div class="links">
 				<span>© {new Date().getFullYear()} Stadt Zürich</span>
-				<a href="https://www.stadt-zuerich.ch/portal/de/index/footer/rechtliche_hinweise.html"
+				<a href="https://www.stadt-zuerich.ch/de/service/rechtliche-hinweise.html"
 					>Rechtliche Hinweise</a
 				>
-				<a href="https://www.stadt-zuerich.ch/portal/de/index/footer/impressum.html">Impressum</a>
+				<a href="https://www.stadt-zuerich.ch/de/service/impressum.html">Impressum</a>
 				<a href="mailto:opendata@zuerich.ch">Feedback</a>
 			</div>
 		</div>
