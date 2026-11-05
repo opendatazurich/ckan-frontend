@@ -2,11 +2,11 @@
 const dataTypes = {
 	csv: {
 		description: 'Comma-Separated Values.',
-		link: 'Weitere Informationen zu CSV finden Sie in unserer Rubrik Werkstatt unter [Informationen zu Datenformaten.](https://www.stadt-zuerich.ch/portal/de/index/ogd/werkstatt/csv.html)'
+		link: 'Weitere Informationen zu CSV finden Sie in unserer Werkstatt unter [Datenformate](https://www.stadt-zuerich.ch/de/politik-und-verwaltung/statistik-und-daten/open-government-data/werkstatt.html#datenformate), Aufklappbereich «CSV».'
 	},
 	dxf: {
 		description: 'Drawing Interchange File Format. Projektion CH1903+ / LV95 (EPSG:2056)',
-		link: 'Weitere Informationen zu DXF finden Sie in unserer Rubrik Werkstatt unter [Informationen zu Datenformaten.](https://www.stadt-zuerich.ch/portal/de/index/ogd/werkstatt/dxf.html)'
+		link: 'Weitere Informationen zu DXF finden Sie in unserer Werkstatt unter [Datenformate](https://www.stadt-zuerich.ch/de/politik-und-verwaltung/statistik-und-daten/open-government-data/werkstatt.html#datenformate), Aufklappbereich «Weitere Geodatenformate».'
 	},
 	gdb: {
 		description: 'Geodatabase. Projektion CH1903+ / LV95 (EPSG:2056)',
@@ -14,7 +14,7 @@ const dataTypes = {
 	},
 	gpkg: {
 		description: 'GeoPackage. Projektion CH1903+ / LV95 (EPSG:2056).',
-		link: 'Weitere Informationen zu GeoPackage finden Sie in unserer Rubrik Werkstatt unter [Informationen zu Datenformaten.](https://www.stadt-zuerich.ch/portal/de/index/ogd/werkstatt/gpkg.html)'
+		link: 'Weitere Informationen zu GeoPackage finden Sie in unserer Werkstatt unter [Datenformate](https://www.stadt-zuerich.ch/de/politik-und-verwaltung/statistik-und-daten/open-government-data/werkstatt.html#datenformate), Aufklappbereich «Weitere Geodatenformate».'
 	},
 	ili: {
 		description: 'INTERLIS.',
@@ -22,19 +22,23 @@ const dataTypes = {
 	},
 	json: {
 		description: 'GeoJSON. Projektion WGS84 (EPSG:4326).',
-		link: 'Weitere Informationen zu GeoJSON finden Sie in unserer Rubrik Werkstatt unter [Informationen zu Datenformaten.](https://www.stadt-zuerich.ch/portal/de/index/ogd/werkstatt/json_geojson.html)'
+		link: 'Weitere Informationen zu JSON und GeoJSON finden Sie in unserer Werkstatt unter [Datenformate](https://www.stadt-zuerich.ch/de/politik-und-verwaltung/statistik-und-daten/open-government-data/werkstatt.html#datenformate), Aufklappbereich «JSON / GeoJSON».'
 	},
 	kml: {
 		description: 'Keyhole Markup Language (KML). Projektion WGS84 (EPSG:4326).',
-		link: 'Weitere Informationen zu KML finden Sie in unserer Rubrik Werkstatt unter [Informationen zu Datenformaten.](https://www.stadt-zuerich.ch/portal/de/index/ogd/werkstatt/kml.html)'
+		link: ''
 	},
 	kmz: {
 		description: 'Keyhole Markup Language (KML). Projektion WGS84 (EPSG:4326).',
-		link: 'Weitere Informationen zu KMZ finden Sie in unserer Rubrik Werkstatt unter [Informationen zu Datenformaten.](https://www.stadt-zuerich.ch/portal/de/index/ogd/werkstatt/kmz.html)'
+		link: ''
+	},
+	parquet: {
+		description: 'Apache Parquet.',
+		link: 'Weitere Informationen zu Parquet finden Sie in unserer Werkstatt unter [Datenformate](https://www.stadt-zuerich.ch/de/politik-und-verwaltung/statistik-und-daten/open-government-data/werkstatt.html#datenformate), Aufklappbereich «Parquet».'
 	},
 	shp: {
 		description: 'Shapefile. Projektion CH1903+ / LV95 (EPSG:2056).',
-		link: 'Weitere Informationen zu Shapefiles finden Sie in unserer Rubrik Werkstatt unter [Informationen zu Datenformaten.](https://www.stadt-zuerich.ch/portal/de/index/ogd/werkstatt/shp_shapefile.html)'
+		link: 'Weitere Informationen zu Shapefiles finden Sie in unserer Werkstatt unter [Datenformate](https://www.stadt-zuerich.ch/de/politik-und-verwaltung/statistik-und-daten/open-government-data/werkstatt.html#datenformate), Aufklappbereich «Weitere Geodatenformate».'
 	},
 	tiff: {
 		description: 'Tagged Image File Format.',
@@ -42,15 +46,15 @@ const dataTypes = {
 	},
 	wfs: {
 		description: 'Web Feature Service. Projektion CH1903+ / LV95 (EPSG:2056).',
-		link: 'Weitere Informationen zu WFS finden Sie in unserer Rubrik Werkstatt unter [Informationen zu Datenformaten.](https://www.stadt-zuerich.ch/portal/de/index/ogd/werkstatt/wfs.html)'
+		link: 'Weitere Informationen zu WFS finden Sie in unserer Werkstatt unter [Datenformate](https://www.stadt-zuerich.ch/de/politik-und-verwaltung/statistik-und-daten/open-government-data/werkstatt.html#datenformate), Aufklappbereich «Weitere Geodatenformate».'
 	},
 	wms: {
 		description: 'Web Map Service. Projektion CH1903+ / LV95 (EPSG:2056).',
-		link: 'Weitere Informationen zu WMS finden Sie in unserer Rubrik Werkstatt unter [Informationen zu Datenformaten.](https://www.stadt-zuerich.ch/portal/de/index/ogd/werkstatt/wms_wmts.html)'
+		link: 'Weitere Informationen zu WMS und WMTS finden Sie in unserer Werkstatt unter [Datenformate](https://www.stadt-zuerich.ch/de/politik-und-verwaltung/statistik-und-daten/open-government-data/werkstatt.html#datenformate), Aufklappbereich «Weitere Geodatenformate».'
 	},
 	wmts: {
 		description: 'Web Map Tile Service. Projektion CH1903+ / LV95 (EPSG:2056).',
-		link: 'Weitere Informationen zu WMTS finden Sie in unserer Rubrik Werkstatt unter [Informationen zu Datenformaten.](https://www.stadt-zuerich.ch/portal/de/index/ogd/werkstatt/wms_wmts.html)'
+		link: 'Weitere Informationen zu WMS und WMTS finden Sie in unserer Werkstatt unter [Datenformate](https://www.stadt-zuerich.ch/de/politik-und-verwaltung/statistik-und-daten/open-government-data/werkstatt.html#datenformate), Aufklappbereich «Weitere Geodatenformate».'
 	},
 	zip: {
 		description:
