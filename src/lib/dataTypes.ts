@@ -32,6 +32,10 @@ const dataTypes = {
 		description: 'Keyhole Markup Language (KML). Projektion WGS84 (EPSG:4326).',
 		link: ''
 	},
+	parquet: {
+		description: 'Apache Parquet.',
+		link: 'Weitere Informationen zu Parquet finden Sie in unserer Werkstatt unter [Datenformate](https://www.stadt-zuerich.ch/de/politik-und-verwaltung/statistik-und-daten/open-government-data/werkstatt.html#datenformate), Aufklappbereich «Parquet».'
+	},
 	shp: {
 		description: 'Shapefile. Projektion CH1903+ / LV95 (EPSG:2056).',
 		link: 'Weitere Informationen zu Shapefiles finden Sie in unserer Werkstatt unter [Datenformate](https://www.stadt-zuerich.ch/de/politik-und-verwaltung/statistik-und-daten/open-government-data/werkstatt.html#datenformate), Aufklappbereich «Weitere Geodatenformate».'
