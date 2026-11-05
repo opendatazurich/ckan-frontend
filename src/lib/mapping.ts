@@ -7,9 +7,9 @@ export const mapFacets = (search_facets: any[], facets: any[], query: URLSearchP
 		.map((facet) => ({ ...facet, items: query.getAll(facet.id) }))
 		.map((facet) => {
 			const facetItems = search_facets[facet.id]?.items;
-			const items = facet.items.map((item: string) =>
-				facetItems.find((i: { name: string }) => i.name === item)
-			);
+			const items = facet.items
+				.map((item: string) => facetItems?.find((i: { name: string }) => i.name === item))
+				.filter((i: { name?: string } | undefined): i is { name: string } => Boolean(i?.name));
 			return { ...facet, items };
 		})
 		.filter((facet) => facet.items.length);
@@ -39,7 +39,7 @@ const normalizeUrl = (url: string) => {
 export const mapDataset = (dataset: any) => {
 	return {
 		...dataset,
-		groups: dataset.groups.map(mapGroup),
+		groups: (dataset.groups ?? []).filter(Boolean).map(mapGroup),
 		normalized_image_url: normalizeUrl(dataset.image_url),
 		html_notes: marked(dataset.notes),
 		truncated_notes: truncate(removeMarkdown(dataset.notes), 180),

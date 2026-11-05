@@ -12,9 +12,11 @@
 	$: path = $page.url.pathname;
 	$: url = makeFilterUrl(path, query);
 	$: limit = query.has(limitKey) ? -1 : 10;
-	$: filteredItems = items
-		.sort((a, b) => a.name.localeCompare(b.name))
-		.sort((a, b) => b.count - a.count)
+	$: filteredItems = (items ?? [])
+		.filter((item) => item != null && item.name != null)
+		.slice()
+		.sort((a, b) => String(a.name).localeCompare(String(b.name)))
+		.sort((a, b) => (b.count ?? 0) - (a.count ?? 0))
 		.slice(0, limit);
 	$: moreItemsUrl = () => {
 		const newQuery = new URLSearchParams(query);
@@ -39,7 +41,11 @@
 				<li class="linklist_item">
 					<div class="mod_linklistitem">
 						<a data-sveltekit-noscroll href={url(key, item.name)} class="linklistitem">
-							<span>{truncate(item.display_name, 19, '...', false)} ({item.count})</span>
+							<span>
+								{truncate(String(item.display_name ?? ''), 19, '...', false)}{item.count != null
+									? ` (${item.count})`
+									: ''}
+							</span>
 							<span class="icon" class:icon_ico_cross={isActive(item.name)} />
 						</a>
 					</div>

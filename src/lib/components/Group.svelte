@@ -11,7 +11,7 @@
 			><img alt={group.name} src={group.image_url} class="teaser__image" />
 			<div data-newsteaser-content="" class="content">
 				<h3 data-newsteaser-title="" style="overflow: hidden; height: auto;">
-					{group.display_name}
+					{group.display_name ?? ''}
 				</h3>
 				{#if group.package_count}
 					<p>
