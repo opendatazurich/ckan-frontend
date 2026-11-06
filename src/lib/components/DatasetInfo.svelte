@@ -26,7 +26,7 @@
 					<tr>
 						<th>{label}</th>
 						<td>
-							{@html value}
+							{@html value ?? ''}
 						</td>
 					</tr>
 				{/each}
